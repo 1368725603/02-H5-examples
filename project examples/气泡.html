@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>气泡</title>		
+		<style type="text/css">
+            /* === 向上的气泡start === */
+            .bubble_up {
+            	position: absolute;
+            	top: -135px;
+            	width: 200px;
+            	height: 100px;
+            	background-color: #fff;
+            	border: 3px solid #666;
+            	-webkit-border-radius: 20px;
+            	-moz-border-radius: 20px;
+            	border-radius: 20px;
+            	-webkit-box-shadow: 2px 2px 4px #999;
+            	-moz-box-shadow: 2px 2px 4px #999;
+            	box-shadow: 2px 2px 4px #999;
+            	padding: 10px;
+            	box-sizing:border-box;
+            }
+            .bubble_up:before {
+            	content: ' ';
+            	position: absolute;
+            	width: 0;
+            	height: 0;
+            	left: 34px;
+            	top: 94px;
+            	border: 20px solid;
+            	border-color: #666 transparent transparent #666;
+            }
+            .bubble_up:after {
+            	content: ' ';
+            	position: absolute;
+            	width: 0;
+            	height: 0;
+            	left: 38px;
+            	top: 94px;
+            	border: 15px solid;
+            	border-color: #fff transparent transparent #fff;
+            }
+            /* === 向上的气泡end === */
+			
+			/* === 向下的气泡start === */
+			.bubble_down {
+				position: absolute;
+				top: 41px;
+				width: 200px;
+				height: 100px;
+				background-color: #fff;
+				border: 3px solid #666;
+				-webkit-border-radius: 20px;
+				-moz-border-radius: 20px;
+				border-radius: 20px;
+				-webkit-box-shadow: 2px 2px 4px #999;
+				-moz-box-shadow: 2px 2px 4px #999;
+				box-shadow: 2px 2px 4px #999;
+				padding: 10px;
+				box-sizing:border-box;
+			}
+			.bubble_down:before {
+				content: ' ';
+				position: absolute;
+				width: 0;
+				height: 0;
+				left: 34px;
+				top: -40px;
+				border: 20px solid;
+				border-color: transparent #666 #666 transparent;
+			}
+			.bubble_down:after {
+				content: ' ';
+				position: absolute;
+				width: 0;
+				height: 0;
+				left: 40px;
+				top: -30px;
+				border: 15px solid;
+				border-color: transparent #fff #fff transparent;
+			}
+			/* === 向下的气泡end === */
+        </style>
+	</head>
+	<body>
+		<div style="height: 200px;"></div>
+		<div style="position: relative;">		
+			<div class="bubble_up">
+				开始时间:xxx
+				<br/>
+				结束时间:xxx
+				<br/>
+				状态:xxx
+			</div>
+		</div>
+		<div style="position: relative;">
+			<div class="bubble_down">
+				开始时间:xxx
+				<br/>
+				结束时间:xxx
+				<br/>
+				状态:xxx
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	
+</script>

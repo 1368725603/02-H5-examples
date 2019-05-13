@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>copy</title>
+		<style type="text/css">
+            
+        </style>
+	</head>
+	<body>		
+		<div id="oDiv">
+			1234567890
+		</div>
+		<!-- 必须有一个看不见的textarea标签 -->
+		<textarea id="contents" style="height: 0; width: 0; border: none; opacity: 0;"></textarea>
+		<button id="btn">点击</button>
+		<h1>test</h1>
+	</body>
+</html>
+<script type="text/javascript">	
+	var btn = document.getElementById("btn");
+	btn.onclick = function() {
+		var textarea = document.getElementById("contents"); // 获取textarea
+        // 把标签的文本内容赋值给textarea
+		textarea.value = document.getElementById("oDiv").innerText;
+		textarea.select(); // 选择textarea的文本内容
+		document.execCommand("Copy"); // 执行浏览器复制命令
+	}
+</script>

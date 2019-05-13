@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- 组件的调用尽量用封闭型的, 非封闭型的和路由在一起用容易出问题 -->
+		<other></other>
+		<router-view></router-view>
+		<router-link to="/"></router-link>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript" src="vue/axios.js"></script>
+<script type="text/javascript" src="vue/vue-router.js"></script>
+<script type="text/javascript">	
+	// 这种组件不能调用, 只能作为路由界面.
+	var father = { 
+		data: function () {
+			return {	
+				a: "father",							
+				b: [
+					{
+					 	id: 1, 
+					 	title: 'My Journey with Vue' 
+					},
+					{
+					 	id: 2, 
+					 	title: 'My Journey with Vue2' 
+					},
+				]											
+			}
+		},					
+		methods: {
+			f3: function () {
+				alert('self.f3');			
+			}
+		},
+		// 父组件往子组件传值
+		template: `
+			<div>father	
+				<button @click="f3">{{a}}</button>
+				<child :props1="a" :props2="b"></child>
+			</div>
+		` 
+	};
+
+	// 这种组件即可以调用, 也可以配置成路由界面(配置成路由需要用变量来接收一下)。
+	var child = Vue.component("child", {
+		data: function () {
+			return {
+				count: 0
+			}
+		},
+		methods: {
+			f1: function () {
+				this.count ++;
+			}
+		},
+		props: ["props1", "props2"],
+		// 取出父组件传来的值
+		template: `
+			<div>
+				{{count}}<button v-on:click='f1'> +1</button>
+				<p>{{props1}}传来的</p>
+				<p v-for="(e, i) in props2">{{e.id}}--{{e.title}}</p>
+			</div>
+		`		
+	});	
+
+	var other = Vue.component("other", {
+		data: function () {
+			return {
+				count: 0
+			}
+		},
+		methods: {
+			f1: function () {
+				this.count ++;
+			}
+		},
+		template: `
+			<div>
+				{{count}}<button v-on:click='f1'>other +1</button>
+			</div>
+		`		
+	});	
+
+	// 定义路由规则
+	var router = new VueRouter({
+		routes: [
+		  	{path: '/', component: father},		  
+		]
+	});
+	
+	var app = new Vue({
+		el: "#app",
+		data: {},		
+		methods: {},
+		router: router
+	});
+
+</script>

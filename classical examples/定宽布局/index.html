@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title></title>
+		<style type="text/css">
+			body,ul,li,ol,p,h1,h2,h3 {
+				margin: 0;
+				padding: 0;
+			}
+			ul,ol,li {
+				list-style: none;
+			}
+			.wrap {
+                width: 100%;
+				min-width: 320px;
+				max-width: 640px;
+				margin: 0 auto;
+				background: #eee;
+				position: relative;
+			}
+			.search {
+				padding:5px;
+				box-sizing: border-box;
+                width: 100%;
+                min-width: 320px;
+				max-width: 640px;
+				height: 45px;				
+				background:#eee;				
+				font-size: 20px;
+				border:1px solid #bbb;
+				position: fixed;
+				top: 0px;
+				z-index: 3;				
+			}
+			.search input {
+				width: 100%;
+				height: 100%;
+				padding-left: 20px;
+				box-sizing: border-box;
+				border: none;
+				background: white url(img/1.png) no-repeat 0 6px;
+				background-size: 20px 20px;
+			}
+			.home {
+				width: 100%;
+				position: relative;
+				color: white;
+			}
+			.home img {
+				width: 100%;
+			}
+			.home span {
+				position: absolute;
+				bottom: 5px;
+				width:100%;
+				height: 50px;
+				line-height: 50px;
+				padding-left: 10px;
+				box-sizing: border-box;
+				background: rgba(72,72,72,0.8);
+			}
+			ul,ol {
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				border-bottom: 1px solid #bbb;
+			}
+			ul li {
+				display: inline-block;
+				margin: 0 5px;
+			}
+			ol {
+				border-bottom: none;
+				background: black;
+                width: 100%;
+                min-width: 320px;
+				max-width: 640px;
+				position: fixed;
+				bottom: 0;
+				margin:0 auto;
+			}
+			ol li {
+				display: inline-block;				
+				margin: 0 5px;
+				width: 50px;
+				height: 50px;
+				margin: 0 20px;
+			}
+			ol li img {
+				width: 100%;				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="search">
+				<input type="search" placeholder="搜索产品"/>
+			</div>
+			<div class="home" style="margin-top:45px;">
+				<img src="img/home1.jpg"/>
+				<span>酒具</span>
+			</div>
+			<div class="home">
+				<img src="img/home2.jpg"/>
+				<span>餐具</span>
+			</div>
+			<div class="home">
+				<img src="img/home3.jpg"/>
+				<span>厨具</span>
+			</div>
+			<div class="home">
+				<img src="img/home4.jpg"/>
+				<span>酒</span>
+			</div>
+			<ul>
+				<li>店铺主页</li>
+				<li>会员中心</li>
+				<li>关注我们</li>
+				<li>店铺信息</li>
+			</ul>
+			<div style="text-align: center;color: gray;width: 100%;height: 150px;padding-top:30px;background:#F8F8F8;">
+				<img src="img/zan.jpg"/>
+				<p>有赞提供技术支持</p>				
+			</div>
+			<ol>
+				<li>
+					<a href="index.html">
+						<img src="img/home_active.png"/>
+					</a>									
+				</li>
+				<li>
+					<a href="search.html">
+						<img src="img/search_active.png"/>
+					</a>									
+				</li>
+				<li>
+					<a href="mine.html">
+						<img src="img/mine.png"/>
+					</a>				
+				</li>
+			</ol>
+		</div>		
+	</body>
+</html>

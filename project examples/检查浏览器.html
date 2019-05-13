@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>检查浏览器</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+     
+</body>
+<script type="text/javascript">
+	// 检查浏览器
+	function getExplorer() {
+	    var explorer = navigator.appVersion;
+	    if (explorer.indexOf("MSIE") >= 0) {
+	        return 'ie(5~10)'; // ie(5~10)
+	    } else if (explorer.indexOf("Trident") >= 0 && explorer.indexOf("Gecko") >= 0) {
+	        return 'ie11'; // ie11    
+	    } else if (explorer.indexOf("Chrome") >= 0 && explorer.indexOf("Edge") >= 0) {
+	        return 'ieEdge'; // ieEdge
+	    } else if (explorer.indexOf("Firefox") >= 0) {
+	        return 'Firefox'; // firefox
+	    } else if (explorer.indexOf("Chrome") >= 0 && explorer.indexOf("Edge") == -1) {
+	        return 'Chrome'; // Chrome    
+	    } else if (explorer.indexOf("Opera") >= 0) {
+	        return 'Opera'; // Opera
+	    } else if (explorer.indexOf("Safari") >= 0) {
+	        return 'Safari'; // Safari
+	    }  
+	}  
+</script>
+</html>
+

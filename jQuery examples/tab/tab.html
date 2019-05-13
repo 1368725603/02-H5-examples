@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul,li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		li {
+			float: left;
+			border: 1px solid;
+			margin-right: 5px;
+			cursor: pointer;
+		}
+		div {
+			width: 1000px;
+			height: 475px;
+		}
+		.img {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	 <ul>
+		<li style="border-color: red; background: blue;">项目1</li>
+		<li>项目2</li>
+		<li>项目3</li>
+		<li>项目4</li>
+	 </ul>
+	 <div>
+	 	<img src="1.jpg" alt="">
+	 	<img src="2.jpg" alt="" class="img">
+	 	<img src="3.jpg" alt="" class="img">
+	 	<img src="4.jpg" alt="" class="img">
+	 </div>
+</body>
+</html>
+<script type="text/javascript" src="../jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+	var imgs = document.getElementsByTagName('img');
+    $('ul').on('click', 'li', function () {
+        $(this).css({
+            "border-color": "red",
+            "background": "blue"
+        }).siblings().css({
+            "border-color": "black",
+            "background": "white"
+        });
+        console.log('$(this).index(): ', $(this).index());
+        $(imgs[$(this).index()]).css("display", "block").siblings().css("display", "none");
+    });
+</script>

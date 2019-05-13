@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>dataTables</title>
+		<link rel="stylesheet" type="text/css" href="css/dataTables.css"/>
+		<style type="text/css">
+			#example td, th{
+			  	border: 1px solid #ccc;
+			}         
+        </style>
+	</head>
+	<body>
+		<table id="example" class="display" width="100%"></table>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery1.min.js"></script>
+<script type="text/javascript" src="js/dataTables.js"></script>
+<script type="text/javascript">
+	var dataSet = [];
+	for (var i = 0; i < 50; i ++) {
+		var obj = {
+			"name": "name" + i,
+			"position": "position" + i,
+			"office": "office" + i,
+			"sxtn": "sxtn" + i,
+			"start": "start" + i,
+			"salary": "salary" + i
+		};
+		dataSet.push(obj);
+	}
+	
+	makeTable(dataSet);
+	setTdwidth();
+	
+	// 过滤表格数据
+    // searchAndDraw();
+    
+    // 过滤表格数据的方法
+	function searchAndDraw() {
+		table.search("position30");
+		table.draw();
+	}
+	
+	// 创建表格方法
+	function makeTable(param) {
+		var dataObj = {
+			'searching':true, //是否允许搜索, 默认true
+			'ordering': true, // 是否允许排序, 默认true
+			// 'order': [[0, 'asc']], // 默认排序 
+			// 'order': [[1, 'asc']], // 按第二列正序排序
+			'order': [[1, 'desc'], [3, 'asc']], // 在第二列逆序排序的基础上, 按第四列正序排列
+            'bLengthChange': false, // 去掉每页多少条框体
+			'bstatesave': false, // 每页显示多少条数据的必要条件
+			'pageLength': 10, // 每页显示多少条数据
+            'destroy': true,
+            'deferRender': true,
+            'processing': true,//代码没加载完成时 会显示加载中…
+            'language': {
+                'info': '', // 表格左下角显示的文字
+                'paginate': {
+                    'previous': '上一页',
+                    'next': '下一页'
+                }
+            },
+            'columnDefs': [
+                {
+                    'render': function (data, type, row) {
+						var str = '<strong onclick="dealClick(\'' + row['position'] + "','" + row['salary'] + '\');">' + data + '</strong>';
+                        return str;
+                    },
+                    'targets': 2
+                },                  
+                {
+                    'render': function (data, type, row) {
+                        return '<a href="/guarantee/guarantee_driver_detail?dstr='+ row['position'] + '&did='+row['sxtn'] + '">' + data + '</a>';                            
+                    },
+                    'targets': [0, 1, 3, 4]
+                },
+				{
+					'render': function (data, type, row) {
+						var rowStr = JSON.stringify(row);
+						// console.log('rowStr:', rowStr);
+						var str = '<strong onclick=dealClicks(\'' + rowStr + "','" + row['salary'] + '\');>' + data + '</strong>';
+						return str;
+					},
+					'targets': 5
+				}, 
+            ],
+            data: param,
+	        columns: [
+	            { title: 'Name', data: 'name', className: "my_class" },
+	            { title: 'Position', data: 'position' },
+	            { title: 'Office', data: 'office' },
+	            { title: 'Extn', data: 'sxtn' },
+	            { title: 'Start date', data: 'start' },
+	            { title: 'Salary', data: 'salary' }
+	        ]
+        };
+		window.table = $('#example').DataTable(dataObj); 
+	};
+	
+	function dealClick(position, salary) {
+		console.log('position:', position);
+		console.log('sxtn:', salary);
+	}
+	
+	function dealClicks(row, salary) {
+		console.log('row:', row);
+		console.log('sxtn:', salary);
+	}
+	
+	function setTdwidth() { // 不使用百分比和默认宽度, 动态设置td的宽度
+		var widthes = $('.my_class').find('a');
+		var arrLen = [];
+		widthes.map(function () {
+			arrLen.push(this.offsetWidth);
+		});
+		$('.my_class').css('width', Math.max(...arrLen) + 'px');
+	}
+	
+	window.onresize = setTdwidth;
+</script>

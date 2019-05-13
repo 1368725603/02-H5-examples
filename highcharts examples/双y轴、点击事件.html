@@ -1,0 +1,195 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Highcharts</title>
+</head>
+<body>
+   <div id="container" style="width: 100%; height: 80vh; margin: 0 auto"></div>
+</body>
+</html>
+<script src="libs/jquery.min.js"></script>
+<script src="libs/highcharts.min.js"></script>
+<script type="text/JavaScript">
+    $(function() {
+        var title = {
+            text: '异常分拨数量图表'   
+        };
+        var subtitle = {
+            text: '数据来源：滴滴Idata'
+        };
+        var xAxis = {
+            categories: ['2018-2-1', '2018-2-2', '2018-2-3', '2018-2-4', '2018-2-5', '2018-2-6','2018-2-7', '2018-2-8', '2018-2-9', '2018-2-10', '2018-2-11', '2018-2-12','2018-2-13','2018-2-14','2018-2-15','2018-2-16','2018-2-17','2018-2-18','2018-2-19','2018-2-20','2018-2-21','2018-2-22','2018-2-23','2018-2-24','2018-2-25','2018-2-26','2018-2-27','2018-2-28']
+        };
+        var yAxis = [{ //第一个Y轴，序号为0
+            labels: {
+                format: '{value}°C',
+                style: {
+                    color: '#89A54E'
+                }
+            },
+            title: {
+                text: 'Temperature',
+                style: {
+                    color: '#89A54E'
+                }
+            }
+        }, { //第二个Y轴，序号为1
+            title: {
+                text: 'Rainfall',
+                style: {
+                    color: '#4572A7'
+                }
+            },
+            labels: {
+                format: '{value} mm',
+                style: {
+                    color: '#4572A7'
+                }
+            },
+            opposite: true
+        }]; 
+        var legend = {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        };
+        var series =  [
+            {
+                name: '北京',
+                data: [4,3,9,3,4,5,2,5,3,5,7,1,7,7,6,9,6,5,8,9,7,3,1,11,9,9,3,1],
+                yAxis: 1,//坐标轴序号
+                events: {
+                    click: function(e) {
+                        for(k in obj){
+                            console.log(k);
+                        }
+                        alert(e.point.category);
+                        console.log(this.name);
+                        console.log(this.data);
+                        console.log(e.point);
+                    }
+                }
+            }, 
+            {
+                name: '上海',
+                data: [4,2,9,3,4,5,7,5,3,4,7,1,3,7,6,9,5,5,8,8,7,2,1,11,9,9,3,1],
+                yAxis: 1,//坐标轴序号
+                events: {
+                    click: function(e) {
+                       alert(e.point.category);
+                       console.log(this.name);
+                    }
+                }
+            }, 
+            {
+                name: '广州',
+                data: [4,3,2,3,4,5,2,6,3,5,9,1,7,7,6,8,6,5,8,7,7,3,1,11,9,9,5,1],
+                events: {
+                    click: function(e) {
+                       alert(e.point.category);
+                       console.log(this.name);
+                    }
+                }
+            }, 
+            {
+                name: '深圳',
+                data: [4,3,5,3,4,5,2,5,4,5,7,1,7,7,5,9,6,5,2,9,7,4,1,11,9,3,3,1],
+                events: {
+                    click: function(e) {
+                       alert(e.point.category);
+                       console.log(this.name);
+                    }
+                }
+            }, 
+            {
+                name: '杭州',
+                data: [4,3,9,3,4,5,4,5,3,5,9,1,7,7,6,9,8,5,8,9,7,3,5,11,9,9,3,1],
+                events: {
+                    click: function(e) {
+                        alert(e.point.category);
+                        console.log(this.name);
+                    }
+                }
+            }
+        ];
+        var json = {};
+        json.title = title;
+        json.subtitle = subtitle;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.legend = legend;
+        json.series = series;
+        $('#container').highcharts(json);
+    });
+</script>
+<!-- <script type="text/javascript">   
+     Highcharts.chart('container',{   
+        title: {  
+            text: '支持放大功能的双Y轴线性柱状混合图以及自行格式化y轴刻度示例'  
+        },  
+        subtitle: {  
+            text: '短信发送数与成功率'  
+        },  
+        xAxis: [{  
+            categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],  
+            labels: {  
+                rotation: -45, //字体倾斜  
+                align: 'right',  
+                style: { font: 'normal 13px 宋体' }  
+            }  
+        }],  
+        yAxis: [{ // Primary yAxis  
+            title: {  
+                text: '成功率 (%)',  
+                style: {  
+                    color: '#89A54E'  
+                }  
+            },  
+            labels: {  
+                format: '{value} 条',//格式化Y轴刻度  
+                style: {  
+                    color: '#89A54E'  
+                }  
+            }    
+        }, { // Secondary yAxis  
+            title: {  
+                text: '发送数 (条)',  
+                style: {  
+                    color: '#4572A7'  
+                }  
+            },  
+            labels: {  
+                format: '{value} %',  
+                style: {  
+                    color: '#4572A7'  
+                }  
+            },  
+            opposite: true  
+        }],                             
+        series: [{  
+            name: '发送数',  
+            color: '#4572A7',  
+            type: 'spline',  
+            yAxis: 1,  
+            // data: [50, 70, 100, 120, 145, 176, 135], 
+            data: [50, 80, 140, 120, 175, 178, 135], 
+            tooltip: {  
+                formatter: function() {  
+                    return this.y +"条";  
+                }  
+            }  
+  
+        }, {  
+            name: '成功率',  
+            color: '#89A54E',  
+            type: 'spline',  
+            yAxis: 0,  
+            data: [80, 22.5, 45, 90, 99, 35, 45 ],  
+            tooltip: {  
+                valueSuffix: ' %'  
+            }  
+        }]  
+    });    
+</script> -->
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#outer {
+			width: 800px;
+			height: 20px;
+			background: gray;
+			margin: 100px auto;
+			position: relative;
+		}
+		#move {
+			width: 20px;
+			height: 60px;
+			background: green;
+			position: absolute;
+			left:0px;
+			top: -20px;
+		}
+		#inner {
+			width: 0;
+			height: 20px;
+			background: green;
+		}
+        #percent {
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }  
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<div id="inner"></div>
+		<div id="move"></div>
+	</div>
+	<div id="percent">已经走了0%</div>
+</body>
+<script type="text/javascript">
+	var outer = document.getElementById("outer");
+	var inner = document.getElementById("inner");
+	var move = document.getElementById("move");
+	var percent = document.getElementById("percent");
+	move.onmousedown = function (event) {
+		var x = event.clientX - move.offsetLeft;
+		document.onmousemove = function (event) {
+			move.style.left = event.clientX - x + "px";
+			inner.style.width = event.clientX - x + "px";
+			if (event.clientX - x > 780) {
+				move.style.left = "780px";
+				inner.style.width = "780px";
+			} else if (event.clientX - x < 0) {
+				move.style.left = "0px";
+				inner.style.width = "0px";
+			}
+			percent.innerHTML = "已经走了" + parseInt(parseInt(inner.style.width) / 780*  100) + "%";
+		}		
+	}
+	document.onmouseup = function () {
+		document.onmousemove = null;
+	}
+</script>
+</html>

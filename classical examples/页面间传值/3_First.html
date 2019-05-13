@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		用户名：<input type="text" id="myID" />
+		<p></p>
+		密码：<input type="password" id="myPwd" />		
+		<button id="btnLogin" onclick="jump();">登录</button>
+	</body>
+</html>
+<script type="text/javascript">
+    // 把需要传的值作为参数, 赋值在路径上。
+    var myID = document.querySelector("#myID");
+    var myPwd = document.querySelector("#myPwd");
+    var btnLogin = document.querySelector("#btnLogin");			
+    function jump() {
+        var url = "3_Second.html?id=" + myID.value + "&pwd=" + myPwd.value;
+        window.location.href = url;
+    }
+</script>

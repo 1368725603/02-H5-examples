@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="swiper/swiper.min.css">
+	<link rel="stylesheet" href="common.css"/>
+	<script type="text/javascript" src="swiper/swiper.min.js"></script>
+	<script type="text/javascript" src="vue/vue.js"></script>
+	<script type="text/javascript" src="vue/vue-resource.js"></script>
+	<script type="text/javascript" src="vue/vue-router.js"></script>
+	<script type="text/javascript" src="navi.js"></script>		
+	<style>
+		.comLi2{
+			margin-top: 0;
+		}
+		.wrap{
+			padding-bottom: 75px;
+		}
+		ul{
+			width: 100%;
+			max-width: 640px;
+			min-width: 320px;
+			background: white;
+			height: 35px;
+			position: fixed;
+			bottom: 55px;
+		}
+		li{
+			width: 25%;
+			float: left;
+			text-align: center;
+			line-height: 35px;
+		}
+		li:hover{
+			cursor:pointer;
+		}
+		.tools img{
+			width: 35px;
+			vertical-align: -10px;
+		}
+		.comment{
+			background: white;			
+			width: 303px;
+			height: 156px;
+			position: fixed;
+			bottom:90px;
+			left: 0;
+			right: 0;
+			margin: 0 auto;			
+			border:1px solid black;
+		}
+		textarea{
+			resize: none;
+			background: #eee;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap"> 
+		<div id="box">
+			<naviread props0="阅读详情" props1='icons/1.2.png'></naviread>
+			<div style="padding:10px;">
+				<h3>{{readDetail.title}}</h3>
+				<p style="margin:10px 0;">{{readDetail.author_name}}</p>
+				<div v-html="content"></div>
+			</div>
+			<div class="comment" v-show="isShow">
+				<textarea cols="40" rows="8" v-model="comment">
+				</textarea>
+				<p style="text-align:center;">
+					{{length}}
+					<button class="cancelComment" v-on:click="cancelComment">退出</button>
+					<button class="releaseComment" v-on:click="releaseComment">发布</button>
+				</p>				
+			</div>
+			<ul class="tools">
+				<li v-on:click="dealCollect">
+					收藏:<img v-bind:src="isCollect?'icons/bubble_collected.png':'icons/bubble_collect.png'">
+				</li>
+				<li v-on:click="dealPraise">
+					点赞 {{count}}:<img  v-bind:src="isPraise?'icons/bubble_liked.png':'icons/bubble_like.png'">
+				</li>
+				<li v-on:click="dealComment">
+					评论:<img src="icons/bottom_comment.png">
+				</li>
+				<li>
+					分享:<img src="icons/center_feedback.png">
+				</li>
+			</ul>
+			<foot props0="icons/2.1.1.png" props1="icons/2.2.2.png" props2="icons/2.3.1.png" props3="icons/2.4.1.png"></foot>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="base64.js"></script>
+<script type="text/javascript">
+	var vueData={
+		readDetail:"",
+		content:"",
+		count:"",
+		length:500,
+		readId:sessionStorage.readId,
+		isCollect:false,
+		isPraise:false,
+		isShow:false,
+		comment:"写点吧···"
+	}
+	var vueObj=new Vue({
+		el:"#box",
+		data:vueData,
+		created:function(){
+			this.readDetails();
+			this.collectState();
+			this.praiseState();
+			this.praiseCount();
+			this.lengthChange();
+		},
+		updated:function(){
+			this.lengthChange();
+		},
+		methods:{
+			readDetails:function(){
+				var readDetail="http://localhost/project/artist-v2/api/index.php?m=read&a=detail&id="+this.readId;
+				this.$http.get(readDetail).then(function(e){
+					this.readDetail=e.data.data;
+					//console.log(this.readDetail);
+					var base64 = new Base64();
+					var html = base64.decode(e.data.data.hp_content);
+					this.content = html;
+				})
+			},
+			collectState:function(){
+				if (localStorage.isLogin=='true') {
+					var isCollect='http://localhost/project/artist-v2/api/index.php?m=favorite&a=isFavorite&userId='+localStorage.userId+'&itemId='+this.readId;
+					this.$http.get(isCollect).then(function(e){
+						var isCollected=e.body.data.isFavorite;
+						if (isCollected=='false') {
+							this.isCollect=false;
+						} else {
+							this.isCollect=true;
+						}
+					});	
+				}							
+			},
+			collect:function(){
+				var collectIt='http://localhost/project/artist-v2/api/index.php?m=favorite&a=saveFavorite&userId='+localStorage.userId+'&itemId='+this.readId+'&type=1';
+				this.$http.get(collectIt).then(function(f){
+					alert(f.body.desc);
+				});
+				this.isCollect=true;
+			},
+			cancelCollect:function(){
+				var cancelCollect='http://localhost/project/artist-v2/api/index.php?m=favorite&a=cancelFavorite&userId='+localStorage.userId+'&itemId='+this.readId+'&type=1';
+				this.$http.get(cancelCollect).then(function(g){
+					alert(g.body.desc);
+				});
+				this.isCollect=false;
+			},
+			dealCollect:function(){
+				if (localStorage.isLogin=='true') {
+					if (this.isCollect) {
+						this.cancelCollect();
+					} else {
+						this.collect();
+					}
+				}else{
+					location.href="登录.html";
+				}
+			},
+			praiseState:function(){
+				if (localStorage.isLogin=='true') {
+					var isPraise='http://localhost/project/artist-v2/api/index.php?m=good&a=isGood&userId='+localStorage.userId+'&itemId='+this.readId;
+					this.$http.get(isPraise).then(function(e){
+						var isPraised=e.body.data.isGood;
+						if (isPraised=='false') {
+							this.isPraise=false;				
+						} else {
+							this.isPraise=true;							
+						}
+					});	
+				}							
+			},
+			praise:function(){
+				var praiseIt='http://localhost/project/artist-v2/api/index.php?m=good&a=addGood&userId='+localStorage.userId+'&itemId='+this.readId;
+				this.$http.get(praiseIt).then(function(f){
+					alert(f.body.desc);
+					this.praiseCount();//要写在回调函数里面
+				});
+				this.isPraise=true;
+			},
+			cancelPraise:function(){
+				var cancelPraise='http://localhost/project/artist-v2/api/index.php?m=good&a=cancelGood&userId='+localStorage.userId+'&itemId='+this.readId;
+				this.$http.get(cancelPraise).then(function(g){
+					alert(g.body.desc);
+					this.praiseCount();//要写在回调函数里面
+				});
+				this.isPraise=false;
+			},
+			dealPraise:function(){
+				if (localStorage.isLogin=='true') {
+					if (this.isPraise) {
+						this.cancelPraise();
+					} else {
+						this.praise();
+					}
+				}else{
+					location.href="登录.html";
+				}
+			},
+			dealComment:function(){
+				this.isShow=!this.isShow;
+			},
+			cancelComment:function(){
+				this.isShow=!this.isShow;
+				this.comment="写点吧···";
+			},
+			releaseComment:function(){
+				if (this.length>=0) {
+					var release='http://localhost/project/artist-v2/api/index.php?m=comment&a=addComment&userId='+localStorage.userId+'&itemId='+this.readId+'&comment='+this.comment;
+					this.$http.get(release).then(function(e){
+						alert(e.body.desc);
+					});
+				} else {
+					alert("发布失败，不能多于500字符");
+				}				
+			},
+			praiseCount:function(){
+				var praiseList='http://localhost/project/artist-v2/api/index.php?m=good&a=getGoodCount&itemId='+sessionStorage.readId;
+				this.$http.get(praiseList).then(function(e){
+					//console.log(e.body);
+					this.count=e.body.data.goodCount;
+				});
+			},
+			lengthChange:function(){
+				this.length=500-this.comment.length;
+			}
+		}
+	})
+</script>

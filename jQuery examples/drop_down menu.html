@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}			
+			ul {
+				list-style: none;
+			}			
+			.wrap {
+				width: 800px;
+				height: 30px;
+				margin: 100px auto 0;
+			}			
+			.wrap li {
+				background: pink;
+			}			
+			.wrap>ul>li {
+				float: left;
+				margin-right: 10px;
+				position: relative;
+			}			
+			.wrap a {
+				display: block;
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				text-decoration: none;
+				color: skyblue;
+			}			
+			.wrap li ul {
+				position: absolute;
+				top: 30px;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul>
+				<li>
+					<a href="#">一级菜单1</a>
+					<ul>
+						<li><a href="#">二级菜单1</a></li>
+						<li><a href="#">二级菜单2</a></li>
+						<li><a href="#">二级菜单3</a></li>
+						<li><a href="#">二级菜单4</a></li>
+					</ul>
+				</li>
+				<!--复制快捷键Ctrl+shift+r-->
+				<li>
+					<a href="#">一级菜单2</a>
+					<ul>
+						<li><a href="#">二级菜单1</a></li>
+						<li><a href="#">二级菜单2</a></li>
+						<li><a href="#">二级菜单3</a></li>
+						<li><a href="#">二级菜单4</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">一级菜单3</a>
+					<ul>
+						<li><a href="#">二级菜单1</a></li>
+						<li><a href="#">二级菜单2</a></li>
+						<li><a href="#">二级菜单3</a></li>
+						<li><a href="#">二级菜单4</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#">一级菜单4</a>
+					<ul>
+						<li><a href="#">二级菜单1</a></li>
+						<li><a href="#">二级菜单2</a></li>
+						<li><a href="#">二级菜单3</a></li>
+						<li><a href="#">二级菜单4</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
+<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>	
+<script type="text/javascript">
+    $(function(){
+        // 鼠标移入每一个li时触发
+        $(".wrap>ul>li").mouseover(function () {
+            // $(this).children("ul").stop().slideDown(2000);
+            $(this.children[1]).stop().slideDown(1000);
+        });
+        // 鼠标移出每一个li时触发
+        $(".wrap>ul>li").mouseout(function () {
+            // stop()，清除动画队列
+            // $(this).children("ul").stop().slideUp(2000);
+            $(this.children[1]).stop().slideUp(1000);
+        });
+    })
+</script>

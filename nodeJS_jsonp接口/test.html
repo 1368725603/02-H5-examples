@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>test</title>
+		<style type="text/css">
+            
+		</style>
+    </head>
+    <body>
+       
+    </body>
+</html>
+<script type="text/javascript" src="jquery1.min.js"></script>
+<script type="text/javascript">
+    var url = 'http://127.0.0.1:8888/get';
+    $.ajax({
+        type: 'get',
+        url: url,
+        // data: {'par': 123},
+        success: function (data) {
+            console.log('data_get: ', data);
+        },
+        error: function (msg) { // ajax请求失败后触发的方法
+            alert('数据加载失败, 请稍后再试! (' + msg.statusText + '--' + msg.status + ')\n' + url);
+            console.log('msg', msg); // 错误信息
+        }
+    });
+    
+    
+    JSONP('jsonpCallback'); // 参数为函数名 
+    function JSONP(func) {
+        //1、动态创建script标签
+        var script = document.createElement("script");
+        //2、将该标签添加到页面的头部
+        document.getElementsByTagName("head")[0].appendChild(script);	
+        //3、设置该标签的src属性，属性值为接口路径
+        // script.src = "http://127.0.0.1:8888/jsonp";
+        script.src = "http://127.0.0.1:8888/jsonp?callback=" + func;
+    }
+    
+    // 声明一个回调函数
+    function jsonpCallback(data) {
+    	console.log('data_jsonp:', data);
+    } 
+</script>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" id="myId" />
+		<button id="jump">跳转</button>
+	</body>
+</html>
+<script type="text/javascript">
+    var jump = document.querySelector("#jump");
+    var myId = document.querySelector("#myId");
+    // 把需要传的值储存在localStorage或sessionStorage中
+    jump.addEventListener("click",function(){
+        sessionStorage.setItem("username", myId.value);
+        window.location.href = "2_Second.html";
+    })
+</script>

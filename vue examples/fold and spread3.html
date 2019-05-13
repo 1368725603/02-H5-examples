@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.cl1 {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.cl2 {
+			width: 300px;
+			border: 1px solid;
+			padding: 5px;			
+		}
+	</style>
+</head>
+<body>
+	<div class="cl1 cl2">
+		一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！
+	</div>
+	<button>展开</button>
+</body>
+</html>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript" src="vue/axios.js"></script>
+<script type="text/javascript" src="vue/vue-router.js"></script>
+<script type="text/javascript">
+/*  $("button").click(function(){
+		$('.cl2').toggleClass('cl1');
+		if ($('.cl2').hasClass('cl1')){
+			$("button").text("展开");
+		}else{
+			$("button").text("折叠");
+		}
+	})*/
+	var btn=document.getElementsByTagName('button')[0];
+	var div=document.getElementsByTagName('div')[0];
+	btn.onclick=function(){
+		if (div.className=="cl1 cl2") {
+			div.className="cl2";
+			btn.innerHTML="折叠";
+		}else {
+			div.className="cl1 cl2";
+			btn.innerText="展开";
+		}
+	}
+</script>

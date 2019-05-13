@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="lib1/jquery/jquery.fullPage.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<title></title>
+		<style type="text/css">
+			.place{
+				margin-bottom:20px;
+				font-size: 14px;
+				color: #666;
+			}
+			.info_img,.info_title,.info_praise,.info_heart{
+				float: left;
+			}
+			.info_title,.info_heart{
+				margin-left: 20px;
+			}
+			.info_title h3{
+				margin:5px 0 25px 20px;
+			}
+			.info_img{
+				width: 70px;
+				height: 70px;
+			}
+			.info_praise img,.info_heart img{
+				width: 30px;
+				height:30px;
+				vertical-align: -8px;
+			}
+			.share{
+				clear: both;
+				height:70px;
+				border-left: 5px solid gray;
+				padding-left: 10px;
+				box-sizing: border-box;
+				margin-bottom: 40px;
+			}
+			.share div{
+				margin-top: 23px;
+			}
+			.share div img{
+				margin-right: 3px;
+			}
+			.container_left_content_img{
+				width: 500px;
+				height: 500px;
+			}			
+			.container_left_content_img img{
+				width: 100%;
+				height: 100%;
+			}
+			.container_left_content_text{
+				width: 100%;
+				height: 550px;
+				overflow: auto;
+				margin: 10px 0;
+			}
+			.container_left_content span{
+				cursor: pointer;
+				color: blue;
+			}
+			.container_left_content_comment{
+				padding-bottom: 15px;
+				border-bottom: 3px solid;
+				width: 65px;
+				margin-bottom: 20px;
+			}
+			.textarea{
+				height: 300px;
+				border: 1px solid;
+				margin-bottom: 30px;
+			}
+			.textarea textarea{
+				resize: none;
+				padding: 10px;
+				border: none;
+				border-bottom: 1px solid;
+				outline: none;
+				background: #F0F0F0;
+				width: 838px;
+			}
+			.comment_user img{
+				width: 26px;
+				height: 26px;
+				vertical-align: -5px;
+				margin-right: 10px;
+			}
+			.comment_user span{
+				color: #999;
+			}
+			.comment_user span:last-child{
+				float: right;
+			}
+			.comment_content{
+				color: #666;
+				padding: 20px 15px 30px;
+				border-bottom: 1px solid #ccc;
+				margin-bottom: 10px;
+			}
+			#commentList{
+				height:630px;
+				overflow: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="head">
+			<div class="head_nav">
+				<ul style="float: left;">
+					<li>文艺范</li>
+					<li>招商加盟</li>
+					<li>ios客户端</li>
+					<li>Android客户端</li>
+					<li>联系我们</li>
+					<li><img src="images/tele.png"/> 4008-900-800</li>
+				</ul>
+				<ol style="float:right;">
+					<li><a href="user.html">VIP会员</a></li>
+					<li><a href="login.html">登录</a></li>
+					<li style="color:#a5a5a6;">|</li>
+					<li><a href="register.html">注册</a></li>
+				</ol>
+			</div>
+			<div class="head_list">
+				<img src="images/literature.png" class="head_list_img"/>
+				<div class="head_list_select">
+					<img src="images/font.png" alt="" /><br />
+					<b>北京</b><span>【切换城市】</span>
+				</div>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="read.html">阅读</a><img src="images/n.png"></li>
+					<li><a href="music.html">音乐</a></li>
+					<li><a href="movie.html">影音</a></li>
+					<li><a href="goods.html">商品</a></li>
+				</ul>
+				<div  class="head_list_input">
+					<input type="text" placeholder="请输入查找的内容"/>
+					<img src="images/aliwx_search_icon.png"/>
+				</div>				
+			</div>
+		</div>
+		<!--主题-->
+		<div class="total_background">
+		<div class="container">
+			<div class="container_left">
+				<p class='place'>当前位置： 文艺范&gt;文章&gt;查看内容</p>
+				<div class="info" id="info"></div>
+				<div class="share">
+					<p>独乐乐不如众乐乐，若喜欢请推荐给您的好友。我要分享到：</p>
+					<div>
+						<img src="images/icon1.png"/>
+						<img src="images/icon2.png"/>
+						<img src="images/icon3.png"/>
+						<img src="images/icon4.png"/>
+						<img src="images/icon5.png"/>
+						<img src="images/icon6.png"/>
+					</div>
+				</div>
+				<div class="container_left_content" id="container_left_content">
+				</div>
+				<div class="container_left_content_comment">发表评论</div>
+				<div class="textarea" id="textarea">
+					<textarea rows="15" cols="129">写点吧···</textarea>
+					<div style="margin-top:8px;">
+						<span style="margin: 0 700px 0 10px;">500</span>
+						<input type="button" value="取消" style="margin-right: 10px;"/>
+						<input type="button" value="发布"/>
+					</div>
+				</div>
+				<div class="container_left_content_comment">评论列表</div>
+				<div id="commentList"></div>
+			</div>
+			<div class="container_right">
+				<!--推荐-->
+				<div class="container_right_recommend">
+					<div>
+						<p class="recommend">推荐</p>
+					</div>
+					<ul>
+						<li class="ranking_ul">周排行</li>
+						<li class="ranking_ul">月排行</li>
+						<li class="ranking_ul">总排行</li>
+					</ul>
+					<ol id="ranking_ol"></ol>
+				</div>				
+				<!--手气不错-->
+				<div class="container_right_luck">
+					<div>
+						<p class="recommend" style="width: 80px;">手气不错</p>
+					</div>
+					<ul id="container_right_luck"></ul>
+				</div>
+				<!--音乐推荐-->
+				<div class="container_right_music" id="musicRecommend"></div>
+			</div>
+			<div class="friend">
+				<p style="height: 43px;padding-bottom:10px;">
+					<span class="read_item1">友情链接</span>
+					<span class="read_item2">申请5245886#qq.com(#替换@)</span>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>					
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+				</p>
+			</div>
+			<p style="clear: both;"></p>
+		</div>
+		</div>
+		<!--尾部-->
+		<div class="foot">
+			<div class="foot_container">
+				<h3>文艺范</h3>
+				<a href="">关于</a>|
+				<a href="">用户协议</a>|
+				<a href="">联系我们</a>
+				<p style="color: #666;">本站为文艺范官方网站。</p>
+				<p>浙ICP备15004498号-1</p>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="lib1/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="lib1/base64/base64.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.fullPage.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.lazyload.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="js/interface.js" ></script>
+<script type="text/javascript" src="js/api.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	//阅读详情接口
+	api.readDetailUrl(function(e){
+		var info=document.getElementById("info");
+		var str='<img src="'+imagePrefix+e.data.img_url+'" class="info_img"/>';
+		str+='<div class="info_title">';
+		str+='<h3>作者/'+e.data.author_name+'</h3>';
+		str+='<p class="place">发布时间：'+e.data.post_date+'</p>';
+		str+='</div>';
+		str+='<div class="info_praise">点赞：';
+		str+='<span id="goodCount"></span>'
+		str+='<img src="">';
+		str+='</div>';
+		str+='<div class="info_heart">收藏：';
+		str+='<img src="">';
+		str+='<a href="collect.html">查看我的收藏</a>';
+		str+='</div>';
+		info.innerHTML=str;
+		var infoHeart=info.getElementsByClassName("info_heart")[0];
+		var infoPraise=info.getElementsByClassName("info_praise")[0];
+		var iconHeart=infoHeart.getElementsByTagName("img")[0];
+		var iconPraise=infoPraise.getElementsByTagName("img")[0];
+		var goodCount=document.getElementById("goodCount");
+		goodCount.style.margin="0 5px";
+		//收藏-判断阅读是否收藏接口
+		api.isFavoriteRead(function(e){;
+			if(e.data.isFavorite=="false"){
+				var isHeart=false;
+				localStorage.readHeart=false;
+				iconHeart.src="images/stow_default.png";
+			}else{
+				var isHeart=true;
+				localStorage.readHeart=true;
+				iconHeart.src="images/stow_selected.png";
+			}
+			iconHeart.onclick=function(){
+				if(localStorage.isLogin=="true"){
+					if(!isHeart){				
+					iconHeart.src='images/stow_selected.png';
+					localStorage.readHeart=true;
+					isHeart=true;
+					//收藏-添加收藏接口
+					api.saveFavoriteRead(function(e){
+						alert(e.desc);
+					});
+					}else{
+						iconHeart.src="images/stow_default.png";
+						localStorage.readHeart=false;
+						isHeart=false;
+						//收藏-取消阅读收藏接口
+						api.cancelFavoriteRead(function(e){
+							alert(e.desc);
+						});
+					}
+				}else{
+					location.href="login.html";
+				}				
+			}	
+		});		
+		api.getGoodCountRead(function(e){
+			goodCount.innerText=e.data.goodCount;
+		});
+		//点赞-阅读是否点赞接口
+		api.isGoodRead(function(e){
+			if(e.data.isGood=="false"){
+				var isPraise=false;
+				localStorage.readPraise=false;		
+				iconPraise.src='images/bubble_like.png';
+			}else{
+				var isPraise=true;
+				localStorage.readPraise=true;		
+				iconPraise.src='images/bubble_liked.png';
+			}
+			iconPraise.onclick=function(){
+				if (localStorage.isLogin=="true") {
+					if(!isPraise){
+						iconPraise.src='images/bubble_liked.png';
+						isPraise=true;
+						localStorage.readPraise=true;
+						//点赞-阅读点赞接口
+						api.addGoodRead(function(e){
+							alert(e.desc);
+							//点赞-获取阅读点赞个数接口
+							api.getGoodCountRead(function(e){
+								goodCount.innerText=e.data.goodCount;
+							});
+						});						
+					}else{
+						iconPraise.src="images/bubble_like.png";
+						isPraise=false;
+						localStorage.readPraise=false;
+						//点赞-取消阅读点赞接口
+						api.cancelGoodRead(function(e){
+							alert(e.desc);
+							//点赞-获取阅读点赞个数接口
+							api.getGoodCountRead(function(e){
+								goodCount.innerText=e.data.goodCount;
+							});
+						});						
+					}
+				}else{
+					location.href="login.html";
+				}
+			}
+		});													
+		var containerLeftContent=document.getElementById("container_left_content");
+		var str1='<p style="padding-bottom: 10px;">责任编辑：'+e.data.author_name+'</p>';
+		str1+='<div class="container_left_content_img">';
+		str1+='<img src="'+imagePrefix+e.data.img_url+'"/>';
+		str1+='</div>';
+		str1+='<div class="container_left_content_text"></div>';
+		str1+='<p style="margin: 30px 0;height: 20px;">';
+		if(e.data.id=="10787"){
+			str1+='<span style="float: left;">上一篇：没有了</span>';
+		}else{
+			str1+='<span style="float: left;">上一篇：'+e.pre[0].title+'</span>';
+		}
+		if(e.data.id=="12784"){
+			str1+='<span style="float: right;">下一篇：没有了</span>';
+		}else{
+			str1+='<span style="float: right;">下一篇：'+e.next[0].title+'</span>';
+		}		
+		str1+='</p>';
+		containerLeftContent.innerHTML=str1;
+		var containerLeftContentText=document.getElementsByClassName('container_left_content_text')[0];
+		var obj=new Base64();
+		var objStr=obj.decode(e.data.hp_content)
+		containerLeftContentText.innerHTML=objStr;
+		var spans=containerLeftContent.getElementsByTagName("span");		
+		spans[0].onclick=function(){
+			localStorage.readId=e.pre[0].id;
+			location.href="readDetail.html";
+		}
+		spans[1].onclick=function(){
+			localStorage.readId=e.next[0].id;
+			location.href="readDetail.html";
+		}
+	});		
+	var textarea=document.getElementById("textarea");
+	var text=textarea.getElementsByTagName("textarea")[0];
+	var span=textarea.getElementsByTagName("span")[0];
+	span.innerText=500-text.value.length;
+	onkeydown=function(){
+		span.innerText=500-text.value.length;
+	}
+	onkeyup=function(){
+		span.innerText=500-text.value.length;
+	}
+	var btns=textarea.getElementsByTagName("input");
+	btns[0].onclick=function(){
+		text.value='写点吧···';
+	}
+	btns[1].onclick=function(){	
+		if(localStorage.isLogin=="true"){
+			if(text.value.length<=500){
+				//评论-阅读添加评论接口
+				api.addCommentRead(function(e){
+					text.value='写点吧···';
+					getCommentList();
+					alert(e.desc);					
+				},text.value);			
+			}else{
+				alert("不能超过500个字符");
+			}
+		}else{
+			location.href='login.html';
+		}
+	}
+	getCommentList();
+	function getCommentList(){
+		//评论-获取阅读评论接口
+		api.getCommentRead(function(e){
+			var commentList=document.getElementById("commentList");
+			var str='';
+			e.data.reverse();
+			for(var i=0;i<e.data.length;i++){
+				str+='<div class="comment_user">';
+				str+='<img src="images/head.png"/>';
+				str+='<span>'+localStorage.userId+'</span>';
+				str+='<span>'+e.data[i].create_time+'</span>';
+				str+='</div>';
+				str+='<div class="comment_content">'+e.data[i].comment+'</div>';
+			}
+			commentList.innerHTML=str;
+		});
+	}
+	var headListInput=document.getElementsByClassName("head_list_input")[0];
+	var searchImg=headListInput.getElementsByTagName("img")[0];		
+	searchImg.onclick=function(){
+		var keyword=headListInput.getElementsByTagName("input")[0];
+		localStorage.keyword=keyword.value;
+		location.href="search.html";		
+	}	
+</script>		

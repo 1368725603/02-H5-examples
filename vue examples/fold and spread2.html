@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.three-line {
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 3;
+			overflow: hidden;
+		}
+		.cl1 {
+			width: 300px;
+			border: 1px solid;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div>
+			<div v-bind:class="{'three-line': isCollapse}" class="cl1">
+				一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！一万年太久，只争朝夕！
+			</div>
+			<button v-on:click="f">{{isCollapse ? "展开" : "折叠"}}</button>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript" src="vue/axios.js"></script>
+<script type="text/javascript" src="vue/vue-router.js"></script>
+<script type="text/javascript">
+	var vueData = {
+		isCollapse: true
+	};
+	var vueObj=new Vue({
+		el: "#box",
+		data: vueData,
+		methods: {
+			f: function () {
+				this.isCollapse = !this.isCollapse;
+			}
+		}
+	})
+</script>

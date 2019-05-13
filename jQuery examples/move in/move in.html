@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.wrap {
+			margin: 100px auto;
+			width: 730px;
+			height: 250px;
+		}
+		.inner {
+			width: 178px;
+			height: 125px;
+			float: left;
+			position: relative;
+		}
+		p {
+			width: 158px;
+			height: 0;
+			background: blue url("bg.png") no-repeat;
+			position: absolute;
+			bottom: -16px;
+			color: white;
+			padding-left: 20px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="inner">
+			<img src="01.JPG" alt="">
+			<p>我是一个大帅哥</p>
+		</div>
+		<div class="inner">
+			<img src="02.JPG" alt="">
+			<p style="background-position:0 -25px;">我是一个大帅哥</p>
+		</div>
+		<div class="inner">
+			<img src="03.JPG" alt="">
+			<p style="background-position:0 -50px;">我是一个大帅哥</p>
+		</div>
+		<div class="inner">
+			<img src="04.JPG" alt="">
+			<p style="background-position:0 -75px;">我是一个大帅哥</p>
+		</div>
+		<div class="inner">
+			<img src="05.JPG" alt="">
+			<p style="background-position:0 -100px;">我是一个大帅哥</p>
+		</div>
+		<div class="inner">
+			<img src="06.JPG" alt="">
+			<p style="background-position:0 -125px;">我是一个大帅哥</p>
+		</div>
+		<div class="inner">
+			<img src="07.JPG" alt="">
+			<p style="background-position:0 -150px;">我是一个大帅哥</p>
+		</div>
+		<div class="inner">
+			<img src="08.JPG" alt="">
+			<p style="background-position:0 -175px;">我是一个大帅哥</p>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript">
+	$("img").mouseenter(function () {
+		$(this).next().stop().animate({"height": "28px"}, 1000);
+	});
+	$("img").mouseleave(function(){
+		$(this).next().stop().animate({"height": "0px"}, 1000);
+	});
+</script>

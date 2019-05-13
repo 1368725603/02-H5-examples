@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.clock {
+				width: 600px;
+				height: 600px;
+				background: url(clock.jpg) no-repeat;
+				margin: 0 auto;
+				position: relative;
+			}
+			.i1 {
+				position: absolute;
+				left: 50%;
+				margin-left: -15px;
+			}
+			.i2 {
+				position: absolute;
+				left: 50%;
+				margin-left:-15px;
+			}
+			.i3 {
+				position: absolute;
+				left: 50%;
+				margin-left:-15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="clock">
+			<img src="hour.png" class="i1"/>
+			<img src="minute.png" class="i2"/>
+			<img src="second.png" class="i3"/>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var imgs = document.getElementsByTagName("img");
+		setInterval(function () {
+			var date1 = new Date();
+			var h = date1.getHours();
+			var m = date1.getMinutes();
+			var s = date1.getSeconds();
+			imgs[2].style.transform = "rotate(" + 6 * s + "deg)"; // 1秒旋转6度
+			imgs[1].style.transform = "rotate(" + (6 * (m + s / 60)) + "deg)";  // 1分旋转6度
+            // 1小时旋转30度
+			imgs[0].style.transform = "rotate(" + (30 * (h + m / 60 + s / 3600)) + "deg)";
+		}, 9);
+	</script>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="swiper/swiper.min.css">
+	<link rel="stylesheet" href="common.css"/>
+	<script type="text/javascript" src="swiper/swiper.min.js"></script>
+	<script type="text/javascript" src="vue/vue.js"></script>
+	<script type="text/javascript" src="vue/vue-resource.js"></script>
+	<script type="text/javascript" src="vue/vue-router.js"></script>
+	<script type="text/javascript" src="navi.js"></script>	
+	<style>
+		.swiper-container{
+			width: 100%;
+			height: 250px;
+		}
+		.swiper-slide{
+			width: 100%;
+			height: 100%;
+		}
+		.swiper-container img{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap"> 
+		<div id="box">
+			<navi props0="首页"></navi>
+			<!-- 轮播图 -->
+			 <div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" v-for="e of jsonads" v-on:click="dealClick(e.id,e.category,e.title)">
+						<img v-bind:src="url+e.img_url"/>
+					</div>					
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<!-- 首页 -->
+			<div v-for="e of jsonlist" class="vFor" v-on:click="dealClick(e.id,e.category,e.title)">
+				<h3 v-text="e.title"></h3>
+				<p style="color:#999;" v-text="'作者：'+e.author_name"></p>
+				<img v-bind:src="url+e.img_url" style="width:100%;">
+				<p style="color:#999;">{{e.forward}}</p>
+				<p style="color:#999;font-size:12px;">更新时间：{{e.post_date}} 收藏：{{e.like_count}}</p>
+			</div>			
+			<foot props0="icons/2.1.2.png" props1="icons/2.2.1.png" props2="icons/2.3.1.png" props3="icons/2.4.1.png"></foot>
+		</div>
+	</div>	
+</body>
+</html>
+<script type="text/javascript">
+	var vueData={
+		jsonlist:null,
+		jsonads:null,
+		url:"http://localhost/project/artist-v2/"
+	};
+	var vueObj=new Vue({
+		el:"#box",
+		data:vueData,
+		created:function(){
+			this.urllist();
+			this.urlads();			
+		},
+		methods:{			
+			urllist:function(){
+				var urllist="http://localhost/project/artist-v2/api/index.php?m=main&a=list";
+				this.$http.get(urllist).then(function(e){
+					this.jsonlist=e.data.data;
+					//console.log(this.jsonlist);
+				});
+			},
+			urlads:function(){
+				var urlads="http://localhost/project/artist-v2/api/index.php?m=main&a=ads";
+				//轮播图插件的初始化要在then(function(e){})的内部。
+				this.$http.get(urlads).then(function(e){
+					this.jsonads=e.data.data;
+					//console.log(this.jsonads);
+					/*vue中轮播图插件的初始化需要借助：Vue.nextTick(function(){});*/
+					Vue.nextTick(function(){
+						var mySwiper = new Swiper(".swiper-container",{
+							//自动滚动
+							autoplay: 2000,
+							//循环
+							loop: true,
+							//指定分页选择器
+							pagination: ".swiper-pagination",
+							//点击分页是否切换图片
+							paginationClickable: true,
+							//当用户操作轮播图，是否禁止自动播放
+							autoplayDisableOnInteraction: false				
+						});
+					});
+				});
+			},
+			dealClick:function(id,c,t){
+				if(c=='1'){
+					sessionStorage.readId = id;
+					sessionStorage.readTitle = t;
+					location.href = "阅读详情.html";
+				}
+				if(c=='4'){
+					sessionStorage.musicId = id;
+					sessionStorage.musicTitle = t;
+					location.href = "音乐详情.html";
+				}
+				if(c=='5'){
+					sessionStorage.movieId = id;
+					sessionStorage.movieTitle = t;
+					location.href = "电影详情.html";
+				}			
+			}
+		}
+	});
+</script>

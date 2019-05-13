@@ -1,0 +1,265 @@
+body,ul,ol,li,p,h1,h2,h3,h4{
+	margin: 0;
+	padding: 0;
+}
+ul,ol,li{
+	list-style: none;
+}
+.head,.foot{
+	min-width: 1265px;
+	width: 100%;
+	height: 150px;
+	margin: 0 auto;
+}
+/*头部导航*/
+.head_nav{
+	width: 100%;
+	height: 40px;
+	background: #4b4c4e;
+	color: #a5a5a6;
+	text-align: center;
+	line-height:40px;
+}
+.head_nav ul{
+	height:40px;	
+}
+.head_nav ul li{
+	float: left;
+	margin: 0 20px;
+	cursor: pointer;
+}
+.head_nav a{
+	text-decoration: none;
+	color: #a5a5a6;
+}
+.head_nav a:hover{
+	color: #E4393C;
+}
+.head_nav ul li:hover{
+	color:#e4393c;
+}
+.head_nav ul li:first-child{
+	margin-left: 40px;
+}
+.head_nav ul img{
+	vertical-align:-5px;
+}
+.head_nav ol li{
+	float: left;
+	margin: 0 20px;
+	cursor: pointer;
+}
+.head_nav ol li:hover{
+	color:#e4393c;
+}
+.head_nav ol li:last-child{
+	margin-right: 40px;
+}
+.head_nav ol li:first-child{
+	color:#fae705;
+}
+/*头部列表*/
+.head_list{
+	width: 100%;
+	height: 110px;
+	background: white;
+}
+.head_list a{
+	text-decoration: none;
+	color: black;
+}
+.head_list a:hover{
+	color: #E4393C;
+}
+.head_list_img{
+	float: left;
+} 
+.head_list_select{
+	width: 125px;
+	height: 40px;
+	border-left: 1px solid #eee;
+	float: left;
+	font-size: 12px;
+	padding-left: 20px;
+	margin-top: 30px;
+}
+.head_list ul{
+	float: left;
+	margin-top: 30px;	
+}
+.head_list ul li{
+	float: left;
+	margin: 0 20px;	
+	cursor: pointer;
+}
+.head_list ul li:hover{
+	color: #00a0e9;
+	font-weight: bold;
+}
+.head_list_input{
+	width: 250px;
+	height: 45px;
+	border: 2px solid #d5dce2;	
+	margin: 30px 50px 0 0;
+	float: right;
+}
+.head_list_input input{
+	width: 204px;
+	height: 43px;
+	outline: none;
+	border: none;
+	padding-left: 15px;
+	float: left;
+}
+.head_list_input img{
+	width: 28px;
+	height: 28px;
+	float: left;
+	margin-top: 7px;
+}
+.head_list_input img:hover{
+	width: 30px;
+	height: 30px;
+}
+/*页尾部分*/
+.foot{
+	background:#252525;
+	color: #a5a5a6;
+	height: 180px;
+}
+.foot_container{
+	width:80%;
+	min-width: 1265px;
+	margin: 0 auto;
+	padding: 30px 0 20px 0;
+}
+.foot_container a{
+	color: #a5a5a6;
+	text-decoration: none;
+}
+.foot_container h3{
+	margin-bottom: 15px;
+}
+.foot_container p{
+	margin-top: 10px;
+}
+/*主题部分*/
+.total_background{
+	width: 100%;
+	background: #f0f0f0;
+}
+.container{
+	width: 1384px;
+	padding: 50px 0;
+	margin: 0 auto;
+}
+.container_left{
+	width: 860px;
+	float: left;
+	margin-right: 50px;
+	overflow: hidden;
+}
+.container_right{
+	width: 474px;
+	float: left;
+	overflow: hidden;
+}
+/*.container_right 部分*/
+.recommend{
+	font-size:20px;
+	width:40px;
+	padding-bottom:15px;
+	border-bottom:2px solid #57bae8;
+}
+.container_right_recommend ul{
+	height: 54px;
+	background: #f8f8f8;
+	text-align: center;
+	line-height: 54px;
+	margin: 40px 0 30px;
+}
+.container_right_recommend ul li{
+	width: 33.3%;
+	box-sizing: border-box;
+	float: left;
+	border: 1px solid #e5e5e5;
+	cursor: pointer;
+}
+.container_right_recommend ol li{
+	margin: 10px 0;
+	color:#5b5b5b;
+	font-size: 14px;
+	cursor: pointer;
+}
+.container_right_recommend ol span{
+	display: inline-block;
+	font-size: 16px;
+	width: 20px;
+	height: 20px;
+	background: #57bae8;
+	color: white;
+	text-align: center;
+	line-height: 20px;	
+}
+.container_right_luck,
+.container_right_music{
+	margin-top: 30px;
+}
+.container_right_luck h4{
+	color: #57bae8;
+	margin-top: 8px;
+	font-size: 14px;
+	cursor: pointer;
+}
+.container_right_luck_p{
+	color: #5b5b5b;
+	margin-top: 3px;
+	box-sizing: border-box;
+	padding-left: 25px;
+	font-size: 12px;
+}
+/*.container_left 部分*/
+.read_item1{
+	font-size:20px;
+	width:40px;
+	padding-bottom:15px;
+	border-bottom:2px solid #57bae8;
+}
+.read_item2{
+	float: right;
+	cursor: pointer;
+}
+.read_big{
+	width: 420px;
+	float: left;
+	margin-right:20px;
+	margin-top: 15px;
+}
+.read_big img{
+	width: 100%;
+	height: 100%;
+}
+.read_big p{
+	margin-top: 5px;
+	color:#5b5b5b;
+	font-size: 12px;
+	margin-top: 15px;
+}
+/*友情链接*/
+.friend{
+	min-width: 1265px;
+	margin: 0 auto;
+	padding-top: 30px;
+	overflow:hidden;
+}
+.friend p{
+	margin-top: 20px;
+}
+.friend a{
+	color:#797979;
+	text-decoration: none;
+	margin:0 8px;
+}
+.friend a:hover{
+	color: #e4393c;
+}

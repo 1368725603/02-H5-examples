@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>		
+		<input type="file" id="myFile"/>
+		<button id="btnRead">点击读取文件</button>
+		<div class="box"></div>		
+	</body>
+</html>
+<script type="text/javascript">
+	var myFile = document.querySelector("#myFile");
+	var btnRead = document.querySelector("#btnRead");
+	var box = document.querySelector(".box");			
+	// 点击读取按钮触发事件
+	btnRead.onclick = function () {
+		// 获取用户上传的第一个数据
+		var data = myFile.files[0];
+		// 创建文件读取对象
+		var fr = new FileReader();
+		// console.log(fr);
+		// 将文件转化为URL路径
+		fr.readAsDataURL(data);
+		// 检测是否加载完成
+		fr.onload = function () {
+			// 文件加载完成
+			// console.log(fr);
+			var result = fr.result;
+			// 创建img标签
+			var img = document.createElement("img");
+			// 设置路径
+			img.src = result;
+			// 添加子节点
+			box.appendChild(img);
+		}				
+	}
+</script>

@@ -1,0 +1,40 @@
+<style type="text/css">
+	.swiper-container {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.swiper-container img {
+		width: 100%;
+		height: 250px;
+	}
+</style>
+
+<div ng-contoller="main">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			<!--阅读 音乐 视频-->
+			<div class="swiper-slide" ng-repeat="e in ads">
+				<a ng-href={{'#/'+{1:'readDetail',4:"musicDetail",5:"movieDetail"}[e.category]+"/"+e.id}} ng-click="click(e.category)">
+					<img ng-src='{{imagePrefix+e.img_url}}'/>
+				</a>				
+			</div>						
+		</div>
+		<!--轮播图下面的小圆点-->
+		<div class="swiper-pagination"></div>
+	</div>
+	<!--阅读 音乐 视频-->
+	<div class="content" ng-repeat="e in mainList">
+		<p style="text-align: center;">-阅读</p>
+		<h3>{{e.title}}</h3>
+		<p>作者：{{e.author_name}}</p>
+		<a ng-href={{'#/'+{1:'readDetail',4:"musicDetail",5:"movieDetail"}[e.category]+"/"+e.id}} ng-click="click(e.category)">
+			<img ng-src='{{imagePrefix+e.img_url}}'/>
+		</a>
+		<p>{{e.forward}}</p>
+		<p style="font-size: 12px;">更新时间：{{e.post_date}} 收藏：{{e.like_count}}</p>
+	</div>
+</div>
+
+<script type="text/javascript">
+localStorage.clear();	
+</script>

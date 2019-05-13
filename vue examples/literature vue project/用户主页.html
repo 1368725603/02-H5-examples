@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>Document</title>
+	<link rel="stylesheet" href="common.css"/>
+	<script type="text/javascript" src="vue/vue.js"></script>
+	<script type="text/javascript" src="vue/vue-resource.js"></script>
+	<script type="text/javascript" src="vue/vue-router.js"></script>
+	<script type="text/javascript" src="navi.js"></script>		
+	<style>
+		body,.wrap{
+			background:white;
+		}
+		.comLi2{
+			margin-top: 0;
+		}
+		a{
+			color: #666;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+		.picture{
+			width: 100%;
+			height: 250px;
+			background: url(icons/default_indi_bg.png) no-repeat;
+			background-size: 100%;
+			position: relative;
+		}
+		.portrait{
+			width: 120px;
+			height: 120px;
+			border-radius:50%; 
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			margin: auto;
+		}
+		.portrait img{
+			width: 100%;
+			height: 100%;
+			border-radius:50%;
+		}
+		.picture input{
+			border:none;
+			background-color: transparent;
+			outline: none;
+			color: white;
+			font-size: 26px;
+			text-align: center;
+			position: absolute;
+			width: 120px;
+			height: 30px;
+			left: 0;
+			bottom: 10px;
+			right: 0;
+			margin: auto;
+		}
+		.center{
+			background: white;
+			margin-top: 10px;
+		}
+		.collect{
+			padding-top: 10px;
+		}		
+		.read{
+			padding:5px 0 5px 30px;
+			background: url(icons/center_reading_collection.png) no-repeat 0 6px;
+			background-size:22px 22px; 
+		}
+		.movie{
+			padding:5px 0 10px 30px;
+			background: url(icons/center_movie_collection.png) no-repeat 0 6px;
+			background-size:22px 22px; 
+		}
+		.music{
+			padding:5px 0 5px 30px;
+			background: url(icons/center_music_collection.png) no-repeat 0 6px;
+			background-size:22px 22px; 
+		}
+		.quit{
+			padding: 10px 10px 0px 30px;
+			margin-left: 16px;
+			background:white url(icons/aliwx_reply_bar_close_normal.png) no-repeat 5px 10px;
+			background-size:20px 20px; 
+		}
+		.quit:hover{
+			cursor: pointer;
+		}
+		h4 a img{
+			width: 22px;
+			height: 22px;
+			vertical-align: -4px;
+		}
+		h4:hover{
+			cursor: default;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap"> 
+		<div id="box">
+			<naviread props0="用户主页" props1='icons/1.2.png'></naviread>
+			<div class="picture">
+				<div class="portrait">
+					<img v-bind:src="url+image" alt="">
+				</div>
+				<input type="text" v-model="user" readonly="readonly">
+			</div>
+			<div class="center">
+				<h4 class="collect" style="margin:0 10px;" v-on:click="collectShow">
+					收藏
+				</h4>
+				<div v-show="collectItem">
+					<div class="read" style="margin:0 10px;">
+						<a href="阅读收藏.html">阅读</a>
+					</div>
+					<div class="music" style="margin:0 10px;">
+						<a href="音乐收藏.html">音乐</a>
+					</div>
+					<div class="movie" style="margin:0 10px;">
+						<a href="影视收藏.html">影视</a>
+					</div>
+				</div>
+				<hr>
+				<h4 class="collect" style="margin:0 10px;" v-on:click="commentShow">
+					评论
+				</h4>
+				<div v-show="commentItem">
+					<div class="read" style="margin:0 10px;">
+						<a href="阅读评论.html">阅读</a>
+					</div>
+					<div class="music" style="margin:0 10px;">
+						<a href="音乐评论.html">音乐</a>
+					</div>
+					<div class="movie" style="margin:0 10px;">
+						<a href="影视评论.html">影视</a>
+					</div>
+				</div>
+				<hr>
+				<h4 class="collect" style="margin:0 10px;">
+					<a href="个人设置.html">
+						<img src="icons/user.png" alt="">
+						个人设置
+					</a>
+				</h4>
+				<hr>
+				<h4 class="collect" style="margin:0 10px;">
+					<a href="系统设置.html">
+						<img src="icons/center_feedback.png" alt="">
+						系统设置
+					</a>
+				</h4>
+				<hr>
+			</div>
+			<div class="quit" v-on:click="quit">
+				<b><a href="登录.html" style="margin:0;">退出登录</a></b>
+			</div>
+			<hr>	
+			<foot props0="icons/2.1.1.png" props1="icons/2.2.1.png" props2="icons/2.3.1.png" props3="icons/2.4.1.png"></foot>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="base64.js"></script>
+<script type="text/javascript">
+	var vueData={
+		user:'',
+		url:"http://localhost/project/artist-v2/",
+		image:'',
+		collectItem:false,
+		commentItem:false
+	}
+	var vueObj=new Vue({
+		el:"#box",
+		data:vueData,
+		created:function(){
+			if (localStorage.isLogin=='true') {
+				this.user=localStorage.user;
+				this.image=localStorage.image;
+			}
+		},
+		methods:{
+			quit:function(){
+				if (localStorage.isLogin=='true') {
+					localStorage.clear();
+					sessionStorage.clear();
+				}
+			},
+			collectShow:function(){
+				this.collectItem=!this.collectItem;
+			},
+			commentShow:function(){
+				this.commentItem=!this.commentItem;
+			}			
+		}
+	})
+</script>

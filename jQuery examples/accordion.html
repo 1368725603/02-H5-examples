@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.big {
+			width: 700px;
+			height: 300px;
+			outline: 1px solid;
+			margin: 100px auto;
+		}
+		.small {
+			width: 100px;
+			height: 100%;
+			outline: 1px solid;
+			float: left;
+		}
+		#small1 {
+			background: red;
+		}
+		#small2 {
+			background: orange;
+		}
+		#small3 {
+			background: blue;
+		}
+		#small4 {
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<div class="big">
+		<div id="small1" class="small"></div>
+		<div id="small2" class="small"></div>
+		<div id="small3" class="small"></div>
+		<div id="small4" class="small"></div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+	$(".small").click(function () {
+		$(this).stop().animate({"width": "400px"}, 1000).siblings().stop().animate({"width": "100px"}, 500);
+		$("body").css("background", $(this).css("background"));
+	})
+</script>

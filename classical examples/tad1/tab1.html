@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        ol,ul,li,p,h1,h2,h3 {
+        	margin:0;
+        	padding:0;
+        }
+        ul,ol {
+            list-style: none;
+        }
+		#outer {
+			width: 299px;
+			height: 251px;
+			border: 1px solid pink;
+			margin: 100px auto 0;
+		}
+		.inner {
+			width: 201px;
+			height: 251px;
+			float: left;
+		}
+		.left {
+			float: left;
+		}
+		.right {
+			float: right;
+		}
+		ul,ol {
+			width: 48px;
+			height: 251px;
+		}
+		ul {
+			border-right: 1px solid pink;
+			float: left;
+		}
+		ol {
+			border-left: 1px solid pink;
+			float: left;
+		}
+		li {
+			border-bottom: 1px solid pink;
+			height: 27px;
+			text-align: center;
+			line-height: 27px;
+			font-size: 13px;
+			cursor: pointer;
+			background-image: linear-gradient(to bottom, white, pink);
+		}
+		.li1 {
+			background-image:url(images/abg.gif);
+		}
+		img {
+			display: none;
+		}
+		.img1 {
+			display: inline-block;
+		}
+		.inline-block {
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<ul>
+			<li class="li1">女靴</li>
+			<li>雪地靴</li>
+			<li>冬裙</li>
+			<li>呢大衣</li>
+			<li>毛衣</li>
+			<li>棉服</li>
+			<li>女裤</li>
+			<li>羽绒服</li>
+			<li style="border:none;">牛仔裤</li>
+		</ul>
+		<div class="inner">
+			<img src="images/女靴.jpg" class="img1" alt=""/>
+			<img src="images/雪地靴.jpg" alt=""/>
+			<img src="images/冬裙.jpg" alt=""/>
+			<img src="images/呢大衣.jpg" alt=""/>
+			<img src="images/毛衣.jpg" alt=""/>
+			<img src="images/棉服.jpg" alt=""/>
+			<img src="images/女裤.jpg" alt=""/>
+			<img src="images/羽绒服.jpg" alt=""/>
+			<img src="images/牛仔裤.jpg" alt=""/>
+			<img src="images/女包.jpg" alt=""/>
+			<img src="images/男包.jpg" alt=""/>
+			<img src="images/登山鞋.jpg" alt=""/>
+			<img src="images/皮带.jpg" alt=""/>
+			<img src="images/围巾.jpg" alt=""/>
+			<img src="images/皮衣.jpg" alt=""/>
+			<img src="images/男毛衣.jpg" alt=""/>
+			<img src="images/男棉服.jpg" alt=""/>
+			<img src="images/男靴.jpg" alt=""/>
+		</div>
+		<ol>
+			<li>女包</li>
+			<li>男包</li>
+			<li>登山靴</li>
+			<li>皮带</li>
+			<li>围巾</li>
+			<li>皮衣</li>
+			<li>男毛衣</li>
+			<li>男棉服</li>
+			<li style="border:none;">男靴</li>
+		</ol>
+	</div>
+</body>
+<script type="text/javascript">
+	var div = document.getElementById("outer");
+	var lis = div.getElementsByTagName('li');
+	var imgs = div.getElementsByTagName('img');
+	for (var i = 0; i < lis.length; i ++) {
+		lis[i].index = i;
+        /* 
+        循环绑定事件, 会增加事件的注册数量, 而且增加新的dom时还需要注册事件, 
+        既麻烦, 性能也不好, 应该用事件委托。
+        */
+		lis[i].onmouseover = function () {
+			for (var j = 0; j < imgs.length; j ++) {
+                if (this.index == j) {
+                    imgs[j].className = "inline-block";
+                    lis[j].style.backgroundImage = "url(images/abg.gif)";
+                } else {
+                    imgs[j].className = "";
+                    lis[j].style.backgroundImage = "linear-gradient(to bottom, white, pink)";
+                }
+			}			
+		}
+	}
+</script>
+</html>

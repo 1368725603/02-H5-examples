@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="lib1/jquery/jquery.fullPage.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<title></title>
+		<style type="text/css">
+			.container_left{
+				height: 2400px;
+				position: relative;
+			}
+			.container_left_img,
+			.container_left_text,
+			.container_left_space{
+				float: left;
+				height: 200px;
+				margin-top: 30px;
+			}
+			.container_left_img{
+				width: 35%;
+			}
+			.container_left_img img{
+				width: 100%;
+				height: 100%;
+			}
+			.container_left_space{
+				width: 5%;
+			}
+			.container_left_text{
+				width: 60%;
+			}
+			.buttons{
+				position: absolute;
+				bottom: 0px;
+			}
+			.buttons input{
+				margin-right: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="head">
+			<div class="head_nav">
+				<ul style="float: left;">
+					<li>文艺范</li>
+					<li>招商加盟</li>
+					<li>ios客户端</li>
+					<li>Android客户端</li>
+					<li>联系我们</li>
+					<li><img src="images/tele.png"/> 4008-900-800</li>
+				</ul>
+				<ol style="float:right;">
+					<li><a href="user.html">VIP会员</a></li>
+					<li><a href="login.html">登录</a></li>
+					<li style="color:#a5a5a6;">|</li>
+					<li><a href="register.html">注册</a></li>
+				</ol>
+			</div>
+			<div class="head_list">
+				<img src="images/literature.png" class="head_list_img"/>
+				<div class="head_list_select">
+					<img src="images/font.png" alt="" /><br />
+					<b>北京</b><span>【切换城市】</span>
+				</div>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="read.html">阅读</a><img src="images/n.png" alt="" /></li>
+					<li><a href="music.html">音乐</a></li>
+					<li><a href="movie.html">影音</a></li>
+					<li><a href="goods.html">商品</a></li>
+				</ul>
+				<div  class="head_list_input">
+					<input type="text" placeholder="请输入查找的内容"/>
+					<img src="images/aliwx_search_icon.png"/>
+				</div>				
+			</div>
+		</div>
+		<!--主题-->
+		<div class="total_background">
+		<div class="container">
+			<div class="container_left"></div>			
+			<div class="container_right">
+				<!--推荐-->
+				<div class="container_right_recommend">
+					<div>
+						<p class="recommend">推荐</p>
+					</div>
+					<ul>
+						<li class="ranking_ul">周排行</li>
+						<li class="ranking_ul">月排行</li>
+						<li class="ranking_ul">总排行</li>
+					</ul>
+					<ol id="ranking_ol"></ol>
+				</div>				
+				<!--手气不错-->
+				<div class="container_right_luck">
+					<div>
+						<p class="recommend" style="width: 80px;">手气不错</p>
+					</div>
+					<ul id="container_right_luck"></ul>
+				</div>
+				<!--音乐推荐-->
+				<div class="container_right_music" id="musicRecommend"></div>
+			</div>
+			<div class="friend">
+				<p style="height: 43px;padding-bottom:10px;">
+					<span class="read_item1">友情链接</span>
+					<span class="read_item2">申请5245886#qq.com(#替换@)</span>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>					
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+				</p>
+			</div>
+			<p style="clear: both;"></p>
+		</div>
+		</div>
+		<!--尾部-->
+		<div class="foot">
+			<div class="foot_container">
+				<h3>文艺范</h3>
+				<a href="">关于</a>|
+				<a href="">用户协议</a>|
+				<a href="">联系我们</a>
+				<p style="color: #666;">本站为文艺范官方网站。</p>
+				<p>浙ICP备15004498号-1</p>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="lib1/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="lib1/base64/base64.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.fullPage.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.lazyload.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="js/interface.js" ></script>
+<script type="text/javascript" src="js/api.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	//阅读列表接口	
+	getPage(0);
+	function getPage(num){
+		//搜索接口
+		api.searchUrl(function(e){
+			var containerLeft=document.getElementsByClassName("container_left")[0];
+			var str='<p style="height: 43px;padding-bottom:10px;">';
+				str+='<span class="read_item1">搜索结果</span>';
+				str+='</p>';
+			for(var i=0;i<e.data.length;i++){						
+				str+='<div class="container_left_img">';
+				str+='<img src="'+imagePrefix+e.data[i].img_url+'">';
+				str+='</div>';
+				str+='<div class="container_left_space"></div>';
+				str+='<div class="container_left_text">';
+				str+='<h3>'+e.data[i].title+'</h3>';
+				str+='<p style="margin:20px;color: #666;font-size: 14px;">TAG: | '+e.data[i].post_date+'</p>';
+				str+='<div style="color: #666;">'+e.data[i].forward+'</div>';
+				str+='</div>';			
+			}		
+			str+='<div class="buttons">';
+			str+='<input type="button" value="第一页" class="first"/>';
+			str+='<input type="button" value="上一页" class="previous"/>';
+			for(var i=0;i<Math.ceil(e.total/10);i++){
+				str+='<input type="button" value="'+(i+1)+'" class="button1"/>';
+			}
+			str+='<input type="button" value="下一页" class="next"/>';
+			str+='<input type="button" value="尾页" class="last"/>';
+			str+='</div>';
+			containerLeft.innerHTML=str;
+			var imgs=containerLeft.getElementsByTagName("img");
+			for(var i=0;i<imgs.length;i++){
+				imgs[i].index=i;
+				imgs[i].onclick=function(){
+					if(e.data[this.index].category=='1'){
+						localStorage.readId=e.data[this.index].id;
+						location.href="readDetail.html";
+					}else if(e.data[this.index].category=='4'){
+						localStorage.musicId=e.data[this.index].id;
+						sessionStorage.id=e.data[this.index].id;
+						location.href="music_detail.html";
+					}else if(e.data[this.index].category=='5'){
+						localStorage.movieId=e.data[this.index].id;
+						sessionStorage.id=e.data[this.index].id;
+						location.href="movie_detail.html";
+					}
+				}
+			}			
+			var btns=document.getElementsByClassName("button1");
+			var first=document.getElementsByClassName('first')[0];
+			var last=document.getElementsByClassName('last')[0];
+			var previous=document.getElementsByClassName('previous')[0];
+			var next=document.getElementsByClassName('next')[0];
+			for(var i=0;i<btns.lenght;i++){
+				btns[i].style.backgroundColor='';
+			}
+			btns[num/10].style.backgroundColor='red';
+			for(var i=0;i<btns.length;i++){
+				btns[i].index=i*10;
+				btns[i].onclick=function(){	
+					getPage(this.index);					
+				}				
+			}
+			first.onclick=function(){
+				getPage(0);
+			}
+			last.onclick=function(){
+				getPage((btns.length-1)*10);
+			}
+			previous.onclick=function(){
+				var a=num;
+				if(a==0){
+					getPage(0);
+				}else{
+					getPage((a/10-1)*10);
+				}				
+			}
+			next.onclick=function(){
+				var a=num;
+				if(a==(btns.length-1)*10){
+					getPage((btns.length-1)*10);
+				}else{
+					getPage((a/10+1)*10);
+				}				
+			}
+		},localStorage.keyword,num);
+	}
+	var headListInput=document.getElementsByClassName("head_list_input")[0];
+	var searchImg=headListInput.getElementsByTagName("img")[0];		
+	searchImg.onclick=function(){
+		var keyword=headListInput.getElementsByTagName("input")[0];
+		localStorage.keyword=keyword.value;
+		location.href="search.html";		
+	}
+</script>		

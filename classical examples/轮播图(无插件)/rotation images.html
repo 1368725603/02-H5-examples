@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul,li,ol,p,body,h1,h2,h3 {
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol,li {
+			list-style: none;
+		}
+		.swiper {
+			width: 680px;
+			height: 340px;
+			margin: 100px auto;
+			overflow: hidden;
+			position: relative;
+			border: 5px solid #D59A70;
+		}
+		.swiper ul {
+			height: 340px;
+			position: absolute;
+			z-index: 1;
+			left: 0;
+			top: 0;
+		}
+		.swiper ul li,.swiper ul li img {
+			width: 680px;
+			height: 340px;
+		}
+		.swiper ul li {
+			float: left;
+		}
+		.swiper ol {
+			height: 15px;
+			width: 100%;
+			position: absolute;
+			z-index: 2;
+			bottom: 10px;
+			text-align: center;
+			line-height: 15px;
+		}
+		.swiper ol li {
+			display: inline-block;
+			margin: 0 5px;
+			width: 15px;
+			height: 15px;
+			background: #999;
+			border-radius: 50%;
+			font-size: 10px;
+			cursor: default;
+			color: whitesmoke;
+		}
+		.swiper ol li:hover {
+			background: #e4303c;
+		}
+		.swiperP1,.swiperP2 {
+			width: 20px;
+			height: 340px;
+			line-height:340px ;
+			text-align: center;
+			font-size: 26px;
+			font-weight: bold;
+			padding: 5px;
+			position: absolute;
+			z-index: 2;
+			cursor: default;	
+			color: darkgray;
+		}
+		.swiperP1 {
+			left: 0;
+		}
+		.swiperP2 {
+			right: 0;
+		}
+		.swiperP1 span,.swiperP2 span {
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="swiper">
+		<ul>
+			<li>
+				<img src="images/swiper1.png"/>
+			</li>
+			<li>
+				<img src="images/swiper2.jpg"/>
+			</li>
+			<li>
+				<img src="images/swiper3.jpg"/>
+			</li>
+			<li>
+				<img src="images/swiper1.png"/>
+			</li>
+		</ul>				
+		<ol>
+			<li class="olLis">1</li>
+			<li class="olLis">2</li>
+			<li class="olLis">3</li>
+		</ol>
+		<p class="swiperP1"><span>&lt;</span></p>
+		<p class="swiperP2"><span>&gt;</span></p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	swiperImages();
+	function swiperImages(){
+		var swiper = document.getElementsByClassName("swiper")[0];
+		var ul = swiper.getElementsByTagName("ul")[0];
+		var ulLis = ul.getElementsByTagName("li");
+		var olLis = document.getElementsByClassName("olLis");
+		var swiperP1 = document.getElementsByClassName("swiperP1")[0];
+		var swiperP2 = document.getElementsByClassName("swiperP2")[0];
+		ul.style.width = ulLis.length * 680+"px";
+		var timer1 = setInterval(function () {
+			var target = 680;
+			var s = ul.offsetLeft;
+			var timer = setInterval(function () {
+				ul.style.left = ul.offsetLeft - 10 + "px";
+				if (s - target >= ul.offsetLeft) {
+					ul.style.left = s - target + "px";
+					clearInterval(timer);
+				}
+				if (ul.offsetLeft <= -(ulLis.length - 1) * 680) {
+					ul.style.left = 0;
+					clearInterval(timer);
+				}
+			}, 5);
+		}, 2500);
+		for (var i = 0; i < olLis.length; i ++) {
+			olLis[i].index = i;
+			olLis[i].onclick = function () {
+				clearInterval(timer1);
+				var target = -this.index * 680;
+				var step = target >= ul.offsetLeft ? 10 : -10;
+				var timer2 = setInterval(function () {
+					ul.style.left = ul.offsetLeft + step + "px";
+					if (Math.abs(target - ul.offsetLeft) <= 10) {						
+						ul.style.left = target + "px";
+						clearInterval(timer2);
+					}					
+				}, 0);
+			}			
+		}
+		swiperP1.onclick = function () {
+			clearInterval(timer1);
+			var target = 680;
+			var s = ul.offsetLeft;
+			var timer = setInterval(function () {
+				ul.style.left = ul.offsetLeft - 10 + "px";
+				if (s - target >= ul.offsetLeft) {
+					ul.style.left = s-target + "px";
+					clearInterval(timer);
+				}
+				if (ul.offsetLeft <= -(ulLis.length - 1) * 680) {
+					ul.style.left = 0;
+					clearInterval(timer);
+				}
+			}, 5);
+		}
+		swiperP2.onclick = function () {
+			clearInterval(timer1);
+			var target = 680;
+			var s = ul.offsetLeft;			
+			var timer = setInterval(function () {
+				ul.style.left = ul.offsetLeft + 10 + "px";
+				if (s + target <= ul.offsetLeft) {					
+					ul.style.left = s + target + "px";
+					clearInterval(timer);
+				}
+				if (ul.offsetLeft >= 0) {
+					ul.style.left = -(ulLis.length - 1) * 680 + "px";
+					s = -(ulLis.length - 1) * 680;
+					/*
+                    往右从第一张往最后一张走时，定位和开始值都要重新赋值，
+                    并且这里不能停定时器。swiperP1和swiperP2两个只要改一个就行了。
+                    */
+				}				
+			}, 5);		
+		}
+	}
+</script>

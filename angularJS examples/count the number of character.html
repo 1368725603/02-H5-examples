@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div ng-app="myApp">
+			<div ng-controller="myController">
+				<textarea rows="10" cols="50" ng-model="str" ng-keyup="keyup()"></textarea>
+				<p>字符数: {{str1}}</p>
+                <p>单词数: {{num}}</p>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="angular/angular-animate.min.js"></script>
+<script type="text/javascript" src="angular/angular-route.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module("myApp", ['ngRoute']);
+	app.run(function ($rootScope) {
+		
+	});
+	app.controller("myController", function ($scope) {
+		$scope.str = "写点吧···";
+		$scope.num = 1;
+		$scope.str1 = $scope.str.length;
+		$scope.keyup = function () {
+            if ($scope.str.split(" ")[0]) {
+                $scope.num = $scope.str.split(" ").length;
+            } else {
+                $scope.num = 0;
+            }
+			$scope.str1 = $scope.str.length;
+		}
+	});
+</script>

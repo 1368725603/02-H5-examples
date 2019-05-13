@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    body,ul,li {
+        margin:0;
+        padding:0;
+    }
+    body {
+        width: 100%;
+        min-width: 1200px;
+        overflow: auto;
+    }
+    ul,li {
+        list-style:none;
+    }
+    header{
+        max-width: 100%;
+        height: 50px;
+        line-height:50px
+        margin:0 auto;
+        box-sizing: border-box;
+    }
+    .ico{
+        width:160px;
+        height:30px;
+        margin:10px 0 0 165px;
+        background:url(iconlist_1.png) -868px -99px no-repeat; 
+        display:inline-block;
+    }
+    .header-ul{
+        width:700px;
+        height:50px;
+        float:right;
+        margin-right:175px;
+    }
+    .icon1,.icon2{
+        display:inline-block;
+        width:90px;
+        height:25px;
+        margin:10px 0 0 10px;
+    }
+    .text{
+        display:inline-block;
+        width:65px;
+        height:50px;
+        text-align:center;
+        color:black;
+        text-decoration:none;
+        margin:0 13px;
+    }
+    #homepage{
+        margin:0 2px;
+    }
+    .text:hover{
+        border-bottom:3px solid red;
+    }
+    .header-ul li{
+        float:right;
+        line-height:50px;
+    }
+    .icon1{
+        background:url(iconlist_2.png) no-repeat -1653px -536px;
+    }
+    .icon2{
+        background:url(iconlist_2.png) no-repeat -1653px -510px;
+    }
+    nav{
+        max-width: 100%;
+        height:555px;
+        margin:3px auto 0 auto;
+        background:url(bg_1.jpg) no-repeat;
+        background-size: 100% 555px;
+        border:1px solid #e0e0e0;
+        position:relative;
+    }
+    .prevent-lose{
+        width:455px;
+        height:100px;
+        margin:120px auto 0 auto;
+        background:url(iconlist_1.png) no-repeat -869px 0;
+    }
+    .square-code{
+        width:180px;
+        height:200px;
+        position:absolute;
+        right:175px;
+        top:1px;
+        background:url(iconlist_2.png) no-repeat -1658px -300px;
+    }
+    .animation{
+        width:780px;
+        height:165px;
+        margin:55px auto 0 auto;
+        position:relative;
+    }
+    .animation li{
+        width:173px;
+        height:173px;
+        position:absolute;
+    }
+    .animation1{
+        background:url(iconlist_1.png) no-repeat;
+        animation:animation1 2s linear;
+    }
+    .animation2{
+        left:150px;
+        background:url(iconlist_1.png) no-repeat -174px 0;
+        animation:animation2 2.5s linear;
+    }
+    .animation3{
+        left:300px;
+        background:url(iconlist_1.png) no-repeat -348px 0;
+        animation:animation3 3s linear;
+    }
+    .animation4{
+        left:450px;
+        background:url(iconlist_1.png) no-repeat -522px 0;
+        animation:animation4 3.5s linear;
+    }
+    .animation5{
+        left:600px;
+        background:url(iconlist_1.png) no-repeat -696px 0;
+        animation:animation5 4s linear;
+    }
+    .animationA{
+        width:780px;
+        margin:0 auto;
+        position:relative;
+    }
+    .animationA li{
+        width:153px;
+        height:23px;
+        position:absolute;
+        background:url(iconlist_1.png) no-repeat -873px -130px;
+    }
+    .animationA1{
+        animation:animation1 2s linear;
+    }
+    .animationA2{
+        left:150px;
+        animation:animation2 2.5s linear;
+    }
+    .animationA3{
+        left:300px;
+        animation:animation3 3s linear;
+    }
+    .animationA4{
+        left:450px;
+        animation:animation4 3.5s linear;
+    }
+    .animationA5{
+        left:600px;
+        animation:animationA5 4s linear;
+    }
+    @keyframes animation1{
+        0%{
+            left:-600px;
+        }
+        100%{
+            left:0;
+        }
+    }
+    @keyframes animation2{
+        0%{
+            left:-600px;
+        }
+        100%{
+            left:150px;
+        }
+    }
+    @keyframes animation3{
+        0%{
+            left:-600px;
+        }
+        100%{
+            left:300px;
+        }
+    }
+    @keyframes animation4{
+        0%{
+            left:-600px;
+        }
+        100%{
+            left:450px;
+        }
+    }
+    @keyframes animation5{
+        0%{
+            left:-600px;
+            transform:rotate(0);
+        }
+        100%{
+            left:600px;
+            transform:rotate(360deg);
+        }
+    }
+    @keyframes animationA5{
+        0%{
+            left:-600px;
+        }
+        100%{
+            left:600px;
+        }
+    }
+    @keyframes animationB{
+        0%{
+            transform:rotate(0);
+        }
+        25%{
+            transform:rotate(30deg);
+        }
+        50%{
+            transform:rotate(0);
+            opacity:0.5;
+        }
+        75%{
+            transform:rotate(-30deg);
+        }
+        100%{
+            transform:rotate(0);
+        }
+    }
+    section{
+        max-width: 100%;
+        width:1020px;
+        height:650px;
+        margin:0 auto;
+        box-sizing: border-box;
+    }
+    .section1{
+        width:362px;
+        height:45px;
+        margin:45px auto;
+        background:url(iconlist_2.png) no-repeat -591px -655px;
+    }
+    .section2{
+        width:905px;
+        height:50px;
+        margin:0 auto 45px auto;
+        background:url(iconlist_2.png) no-repeat -1443px -592px;
+    }
+    .section3{
+        width:645px;
+        height:296px;
+        margin:0 auto;
+        background:url(iconlist_2.png) no-repeat -1653px 0;
+    }
+    article{
+        max-width: 100%;
+        height:650px;
+        margin:0 auto;
+        background:url(bg_2.jpg) no-repeat;
+        background-size: 100% 100%;
+        position:relative;
+        box-sizing: border-box;
+    }
+    .article1{
+        width:260px;
+        height:535px;
+        position:absolute;
+        right:340px;
+        top:75px;
+        background:url(iconlist_2.png) no-repeat -567px 0;
+        transition:transform 0.3s linear;
+    }
+    .article1:hover{
+        transform:rotate(15deg);
+    }
+    .article2{
+        width:250px;
+        height:85px;
+        position:absolute;
+        right:670px;
+        top:140px;
+        background:url(iconlist_2.png) no-repeat -265px -120px;
+    }
+    .article3{
+        width:460px;
+        height:70px;
+        position:absolute;
+        right:670px;
+        top:275px;
+        background:url(iconlist_2.png) no-repeat -58px -225px;
+    }
+    .article4{
+        width:520px;
+        height:60px;
+        position:absolute;
+        right:670px;
+        top:355px;
+        background:url(iconlist_2.png) no-repeat 0 -315px;
+    }
+    .sectionA{
+        width:1020px;
+        height:650px;
+        margin:0 auto;
+        background:url(bg_3.jpg) no-repeat 35px 30px;
+        box-sizing: border-box;
+    }
+    .articleA{
+        max-width: 100%;
+        height:650px;
+        margin:0 auto;
+        background:url(bg_4.jpg) no-repeat;
+        background-size: 100% 650px;
+        position:relative;
+        box-sizing: border-box;
+    }
+    .articleA1{
+        width:260px;
+        height:535px;
+        position:absolute;
+        left:400px;
+        top:75px;
+        background:url(iconlist_2.png) no-repeat -900px 0;
+        transition:transform 0.3s linear;
+    }
+    .articleA1:hover{
+        transform:rotate(-15deg);
+    }
+    .articleA2{
+        width:250px;
+        height:85px;
+        position:absolute;
+        left:740px;
+        top:140px;
+        background:url(iconlist_2.png) no-repeat -1195px -115px;
+    }
+    .articleA3{
+        width:460px;
+        height:70px;
+        position:absolute;
+        left:740px;
+        top:275px;
+        background:url(iconlist_2.png) no-repeat -1208px -215px;
+    }
+    .articleA4{
+        width:485px;
+        height:60px;
+        position:absolute;
+        left:703px;
+        top:355px;
+        background:url(iconlist_2.png) no-repeat -1170px -312px;
+    }
+    .sectionB{
+        width:1041px;
+        height:480px;
+        margin:0 auto;
+    }
+    .iconB{
+        width:80px;
+        height:80px;
+    }
+    .textB{
+        width:247px;
+        height:80px;
+    }
+    .sectionB li{
+        float:left;
+        margin:100px 4px 0 4px;
+    }
+    .sectionB1{
+        background:url(iconlist_3.png) no-repeat; 
+        animation:animationB 1s linear 3s infinite;
+    }
+    .sectionB2{
+        background:url(iconlist_3.png) no-repeat -85px 0; 
+        animation:animationB 1s linear 3s infinite;
+    }
+    .sectionB3{
+        background:url(iconlist_3.png) no-repeat -170px 0; 
+        animation:animationB 1s linear 3s infinite;
+    }
+    .sectionB4{
+        background:url(iconlist_3.png) no-repeat 0 -86px;
+        animation:animationB 1s linear 3s infinite;
+    }
+    .sectionB5{
+        background:url(iconlist_3.png) no-repeat -85px -86px; 
+        animation:animationB 1s linear 3s infinite;
+    }
+    .sectionB6{
+        background:url(iconlist_3.png) no-repeat -170px -86px; 
+        animation:animationB 1s linear 2s infinite;
+    }
+    .textB{
+        color:#a3a3a3;
+    }
+    font{
+        line-height:40px;
+    }
+    footer{
+        max-width: 100%;
+        height:200px;
+        margin:0 auto;
+        border:1px solid #363636;
+        background:#363636;
+        color:#969696;
+        text-align:center;
+        position:relative;
+        box-sizing: border-box;
+    }
+    footer a{
+        color:#969696;
+        text-decoration:none;
+    }
+    footer>ul{
+        width:850px;
+        height:112px;
+        margin:25px auto;
+    }
+    footer li{
+        width:120px;
+        height:130px;
+        position:absolute;
+    }
+    .footer1{
+        margin-top:-15px;
+        line-height:17px;
+        left:230px;
+    }
+    .footer2{
+        margin-top:-15px;
+        line-height:17px;
+        left:410px;
+    }
+    .footer3{
+        background:url(iconlist_2.png) no-repeat 0 -586px;
+        left:590px;
+    }
+    .footer4{
+        padding-top:40px;
+        box-sizing:border-box;
+        right:512px;
+        text-align:left;
+    }
+    .footer5{
+        background:url(iconlist_2.png) no-repeat -212px -586px;
+        right:394px;
+    }
+    .footer6{
+        padding-top:40px;
+        box-sizing:border-box;
+        right:264px;
+        text-align:left;
+    }
+  </style>
+ </head>
+ <body>
+    <header>
+        <div class="ico"></div>
+        <div class="header-ul">
+            <ul>
+                <li>
+                    <a href="#" class="icon1"></a>
+                </li>
+                <li>
+                    <a href="#" class="icon2"></a>
+                </li>
+                <li>
+                    <a href="#" class="text">官方论坛</a>
+                </li>
+                <li>
+                    <a href="#" class="text">官方微博</a>
+                </li>
+                <li>
+                    <a href="#" class="text">支持机型</a>
+                </li>
+                <li>
+                    <a href="#" class="text">常见问题</a>
+                </li>
+                <li>
+                    <a href="#" class="text" id="homepage">首页</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <nav>
+        <div class="prevent-lose"></div>
+        <div class="square-code"></div>
+        <div class="animation">
+            <ul>
+                <li class="animation1"></li>
+                <li class="animation2"></li>
+                <li class="animation3"></li>
+                <li class="animation4"></li>
+                <li class="animation5"></li>
+            </ul>
+        </div>
+        <div class="animationA">
+            <ul>
+                <li class="animationA1"></li>
+                <li class="animationA2"></li>
+                <li class="animationA3"></li>
+                <li class="animationA4"></li>
+                <li class="animationA5"></li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+        <div class="section1"></div>
+        <div class="section2"></div>
+        <div class="section3"></div>
+    </section>
+    <article>
+        <div class="article1"></div>
+        <div class="article2"></div>
+        <div class="article3"></div>
+        <div class="article4"></div>
+    </article>
+    <div class="sectionA"></div>
+    <div class="articleA">
+        <div class="articleA1"></div>
+        <div class="articleA2"></div>
+        <div class="articleA3"></div>
+        <div class="articleA4"></div>
+    </div>
+    <div class="sectionB">
+        <ul>
+            <li class="sectionB1 iconB"></li>
+            <li class="textB">
+                <font color="#ffe325" size="4px">
+                    <b>一键呼叫</b>
+                </font>
+                <br/>
+                找不到周围物品时，点击“呼<br/>
+                叫”按钮，便可以通过声音找到它
+            </li>
+            <li class="sectionB2 iconB"></li>
+            <li class="textB">
+                <font color="#f2686d" size="4px">
+                    <b>智能提醒</b>
+                </font>
+                <br/>
+                当物品和手机距离较远时，手机会<br/>
+                收到报警，提醒您不忘带物品
+            </li>
+            <li class="sectionB3 iconB"></li>
+            <li class="textB">
+                <font color="#36d1f7" size="4px">
+                    <b>定位记录</b>
+                </font>
+                <br/>
+                防丢卫士会记录物品丢失前的最后<br/>
+                位置和时间，方便快速寻找
+            </li>
+        </ul>
+        <ul>
+            <li class="sectionB4 iconB"></li>
+            <li class="textB">
+                <font color="#8ad855" size="4px">
+                    <b>双向防丢</b>
+                </font>
+                <br/>
+                当手机距离较远时，防丢卫士会发<br/>
+                出声音，提醒您手机不在身边
+            </li>
+            <li class="sectionB5 iconB"></li>
+            <li class="textB">
+                <font color="#ff9650" size="4px">
+                    <b>超低功耗</b>
+                </font>
+                <br/>
+                最新蓝牙4.9技术，超低功耗，一枚<br/>
+                电池可用3个月以上
+            </li>
+            <li class="sectionB6 iconB"></li>
+            <li class="textB">
+                <font color="#b099fc" size="4px">
+                    <b>小巧易戴</b>
+                </font>
+                <br/>
+                仅一元钱硬币大小，可轻松粘贴或<br/>
+                佩挂在物品上
+            </li>
+        </ul>
+    </div>
+    <footer>
+        <ul>
+            <li class="footer1">
+                <h2><a href="a">&nbsp;&nbsp;&nbsp;关注我们</a></h2>
+                <p><a href="a">官方论坛</a></p>
+                <p><a href="a">新浪微博</a></p>
+            </li>
+            <li class="footer2">
+                <h2><a href="a">相关网站</a></h2>
+                <p><a href="a">360硬件专区</a></p>
+                <p><a href="a">360安全路由</a></p>
+                <p><a href="a">360儿童卫士</a></p>
+            </li>
+            <li class="footer3"></li>
+            <li class="footer4">扫一扫<br/>关注官方微博</li>
+            <li class="footer5"></li>
+            <li class="footer6">扫一扫<br/>关注官方微信</li>
+        </ul>
+        Copyright &copy2005-2014 360.cn All Right Reserved.360安全中心 
+    </footer>
+ </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			height: 20000px;
+		}
+		#img {
+			position: absolute;
+			left: 0;
+			top: 50px;
+		}
+		div {
+			width: 300px;
+			height: 300px;
+			background: red;
+			position: fixed;
+			right: 0;
+			top: 500px;
+		}
+		span {
+			float: left;
+			width: 50px;
+			height: 50px;
+			background: blue;
+			text-align: center;
+			line-height: 50px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<p>天王盖地虎，</p>
+	<p>宝塔镇河妖。</p>
+	<img src="aside.jpg" id="img">
+	<div>
+		<span>X</span>
+	</div>
+</body>
+<script type="text/javascript" src="../jquery.min.js"></script>
+<script type="text/javascript">	
+	$(window).scroll(function () {
+		if (window.pageYOffset) {
+			animate($("img")[0], pageYOffset + 50);				
+		}else{
+			animate($("img")[0], document.documentElement.scrollTop + 50);		
+		}	
+	})
+	$("div").animate({
+		"width": "0px",
+		"height": "0px"
+	}, 1000);
+	$("div").animate({
+		"width": "300px",
+		"height": "300px"
+	}, 1000);
+	$("span").click(function () {
+		$(this).parent().hide();
+	})						
+	function animate(obj, target) {
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function () {
+			var step = (target - obj.offsetTop) / 10;
+			obj.style.top = obj.offsetTop + step + "px";
+			if (Math.abs(target - obj.offsetTop) <= Math.abs(step)) {
+				clearInterval(obj.timer);
+				obj.style.top = target + "px";
+			}
+		}, 10);
+	}
+</script>
+</html>

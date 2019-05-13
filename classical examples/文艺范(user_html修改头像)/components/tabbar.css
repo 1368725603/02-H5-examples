@@ -1,0 +1,142 @@
+/*
+* @Author: Administrator
+* @Date:   2017-11-15 15:28:25
+* @Last Modified by:   Administrator
+* @Last Modified time: 2017-11-16 22:22:37
+*/
+.tabbar{
+	position: fixed;
+	width: 100%;
+	height: 49px;
+	bottom: 0px;
+	background: #f1f1f1;
+	border-bottom: 1px solid #ddd;
+}
+.tabbar_item{
+	float: left;
+	width: 25%;
+	height: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: #999999;
+}
+.tabbar_item span:first-child{
+	display: block;
+	height: 25px;
+	width: 25%;
+	background: #ccc;
+	margin: 4px auto;
+}
+.tabbar_item.active{
+	color: #000000;
+}
+#main span:first-child{
+	background: url('../images/img/main.png');
+	background-size: 100% 100%;
+}
+#main.active span:first-child{
+	background: url('../images/img/main_active.png');
+	background-size: 100% 100%;
+}
+#read span:first-child{
+	background: url('../images/img/read.png');
+	background-size: 100% 100%;
+}
+#read.active span:first-child{
+	background: url('../images/img/read_active.png');
+	background-size: 100% 100%;
+}
+#music span:first-child{
+	background: url('../images/img/music.png');
+	background-size: 100% 100%;
+}
+#music.active span:first-child{
+	background: url('../images/img/music_active.png');
+	background-size: 100% 100%;
+}
+#movie span:first-child{
+	background: url('../images/img/movie.png');
+	background-size: 100% 100%;
+}
+#movie.active span:first-child{
+	background: url('../images/img/movie_active.png');
+	background-size: 100% 100%;
+}
+
+
+
+
+
+/*
+教师机 16:18:45 (多人发送)
+.tabbar {
+	position: fixed;
+	width: 100%;
+	height: 49px;
+	bottom: 0;
+	background-color: #f1f1f1;
+	border-bottom: 1px solid #ddd;
+}
+
+.tabbar-item {
+	float: left;
+	width: 25%;
+	height: 100%;
+	text-align: center;
+	font-size: 14px;
+	color: #888;
+}
+
+.tabbar-item span:first-child {
+	display: block;
+	height: 25px;
+	width: 25%;
+	background-color: #ccc;
+	margin: 4px auto;
+}
+
+.tabbar-item.active {
+	color: black;
+}
+
+#main span:first-child {
+	background: url(../images/img/main.png);
+	background-size: 100% 100%;
+}
+
+#main.active span:first-child {
+	background: url(../images/img/main_active.png);
+	background-size: 100% 100%;
+}
+
+#read span:first-child {
+	background: url(../images/img/read.png);
+	background-size: 100% 100%;
+}
+
+#read.active span:first-child {
+	background: url(../images/img/read_active.png);
+	background-size: 100% 100%;
+}
+
+#music span:first-child {
+	background: url(../images/img/music.png);
+	background-size: 100% 100%;
+}
+
+#music.active span:first-child {
+	background: url(../images/img/music_active.png);
+	background-size: 100% 100%;
+}
+
+#movie span:first-child {
+	background: url(../images/img/movie.png);
+	background-size: 100% 100%;
+}
+
+#movie.active span:first-child {
+	background: url(../images/img/movie_active.png);
+	background-size: 100% 100%;
+}
+
+ */

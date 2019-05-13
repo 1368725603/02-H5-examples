@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				width: 400px;
+				height: 400px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				border: 3px solid #000;
+				color: #000;
+				font-size: 40px;
+				line-height: 400px;
+				text-align: center;
+			}
+			.box img {
+				width: 100%;
+			}
+			.box video {
+				width: 100%;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">将文件拖拽至此</div>			
+	</body>
+</html>
+<script type="text/javascript">
+	var box = document.querySelector(".box");	
+	// 当某被拖动的对象在另一对象容器范围内拖动时触发此事件
+	document.ondragover = function (e) {
+		e.preventDefault();
+	}			
+	document.ondrop = function (e) { // 在一个拖动过程中，释放鼠标键时触发此事件。
+		e.preventDefault();
+		// 得到用户拖拽的第一个文件
+		var data = e.dataTransfer.files[0];
+		// 得到用户上传文件的类型
+		var type = data.type;
+		// console.log(data);
+		// 创一个读取文件对象
+		var fr = new FileReader();	
+		fr.readAsDataURL(data);
+		fr.onload = function () {
+			// 得到当前路径
+			var result = fr.result;
+			if (type.indexOf("image/") == 0) {
+				// 创建图片对象
+				var img = document.createElement("img");
+				// 改变图片路径
+				img.src = result;
+				box.innerHTML = "";
+				box.appendChild(img);
+			}
+			if (type.indexOf("audio/") == 0) {
+				// 创建audio标签
+				var audio = document.createElement("audio");
+				audio.src = result;
+				audio.setAttribute("controls", "controls");
+				box.innerHTML = "";
+				box.appendChild(audio);
+			}
+			if (type.indexOf("video/") == 0) {
+				// 创建audio标签
+				var video = document.createElement("video");
+				video.src = result;
+				video.setAttribute("controls", "controls");
+				box.innerHTML = "";
+				box.appendChild(video);
+			}
+		}
+	}			
+</script>

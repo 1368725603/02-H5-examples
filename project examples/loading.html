@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <meta charset="utf-8"> 
+    <style type="text/css"> 
+        .loading-container {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            border: 10px solid #eee;
+            border-radius: 50%;
+            position: fixed;
+            z-index: 999;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+        }       
+        .loading {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border: 10px solid #666;
+            border-radius: 50%;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            margin-left: -10px; 
+            margin-top: -10px;               
+            animation: loading 0.9s linear 0s infinite normal;
+        }
+        @keyframes loading {
+            0% {
+                transform: rotate(0);
+            }        
+            100% {
+                transform: rotate(360deg);
+            }
+        }  
+        .loading-text {          
+            position: absolute;
+            top: 0;
+            left: 5px;
+            color: #666;
+        }      
+    </style>   
+</header>
+<body>
+    <div class="loading-container" id="loading_container">
+        <div class="loading"></div> 
+        <span class="loading-text">loading...</span>   
+    </div>
+    <button onclick="f1();">显示</button> 
+    <button onclick="f0();">隐藏</button>     
+</body>
+</html>
+<script type="text/javascript">	
+    function f1() {
+        loading_container.style.display = 'block';
+    }
+    function f0() {
+        loading_container.style.display = 'none';
+    }
+</script>

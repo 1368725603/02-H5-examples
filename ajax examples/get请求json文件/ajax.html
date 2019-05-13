@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<table border="1px">
+			<thead>
+				<th>书名</th>
+				<th>作者</th>
+				<th>价格</th>
+			</thead>
+			<!--<tbody>
+				<tr>
+					<td>weee</td>
+				</tr>
+			</tbody>-->
+		</table>
+	</body>
+	<script type="text/javascript">
+        // 1.创建Ajax对象
+		var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+		// 2.初始化请求
+		xhr.open('GET', '2.json', true);
+		// 3.发送请求
+		xhr.send();
+		// 4.事件监听
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var obj = JSON.parse(xhr.responseText);
+				console.log(obj);
+				//obj 进行处理
+				//obj信息，书籍 添加到表格中。动态创建节点
+				//1.创建 tbody节点
+				var tbody = document.createElement("tbody");
+				//2.创建tr td innerHTML = "<tr>"
+				//创建几个tr？2个  几本书 有几个tr 数组的长度
+				var bookArr = obj.books;
+				for (var i = 0; i < bookArr.length; i++) {
+					//创建tr
+					var tr = document.createElement("tr");
+					//创建td 3个  对象的属性个数 对象哪来的？
+					for (var keys in bookArr[i]) {
+						//属性有几个，循环几次 3个 
+						var td = document.createElement("td");
+						//td设置内容   对象中属性值 访问属性
+						td.innerHTML = bookArr[i][keys];
+						//添加tr
+						tr.appendChild(td);
+					}
+					//把tr 添加到 tbody
+					tbody.appendChild(tr);
+				}
+				//tbody 添加到 table
+				document.getElementsByTagName("table")[0].appendChild(tbody);
+			}
+		}
+	</script>
+</html>

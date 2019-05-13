@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body,p,ol,ul,li,h1,h2,h3,dl,dt,dd {
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol,li {
+			list-style: none;
+		}
+		#nav,#box {
+			width: 100%;
+            margin: 0 auto;
+			text-align: center;
+		}
+		#nav {
+			position: relative;
+            width: 100%;
+		}
+		#navbtn {
+			position: absolute;
+            right: 17%;
+            top: 18%;
+            width: 52px;
+            height: 20px;
+		}
+		#left {
+			position: absolute;
+			left: 0;
+			top: 50px;
+		}
+		#left div {
+			position: absolute; 
+			right: 0;
+			bottom: 5px;
+			width: 38px;
+			height: 15px;
+		}
+		#right {
+			position: absolute;
+			right: 0;
+			top: 50px;
+		}
+		#right div {
+			position: absolute;
+			bottom: 5px;
+			width: 38px;
+			height: 15px;
+		}
+		#returnTop {
+			position: fixed;
+			right: 10px;
+			bottom: 30px;
+			display: none;
+            width: 50px;
+            height: 50px;
+		}
+		#dialog {
+			width: 500px;
+			height: 250px;
+			border:1px solid;
+			position: fixed;
+			left: 25%;
+            top: 30%;
+			background: pink;
+			text-align: center;
+			display: none;
+		}
+		#dialogp {
+			width: 100%;
+			height: 50px;
+			background: blue;
+			position: relative;
+			cursor: pointer;
+		}
+		#dialogp p {
+			width: 50px;
+			height: 50px;
+			text-align: center;
+			line-height: 40px;
+			font-size: 40px;
+			background: gray;
+			position: absolute;
+			right: 0;
+			cursor: pointer;
+		}
+		#dialog .text {			 
+			 font-size:50px;
+			 color:red;
+			 margin: 40px 0 60px;
+		}
+		#dialog input {
+			width: 80px;
+			height: 30px;
+		}
+        img {
+            width: 100%;
+        }
+	</style>
+</head>
+<body>
+	<div id="nav">
+		<img src="images/r1.png" alt=""/>
+		<div id="navbtn"></div>
+	</div>
+	<div id="box">
+		<img src="images/box.png" alt=""/>
+	</div>
+	<div id="left">
+		<img src="images/r2_c1.png" alt=""/>
+		<div id="img1btn"></div>
+	</div>
+	<div id="right">
+		<img src="images/r2_c2.png" alt=""/>
+		<div id="img2btn"></div>
+	</div>
+	<div id="dialog">
+		<div id="dialogp">
+			<p>x</p>
+		</div>
+		<div class="text">确定要关闭么？</div>
+		<input type="button" value="关闭" id="diaOff">
+		<input type="button" value="保留" id="diaOn">
+	</div>
+    <img src="images/1.png" alt="" id="returnTop"/>
+</body>
+<script type="text/javascript">
+	var img1 = document.getElementById("left"); // 左侧跟随滚动的图片
+	var img2 = document.getElementById("right"); // 又侧跟随滚动的图片
+	var imgb = document.getElementById("img1btn"); // 左侧图片关闭按钮
+	var imgbt = document.getElementById("img2btn"); // 右侧图片关闭按钮
+	var nav = document.getElementById("nav"); // 导航条
+	var box = document.getElementById("box"); // 网页主题
+	var returnTop = document.getElementById("returnTop"); // 返回顶部图片
+	var navbtn = document.getElementById("navbtn"); // 关闭固定导航条按钮
+	var dialog = document.getElementById("dialog"); // 是否关闭固定导航条对话框
+	var move = document.getElementById("dialogp"); // 是否关闭固定导航条对话框, 可以拖动的位置.
+	var error = move.getElementsByTagName('p')[0]; // 是否关闭固定导航条对话框, ×掉这个对话框.
+	var diaOff = document.getElementById("diaOff"); // 是否关闭固定导航条对话框, 确定关闭固定导航条.
+	var diaOn = document.getElementById("diaOn"); // 是否关闭固定导航条对话框, 确定保留固定导航条.
+	off(imgb);
+	off(imgbt);
+	off(diaOn);
+	navbtn.onclick = function () {
+		dialog.style.display = "block";
+	}
+	error.onclick = function () {
+		this.parentNode.parentNode.style.display = "none";
+	}
+	diaOff.onclick = function () {
+		this.parentNode.style.display = "none";
+		nav.style.position = "relative";
+		nav.style.top = 0;
+	}
+	move.onmousedown = function (eve) {
+		var e = eve || window.event;
+		var x = e.clientX - dialog.offsetLeft;
+		var y = e.clientY - dialog.offsetTop;
+		move.onmousemove = function (eve1) {		
+			var e = eve1 || window.event;
+			dialog.style.left = e.clientX - x + "px";
+			dialog.style.top = e.clientY - y + "px";
+		}
+	}		
+	document.onmouseup = function () {
+		move.onmousemove = null;
+	}
+	onscroll = function () {
+		if (window.pageYOffset) {
+			animate(img1, pageYOffset + 50);
+			animate(img2, pageYOffset + 50);
+			if (pageYOffset > 150) {
+				nav.style.position = "fixed";
+				nav.style.top = 0;
+				returnTop.style.display = "block";
+			} else {
+				nav.style.position = "relative";
+				nav.style.top = "";
+				returnTop.style.display = "none";
+			}
+		} else {
+			animate(img1, document.documentElement.scrollTop + 50);
+			animate(img2, document.documentElement.scrollTop + 50);
+			if (document.documentElement.scrollTop > 150) {
+				nav.style.position = "fixed";
+				nav.style.top = 0;
+				returnTop.style.display = "block";
+			} else {
+				nav.style.position = "relative";
+				nav.style.top = "";
+				returnTop.style.display = "none";
+			}
+		}
+	}
+    returnTop.onclick = function () {
+    	var timer = setInterval(function () {
+    		var a = pageYOffset * 99 / 100;
+    		scrollTo(0, a);					
+    		if (a <= 10) {
+    			scrollTo(0, 0);
+    			clearInterval(timer);
+    		}
+    	}, 1);
+    }
+    function animate(obj, target) {
+    	clearInterval(obj.timer);
+    	obj.timer = setInterval(function () {
+    		var step = (target - obj.offsetTop) / 10;
+    		obj.style.top = obj.offsetTop + step + "px";
+    		if (Math.abs(target - obj.offsetTop) <= Math.abs(step)) {
+    			clearInterval(obj.timer);
+    			obj.style.top = target + "px";
+    		}		
+    	}, 10);
+    }
+	function off(eve) {
+		eve.onclick = function () {
+			this.parentNode.style.display = "none";
+		}
+	}	
+</script>
+</html>

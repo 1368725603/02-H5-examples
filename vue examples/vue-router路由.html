@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		span{
+			margin-right: 10px;
+		}
+		.header{
+			width: 1000px;
+			height: 48px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.section{
+			width: 1000px;
+			height: 500px;
+			margin: 0 auto;
+			text-align: center;
+		}
+		.footer{
+			width: 600px;
+			text-align: center;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;			
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<h1 class="header">header</h1>					
+		<div class="section">
+			<router-view></router-view>
+		</div>			
+		<!-- 写路由并传入实参 -->
+		<div class="footer">
+			<span><router-link to="/">main</router-link></span>
+			<span><router-link to="/read">read</router-link></span>
+			<span><router-link to="/music">music</router-link></span>
+			<span><router-link to="/user">user</router-link></span>
+		</div>		  
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript" src="vue/axios.js"></script>
+<script type="text/javascript" src="vue/vue-router.js"></script>
+<script type="text/javascript">
+	var vueData={
+		a:[
+			{
+				id:1,
+				name:"张三",
+				hobby:"吃饭"
+			}			
+		]	
+	};
+	var vueMethod={
+		f1:function(a,b){
+			return a+b;
+		},
+		f2:function(a,b){
+			return a-b;
+		}
+	};
+
+	//创建路由界面--纯路由型的组件,不能调用
+	var Main = {template:"<div>Main</div>"};
+	var Read = {template:'<div>Read</div>'};
+	var Music = {
+		template: `
+			<div>Music <button>点击</button></div>
+		`
+	};
+	var User = {
+		//路由嵌套与路由传参
+		template: `
+		    <div class="user">
+		      	<h2>User</h2>
+		      	<p>
+		      		<router-link to="/user/home/1/欧文">user--欧文</router-link>
+		      	</p>
+		      	<p>
+		      		<router-link to="/user/home/2/凯文">user--凯文</router-link>
+		      	</p>		    	
+		    </div>
+		`		  
+	};	
+	//创建子组件
+	var UserHome = { 
+		created:function(){
+			this.a=this.$route.params.id;
+			this.b=this.$route.params.name;		
+		},
+		data:function(){
+			return {
+				a:null,
+				b:null,												
+			}
+		},					
+		methods:{
+			f3:function(){
+				this.a++;
+			}
+		},
+		//取出实参
+		template: `
+			<div><button @click="f3">+</button>
+				Home{{$route.params.id}}.{{a}}--name{{$route.params.name}}.{{b}}
+			</div>
+		` 
+	};
+
+	//定义路由规则
+	var router = new VueRouter({
+		routes: [
+		  	//把空路由配置给一个组件,保证刚打开页面时有内容
+		  	{path:'/',component:Main},
+		    {path:'/read',component:Read},	    
+		    {path:'/music',component:Music},
+		    {path:'/user',component:User},
+		    // 定义路由形参
+		    {path: '/user/home/:id/:name',component: UserHome}
+		]
+	});
+	
+	//注入路由
+	//var app = new Vue({ router }).$mount('#app')
+	var app = new Vue({
+		el:"#app",
+		data:vueData,		
+		methods:vueMethod,
+		router:router
+	});
+
+</script>
