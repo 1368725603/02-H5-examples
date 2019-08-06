@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
 </html>
 <script type="text/javascript">
-    // 主机名: location.host
-    // 端口号: location.port
-    // 完整URL: location.href
-    // 问号后面的部分(包括问号): location.search
-    console.log('location.search: ', location.search); // ?id=abc&pwd=123
-    var url = location.search;
-    var obj = new Object();
-    // 处理url字符串
-    var newUrl = url.substring(1);
-    var newArr = newUrl.split("&");
-    for (var i = 0; i < newArr.length; i ++) {
-        var objT = newArr[i].split("=");
-        obj[objT[0]] = objT[1];
-    }
-    console.log('obj: ', obj);									
+  // 主机名: location.host
+  // 端口号: location.port
+  // 完整URL: location.href
+  // 问号后面的部分(包括问号): location.search
+  console.log('location.search: ', location.search); // ?id=abc&pwd=123
+  var url = location.search;
+  var obj = new Object();
+  // 处理url字符串
+  var newUrl = url.substring(1);
+  var newArr = newUrl.split("&");
+  for (var i = 0; i < newArr.length; i++) {
+    var objT = newArr[i].split("=");
+    obj[objT[0]] = objT[1];
+  }
+  console.log('obj: ', obj);
 </script>
