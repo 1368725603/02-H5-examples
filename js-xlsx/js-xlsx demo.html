@@ -3,10 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>js-xlsx demo</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
-	<button id="download">下载</button>
-	<button id="upload">上传</button>
+	<button id="download">js数据下载excel</button>
+    <button id="downloadDom">dom下载excel</button>
+    <button id="upload">js数据上传本地excel</button>
+    <table id="table">
+        <thead>
+            <tr>
+                <th rowspan="2">姓名</th>
+                <th rowspan="2">性别</th>
+                <th rowspan="2">年龄</th>
+                <th colspan="2">其它</th>
+            </tr>
+            <tr>
+                <th>数字</th>
+                <th>字母</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>张三</td>
+                <td>男</td>
+                <td>20</td>
+                <td>123</td>
+                <td>abc</td>
+            </tr>
+            <tr>
+                <td>李四</td>
+                <td>男</td>
+                <td>21</td>
+                <td>456</td>
+                <td>def</td>
+            </tr>
+            <tr>
+                <td>婷婷</td>
+                <td>女</td>
+                <td>22</td>
+                <td>789</td>
+                <td>ghi</td>
+            </tr>
+        </tboby>
+    </table>
 </body>
 </html>
 <script type="text/javascript" src="./xlsx.full.min.js"></script>
@@ -14,13 +61,16 @@
 <script>
     var download = document.querySelector('#download');
     var upload = document.querySelector('#upload');
-    var sheetName = {
-        name: '姓名',
-        age: '年龄',
-        sex: '性别'
-    };
-    // 下载
+    var downloadDom = document.querySelector('#downloadDom');
+    var tableDom = document.querySelector('#table');
+
+    // js数据下载excel
     download.onclick = function () {
+        var sheetName = {
+            name: '姓名',
+            age: '年龄',
+            sex: '性别'
+        };
         var datas = [
             {"name": "路飞", "age": "100", "sex": "男"},
             {"name": "女帝", "age": "30", "sex": "女"},
@@ -36,11 +86,21 @@
         sheetJson.downloadExl(workbook, 'people');
     }
 
-    // 给upload注册上传方法
+    // dom下载excel
+    downloadDom.onclick = function () {
+        sheetJson.downloadExl_dom(tableDom, 'people_table');
+    }
+
+    // js数据上传本地excel
     sheetJson.uploadXls(upload, function (files) {
-        //解析excel数据
+        // 解析excel数据
         sheetJson.readWorkbookFromLocalFile(files, function (workbook) {
             console.log('workbook: ', workbook); // 获取到解析的数据
+            var sheetName = {
+                name: '姓名',
+                age: '年龄',
+                sex: '性别'
+            };
             var datas = sheetJson.toJson({
                 sheetName: sheetName,
                 datas: workbook
