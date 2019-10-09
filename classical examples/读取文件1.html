@@ -21,8 +21,16 @@
 		// 创建文件读取对象
 		var fr = new FileReader();
 		// console.log(fr);
-		// 将文件转化为URL路径
-		fr.readAsDataURL(data);
+    /*
+    fr.readAsText(data); // 读文本文件
+    fr.onload = function () {
+    	// 文件加载完成
+    	console.log('fr: ', fr);
+    	var result = fr.result;
+    	// console.log('result: ', result);
+    }
+    */
+		fr.readAsDataURL(data); // 读二进制文件
 		// 检测是否加载完成
 		fr.onload = function () {
 			// 文件加载完成

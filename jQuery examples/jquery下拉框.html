@@ -11,16 +11,15 @@
       ul,li {
         list-style: none;
       }
-
       .nice-select {
         display: inline-block;
         position: relative;
-        width: 130px;
+        width: 200px;
         height: 30px;
         border: 1px solid #ccc;
         vertical-align: -11px;
+        border-radius: 3px;
       }
-
       .nice-select input {
         outline: none;
         cursor: pointer;
@@ -32,30 +31,26 @@
         position: absolute;
         border: none;
       }
-
       .nice-select ul {
         display: none;
         border: 1px solid #d5d5d5;
-        width: 13.9em;
+        width: 100%;
         position: absolute;
-        top: 1.8em;
+        top: 31px;
         overflow: hidden;
         background-color: #fff;
-        max-height: 150px;
+        max-height: 210px;
         overflow-y: auto;
         border-top: 0;
         z-index: 10001;
       }
-
       .nice-select ul li {
         height: 30px;
-        line-height: 2em;
+        line-height: 30px;
         overflow: hidden;
         padding: 0 10px;
         cursor: pointer;
-        border-top: 1px solid #d5d5d5;
       }
-
       .nice-select ul li.on {
         background-color: #e0e0e0;
       }
@@ -63,18 +58,18 @@
   </head>
   <body>
     <div class="nice-select">
-      <input id="customerId" type="text" value="我的--最爱" />
+      <input id="customerId" type="text" value="我的--最爱" v="0" />
       <ul id="list">
-        <li>我的--最爱</li>
-        <li>很棒的wo</li>
-        <li>简单</li>
-        <li>有点难</li>
-        <li>安卓</li>
-        <li>不会</li>
-        <li>更不会</li>
-        <li>懂哦</li>
-        <li>已经不怎么懂</li>
-        <li>懂哦</li>
+        <li v="0">我的--最爱</li>
+        <li v="1">很棒的wo</li>
+        <li v="2">简单</li>
+        <li v="3">有点难</li>
+        <li v="4">安卓</li>
+        <li v="5">不会</li>
+        <li v="6">更不会</li>
+        <li v="7">懂哦</li>
+        <li v="8">已经不怎么懂</li>
+        <li v="9">懂哦</li>
       </ul>
     </div>
   </body>
@@ -82,52 +77,64 @@
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript">
   $(function() {
-    $('#customerId').on('input', function() {
+    $('body').on('click', '.nice-select', function(e) {
+      e.stopPropagation();
+      $(this).find('li').each(function(i) {
+        $(this).show();
+      });
+      $(this).find('ul').show();
+    });
+    $('body').on('input', '.nice-select input', function() {
       var val = this.value;
       var count = 0;
-      if (val != "") {
-        $(".nice-select ul li").each(function(i) {
+      if (val != '') {
+        $(this).parents('.nice-select').find('ul li').each(function() {
           var contentValue = $(this).text();
-          if (contentValue.toLowerCase().indexOf(val.toLowerCase()) < 0) {
+          if (contentValue.indexOf(val) < 0) {
             $(this).hide();
-            count++;
           } else {
             $(this).show();
-          }
-          if (count == (i + 1)) {
-            $(".nice-select").find("ul").hide();
-          } else {
-            $(".nice-select").find("ul").show();
+            count ++;
           }
         });
+        if (count > 0) {
+          $(this).parents('.nice-select').find('ul').show();
+        } else {
+          $(this).parents('.nice-select').find('ul').hide();
+        }
       } else {
-        $(".nice-select ul li").each(function(i) {
+        $(this).parents('.nice-select').find('li').each(function(i) {
           $(this).show();
         });
+        $(this).parents('.nice-select').find('ul').show();
       }
     });
-    $(".nice-select").click(function(e) {
-      $(this).find("ul").show();
+    $('body').on('mouseover mouseout', '.nice-select ul li', function(e) {
       e.stopPropagation();
-    });
-    $('#list').delegate('li', 'mouseover mouseout', function(e) {
       $(this).toggleClass("on");
-      e.stopPropagation();
     });
-    $('#list').delegate('li', 'click', function(e) {
-      var val = $(this).text();
-      var showContent = $('input[name="showContent"]:checked').val();
-      if (showContent == "portion") {
-        if (val.indexOf('--') != -1) {
-          val = val.substring(0, val.indexOf('--'));
+    $('body').on('click', '.nice-select ul li', function(e) {
+      e.stopPropagation();
+      $(this).parents('.nice-select').find('input').val($(this).text());
+      $(this).parents('.nice-select').find('input').attr('v', $(this).attr('v'));
+      $(this).parents('.nice-select').find('ul').hide();
+    });
+    $('body').on('blur', '.nice-select input', function() {
+      var input = $(this);
+      var str = '';
+      var strV = '';
+      input.parents('.nice-select').find('li').each(function() {
+        if (input.val() == $(this).text()) {
+          str =  $(this).text();
+          strV =  $(this).attr('v');
         }
-      }
-      $(".nice-select").find("input").val(val);
-      $(".nice-select").find("ul").hide();
-      e.stopPropagation();
-    });
-    $(document).click(function() {
-      $(".nice-select").find("ul").hide();
+      });
+      input.val(str);
+      input.attr('v', strV);
+      var ul = input.parents('.nice-select').find('ul');
+      setTimeout(function () {
+        ul.hide();
+      }, 200);
     });
   });
 </script>

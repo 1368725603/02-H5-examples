@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js-xlsx demo</title>
+</head>
+<body>
+	<button id="download">下载</button>
+	<button id="upload">上传</button>
+</body>
+</html>
+<script type="text/javascript" src="./xlsx.full.min.js"></script>
+<script src="./sheetJson.js"></script>
+<script>
+    var download = document.querySelector('#download');
+    var upload = document.querySelector('#upload');
+    var sheetName = {
+        name: '姓名',
+        age: '年龄',
+        sex: '性别'
+    };
+    // 下载
+    download.onclick = function () {
+        var datas = [
+            {"name": "路飞", "age": "100", "sex": "男"},
+            {"name": "女帝", "age": "30", "sex": "女"},
+            {"name": "娜美", "age": "30", "sex": "女"},
+            {"name": "索隆", "age": "solo", "sex": "男"},
+        ];
+        console.log('datas: ', datas);
+        var workbook = sheetJson.toSheet({
+            sheetName: sheetName,
+            datas: datas
+        });
+        console.log('workbook: ', workbook);
+        sheetJson.downloadExl(workbook, 'people');
+    }
+
+    // 给upload注册上传方法
+    sheetJson.uploadXls(upload, function (files) {
+        //解析excel数据
+        sheetJson.readWorkbookFromLocalFile(files, function (workbook) {
+            console.log('workbook: ', workbook); // 获取到解析的数据
+            var datas = sheetJson.toJson({
+                sheetName: sheetName,
+                datas: workbook
+            });
+            console.log('datas: ', datas); // JSON数据
+        });
+    }, function (errmsg) {
+        alert(errmsg);
+    });
+</script>
