@@ -14,7 +14,8 @@
     </style>
 </head>
 <body>
-	<button id="download">js数据下载excel</button>
+    <button id="download">js数据下载excel(数组套对象))</button>
+    <button id="download_aoa">js数据下载excel(二维数组))</button>
     <button id="downloadDom">dom下载excel</button>
     <button id="upload">js数据上传本地excel</button>
     <table id="table">
@@ -64,7 +65,7 @@
     var downloadDom = document.querySelector('#downloadDom');
     var tableDom = document.querySelector('#table');
 
-    // js数据下载excel
+    // js数据下载excel（数组套对象）
     download.onclick = function () {
         var sheetName = {
             name: '姓名',
@@ -84,6 +85,17 @@
         });
         console.log('workbook: ', workbook);
         sheetJson.downloadExl(workbook, 'people');
+    }
+
+    // js数据下载excel（二维数组），可合并单元格。
+    download_aoa.onclick = function () {
+        var data = [
+            ['主要信息', null, null, '其它信息'],
+            ['姓名', '性别', '年龄', null],
+            ['张三', '男', 18, new Date()],
+            ['李四', '女', 22, new Date()]
+        ];
+        sheetJson.downloadExl_aoa(data, 'people_aoa');
     }
 
     // dom下载excel

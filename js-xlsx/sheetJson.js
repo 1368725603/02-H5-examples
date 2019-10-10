@@ -36,7 +36,7 @@ var sheetJson = {
     },
     downloadExl: function (data, name) { // js数据下载excel方法
         const wopts = {bookType: 'xlsx', bookSST: false, type: 'binary'}; // 定义导出的格式
-        // const wopts = { bookType: 'csv', bookSST: false, type: 'binary' };//ods格式
+        // const wopts = { bookType: 'csv', bookSST: false, type: 'binary' };//csv格式
         // const wopts = { bookType: 'ods', bookSST: false, type: 'binary' };//ods格式
         // const wopts = { bookType: 'xlsb', bookSST: false, type: 'binary' };//xlsb格式
         // const wopts = { bookType: 'fods', bookSST: false, type: 'binary' };//fods格式
@@ -47,7 +47,7 @@ var sheetJson = {
     },
     downloadExl_dom: function (dom, name) { // table标签下载excel方法
         const wopts = {bookType: 'xlsx', bookSST: false, type: 'binary'}; // 定义导出的格式
-        // const wopts = { bookType: 'csv', bookSST: false, type: 'binary' };//ods格式
+        // const wopts = { bookType: 'csv', bookSST: false, type: 'binary' };//csv格式
         // const wopts = { bookType: 'ods', bookSST: false, type: 'binary' };//ods格式
         // const wopts = { bookType: 'xlsb', bookSST: false, type: 'binary' };//xlsb格式
         // const wopts = { bookType: 'fods', bookSST: false, type: 'binary' };//fods格式
@@ -56,6 +56,22 @@ var sheetJson = {
         wb.Sheets['Sheet1'] = XLSX.utils.table_to_sheet(dom); // 通过table_to_sheet转成单页(Sheet)数据
         this.saveAs(new Blob([this.s2ab(XLSX.write(wb, wopts))], {type: "application/octet-stream"}), name + '.' + (wopts.bookType == "biff2" ? "xls" : wopts.bookType));
     },
+    downloadExl_aoa: function (data, name) {
+		const wopts = {bookType: 'xlsx', bookSST: false, type: 'binary'}; // 定义导出的格式
+	    var wb = {SheetNames: ['Sheet1'], Sheets: {}, Props: {}};
+        wb.Sheets['Sheet1'] = XLSX.utils.aoa_to_sheet(data); // 通过aoa_to_sheet转成单页(Sheet)数据
+        // const wopts = { bookType: 'csv', bookSST: false, type: 'binary' };//csv格式
+        // const wopts = { bookType: 'ods', bookSST: false, type: 'binary' };//ods格式
+        // const wopts = { bookType: 'xlsb', bookSST: false, type: 'binary' };//xlsb格式
+        // const wopts = { bookType: 'fods', bookSST: false, type: 'binary' };//fods格式
+        // const wopts = { bookType: 'biff2', bookSST: false, type: 'binary' };//xls格式
+	    wb.Sheets['Sheet1']['!merges'] = [
+		    // 设置(0, 0)-(0, 2)、(0, 3)-(1, 3)单元格合并
+		    {s: {r: 0, c: 0}, e: {r: 0, c: 2}},
+		    {s: {r: 0, c: 3}, e: {r: 1, c: 3}},
+		];
+	    sheetJson.saveAs(new Blob([sheetJson.s2ab(XLSX.write(wb, wopts))], {type: "application/octet-stream"}), name + '.' + (wopts.bookType == "biff2" ? "xls" : wopts.bookType));
+	},
     s2ab: function (s) {
         if (typeof ArrayBuffer !== 'undefined') {
             var buf = new ArrayBuffer(s.length);
