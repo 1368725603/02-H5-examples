@@ -124,7 +124,7 @@
       var str = '';
       var strV = '';
       input.parents('.nice-select').find('li').each(function() {
-        if (input.val() == $(this).text()) {
+        if (input.val() == $(this)[0].innerText) {
           str =  $(this).text();
           strV =  $(this).attr('v');
         }
