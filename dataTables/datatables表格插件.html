@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	<table id="example" class="display" width="100%"></table>
+	<table id="example" style="min-width: 100%;"></table>
 </body>
 
 </html>
@@ -35,7 +35,6 @@
 	}
 
 	makeTable(dataSet);
-	setTdwidth();
 
 	// 过滤表格数据
 	// searchAndDraw();
@@ -61,6 +60,8 @@
 			'deferRender': true,
 			'processing': true, // 代码没加载完成时 会显示加载中…
 			'paging': true, // 是否展示分页器
+			'scrollX': true, // 'scrollX'与'bAutoWidth'都为true，当宽度大于父元素时，会有滚动条。
+			'bAutoWidth': true,
 			'language': {
 				'info': '', // 表格左下角显示的文字
 				'infoEmpty': '', // 表格左下角显示的文字
@@ -96,12 +97,12 @@
 			],
 			data: param,
 			columns: [
-				{ title: 'Name', data: 'name', className: "my_class", 'orderable' : false },
-				{ title: 'Position', data: 'position' },
-				{ title: 'Office', data: 'office' },
-				{ title: 'Extn', data: 'sxtn' },
-				{ title: 'Start date', data: 'start' },
-				{ title: 'Salary', data: 'salary' }
+				{ title: 'Name', data: 'name', className: "my_class", 'orderable' : false, width: 300 },
+				{ title: 'Position', data: 'position', width: 300 },
+				{ title: 'Office', data: 'office', width: 300 },
+				{ title: 'Extn', data: 'sxtn', width: 300 },
+				{ title: 'Start date', data: 'start', width: 300 },
+				{ title: 'Salary', data: 'salary', width: 300 }
 			]
 		};
 		window.table = $('#example').DataTable(dataObj);
@@ -117,14 +118,10 @@
 		console.log('sxtn:', salary);
 	}
 
-	function setTdwidth() { // 不使用百分比和默认宽度, 动态设置td的宽度
-		var widthes = $('.my_class').find('a');
-		var arrLen = [];
-		widthes.map(function () {
-			arrLen.push(this.offsetWidth);
-		});
-		$('.my_class').css('width', Math.max(...arrLen) + 'px');
-	}
-
-	window.onresize = setTdwidth;
+	/*
+	datatable在tab切换出现表头错位，切换时加这个代码解决:
+		setTimeout(function () {
+			$.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
+		}, 0);
+	*/
 </script>
