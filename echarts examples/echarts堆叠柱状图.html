@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>echarts堆叠柱状图</title>
+	<link rel="stylesheet" type="text/css" href="libs/semantic/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/semantic/icon.min.css">
+	<link rel="stylesheet" type="text/css" href="libs/semantic/semantic-calendar.css">
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+     <div id="main" style="width:100%;height: 500px;"></div>
+</body>
+</html>
+<script type="text/javascript" src="libs/jquery.min.js"></script>
+<script type="text/javascript" src="libs/echarts.min.js"></script>
+<script type="text/javascript" src="libs/semantic/semantic.min.js"></script>
+<script type="text/javascript" src="libs/semantic/semantic-calendar.js"></script>
+<script type="text/javascript">
+    carpoolMainChart();
+    function carpoolMainChart() {
+        var badData = [10,20,30,20,20,30,20,10];//订单损坏率,分母为总订单
+        var known = [4,8,10,10,12,20,15,8];//有tag的损坏单总占比,分母为总订单
+        var unknown = [6,12,20,10,8,10,5,2];//有tag的损坏单总占比,分母为总订单 
+        var pureColors = ["#7cb5ec","#7cb5ec","#7cb5ec","#7cb5ec","#7cb5ec", "#7cb5ec","#7cb5ec","#7cb5ec"];
+        var initColors = ["#7cb5ec","#7cb5ec","#7cb5ec","#7cb5ec","#7cb5ec", "#7cb5ec","#7cb5ec","#1351ef"];
+        var myChart = echarts.init(main); 
+        window.onresize = function(){
+            myChart.resize();
+        };
+        // 指定图表的配置项和数据  
+        var option = {  
+            title: {  
+                show: false    
+            },  
+            tooltip: {  
+                trigger: "axis",
+                triggerOn: 'mousemove',
+                formatter: function (point) {
+                    //console.log(point);
+                    if(point.length >= 2) {
+                        var allRate = (point[0].data + point[1].data).toFixed(2);
+                        var knowRate = ((point[0].data)*100 / allRate).toFixed(2);
+                        var unknowRate = ((point[1].data)*100 / allRate).toFixed(2);
+                        var str = point[0].axisValue + '<br />';
+                        str += '订单损坏率: ' + allRate + '%(分母为总订单)<br />';
+                        str += '可解决TAG的占比: ' + knowRate + '%(分母为损坏单)<br />';
+                        str += '(暂时)不可解决TAG的占比: ' + unknowRate + '%(分母为损坏单)';
+                    }else {
+                        //console.log(point);
+                        var data = point[0].data;
+                        var index = point[0].dataIndex;
+                        var allRate = badData[index];
+                        var show = (data*100 / allRate).toFixed(2);
+                        var str = point[0].axisValue + '<br />';                
+                        str += point[0].seriesName + ': ' + data.toFixed(2) + '%(分母为总订单)<br />';
+                        str += point[0].seriesName + ': ' + show + '%(分母为损坏单)';
+                    } 
+                    return str;             
+                }
+            },  
+            legend: {  
+                data: ["可解决TAG的占比","(暂时)不可解决TAG的占比"]
+            },    
+            xAxis: {  
+                data: ["20180601","20180602","20180603","20180604", "20180605", "20180606", "20180607","20180608"],  
+                splitLine:{  
+            　　　　show:false  
+            　　},
+                name: '日期'  
+            },   
+            yAxis: {                
+                name: '订单损坏率(%)'  
+            },  
+            series: [  
+                {  
+                    name: "可解决TAG的占比",  
+                    type: "bar",  
+                    stack: "sum",//折叠显示  
+                    data: [4,8,10,10,12,20,15,8],  
+                    barMaxWidth : 28,  
+                    //显示颜色  
+                    itemStyle:{
+                        normal: {
+                            color: function(point) {
+                                return initColors[point.dataIndex] 
+                            }
+                        }
+                    }
+                },  
+                {  
+                    name: "(暂时)不可解决TAG的占比",  
+                    type: "bar",  
+                    stack: "sum",  
+                    data: [6,12,20,10,8,10,5,2],  
+                    barMaxWidth : 28,  
+                    itemStyle:{    
+                        normal:{color:"rgb(67,67,72)"}    
+                    }
+                }  
+             ]  
+        };            
+        // 使用指定的配置项和数据显示图表。  
+        myChart.setOption(option); 
+        // 添加点击事件。
+        myChart.on('click',function(point){
+            var colors = pureColors.slice(0);
+            colors[point.dataIndex] = "#1351ef";
+            initColors = colors;
+            myChart.resize();
+        });
+    }	     
+</script>

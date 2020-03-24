@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			div {
+				font-size: 35px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="my_Div"></div>
+		<a href="#" id="a" onclick="fn();">点击更换验证码</a>
+	</body>
+</html>
+<script type="text/javascript">
+    var aEle = document.getElementById("a");
+    var myDiv = document.getElementById("my_Div");	
+	
+    // 生成所需的验证码, 验证码由数字英文大写字母构成, 长度为四位。
+    function codeFn() {
+    	// 验证码由数字英文大写字母构成
+    	var str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    	// 从大串中随机拿四个构成一个小串-验证码
+    	var result = "";
+    	for (var i = 0; i < 4; i ++) {
+    		var index = parseInt(Math.random() * str.length);
+    		result += str.charAt(index);
+    	}
+    	return result;
+    }
+    
+    // 上色
+    // 点击a标签
+	fn();
+	function fn() {
+		// 1.验证码上色
+		// 2.div显示出来 设置div内容
+		var code = codeFn();
+		var str = "";
+		for (var i = 0; i < code.length; i ++) {
+			var tempStr = code.charAt(i);
+			var r = parseInt(Math.random() * 256);
+			var g = parseInt(Math.random() * 256);
+			var b = parseInt(Math.random() * 256);
+			str += "<span style='color: rgb(" + r + "," + g + "," + b + ")'>" + tempStr + "</span>";
+		}
+		myDiv.innerHTML = str;
+	}
+</script>

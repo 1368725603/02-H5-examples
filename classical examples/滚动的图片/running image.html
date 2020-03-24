@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 512px;
+			height: 390px;
+			overflow: hidden;
+			margin: 100px auto;
+			position: relative;
+		}
+		img {
+			position: absolute;
+			z-index: 1;
+		}
+		#top,#bottom {
+			position: absolute;
+			z-index: 2;
+			width: 512px;
+			height: 195px;
+			background: transparent;
+		}
+		#top {
+			top: 0;
+		}
+		#bottom {
+			bottom: 0;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="mi.png" id="img1" alt="">
+		<span id="top"></span>
+		<span id="bottom"></span>
+	</div>
+</body>
+<script type="text/javascript">
+	var div = document.getElementsByTagName('div')[0],
+    img = document.getElementById("img1"),
+	spanT = document.getElementById("top"),
+	spanB = document.getElementById("bottom");
+	spanT.setAttribute("onmouseover", "f1();");
+	spanB.setAttribute("onmouseover", "f2();");
+	div.setAttribute("onmouseout", "clearInterval(timer)");
+	var timer = null;
+	var num = 0;
+	function f1() {
+		clearInterval(timer);
+		timer = setInterval(function () {
+			num --;
+			img.style.top = num + 'px';
+			if (num <= -1080) {
+				num = -1080;
+				clearInterval(timer);
+			}
+		}, 10);
+	}
+	console.log(num);
+	function f2() {
+		clearInterval(timer);
+		timer = setInterval(function () {
+			num ++;
+			img.style.top = num + 'px';
+			if (num >= 0) {
+				num = 0;
+				clearInterval(timer);
+			}
+		}, 10);
+	}
+</script>
+</html>

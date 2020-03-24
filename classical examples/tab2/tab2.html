@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body,ul,li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#outer {
+			width: 300px;
+			height: 280px;
+			border: 1px solid blue;
+			margin: 0 auto;
+		}
+		ul {
+			width: 300px;
+			height: 75px;
+		}
+		li {
+			width: 100px;
+			height: 46px;
+			line-height: 46px;
+			float: left;
+			text-align: center;
+			background: gray;
+			cursor: pointer;
+		}
+		.li1 {
+			background: white;
+			width: 100px;
+		}
+		img{
+			margin-left: 4px;
+		}
+	</style>
+</head>
+<body>
+	<div id="outer">
+		<ul>
+			<li class="li1" index="0">第一章</li>
+			<li index="1">第二章</li>
+			<li index="2">第三章</li>
+		</ul>
+        <div id="tab_container">
+            <img src="img1.jpg" alt="" index="0"/>
+            <img src="img2.jpg" alt="" style="display: none" index="1"/>
+            <img src="img3.jpg" alt="" style="display: none" index="2"/>
+        </div>
+	</div>
+</body>
+<script type="text/javascript">
+	// console.log(document.body); // 获取文档中的body标签, 只有body标签能这样获取。
+	var ul = document.querySelector("#outer ul");
+    var lis = ul.getElementsByTagName('li');
+    var tab_container = document.querySelector("#tab_container");
+    var imgs = tab_container.getElementsByTagName('img');
+    // 通过事件委托来注册事件
+    ul.onclick = function (eve) {
+        var e = eve || window.event;
+        if (e.target.nodeName == 'LI') {
+            var img_index = e.target.attributes.index.value;
+            for (var i = 0; i < lis.length; i ++) {
+                if (lis[i].attributes.index.value == img_index) {
+                    lis[i].className = 'li1';
+                } else {
+                    lis[i].className = '';
+                }
+                if (imgs[i].attributes.index.value == img_index) {
+                    imgs[i].style.display = 'inline-block';
+                } else {
+                    imgs[i].style.display = 'none';
+                }
+            }
+        }
+    }
+	
+</script>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<style type="text/css">
+header{background: #f5f5f5;}
+header .top{width: 1000px;margin: 0px auto;height: 40px;line-height: 40px;}
+header input{height: 30px;width: 250px;padding-left: 5px;}
+nav{width: 1000px;margin: 0px auto;height: 100px;line-height: 100px;overflow: hidden;}
+nav .logo{width: 200px;}nav .logo img{width: 200px;height: 100px;}nav li{float: left;width: 100px;}
+.now{height: 40px;line-height: 40px;padding-left: 40px;width: 1000px;margin: 0px auto;}
+section{width: 1000px;margin: 0px auto;overflow: hidden;}section>div{float: left;}
+.title{border-bottom: 2px solid #eee;height: 30px;line-height: 30px;margin-bottom: 10px;clear: both;}.title .l{border-bottom: 2px solid #8383e3;box-sizing: border-box;}
+.left{width: 700px;padding-right: 40px;box-sizing: border-box;}
+.list li{overflow: hidden;margin-bottom: 10px;}
+.list img{width: 256px;height: 144px;float: left;margin-right: 10px;vertical-align: text-bottom;}
+.list div{}
+.list p{margin: 5px 0px;}
+.go{margin-bottom: 10px;}
+.go a{padding: 0px 5px}
+.go a.active{color: #8383e3;}
+.right{width: 300px;}
+.right_list{position: relative;margin-bottom: 10px;}
+.right_list img{width: 300px;height: 168.75px;}
+.right_list div{position: absolute;bottom: 0px;background: rgba(0, 0, 0, 0.4);color: #fff;width: 100%;}
+.right_list p{margin: 10px;}
+.right_rank{margin-bottom: 10px;}
+.right_rank>a{display: inline-block;width: 100px;height: 30px;line-height: 30px;text-align: center;}
+.right_rank>a.active{color: #8383e3;}
+.right_rank ul{display: none;}
+.right_rank ul.active{display: block;}
+.right_rank ul li{height: 20px;line-height: 20px;margin-bottom: 5px;overflow: hidden;}
+.right_rank ul span{display: inline-block;width: 20px;height: 20px;line-height: 20px;background: #8383e3;text-align: center;color: #fff;margin-right: 5px;}
+.right_list2{margin-bottom: 10px;}
+.right_list2 li{margin-bottom: 10px;}
+.right_list2 a{display: block;overflow: hidden;margin-bottom: 5px;}
+.right_list2 p{padding-left: 40px;}
+footer{height: 200px;background: #252525;border-top: 1px solid #808080;color: #ccc;}
+footer aside{width: 1000px;margin: 0px auto;height: 200px;}
+footer div{float: left;}
+footer ul{width: 600px;margin-top: 30px;}
+footer li{float: none;line-height: 30px;height: 30px;}
+footer h1{margin-top: 30px;}
+</style>
+</head>
+<body>
+<header>
+	<div class="top search">
+		<input type="search" placeholder="在这里搜索...">
+		<div class="fr">声明:本站不是ONE一个官网,是粉丝自建的非盈利性民间网站,ONE一个粉丝QQ群104818250</div>
+	</div>
+</header>
+<nav>
+	<div class="logo fl"><img src="" alt="logo"></div>
+	<ul class="fr">
+		<li><a href="index.html">首页</a></li>
+		<li><a href="read.html">文章</a></li>
+		<li>东西</li>
+		<li><a href="music.html">音乐</a></li>
+		<li><a href="movie.html">电影</a></li>
+	</ul>
+</nav>
+<div class="now">当前位置:首页>文章></div>
+<section>
+	<div class="left">
+		<div class="title"><p class="fl l">文章</p><a class="fr">订阅</a></div>
+		<div class="list"><!-- <li><img src="images/1.jpg"><div class="main"><p>title,author:/vergil</p><p class="tag">tag:/timer</p><p>forward</p></div></li> --></div>
+		<div class="go">
+			<a>首页</a>
+			<a>上一页</a>
+			<span id="page_count"><!-- <a class="active">1</a><a>2</a> --></span>
+			<a>下一页</a>
+			<a>尾页</a>
+		</div>
+	</div>
+	<div class="right">
+		<div class="title"><p class="fl l">推荐图文</p></div>
+		<div class="right_list"><!-- <img src="images/1.jpg"><div><p>title</p><p>read</p></div> --></div>
+		<div class="right_rank">
+			<a class="active">周排行</a><a>月排行</a><a>总排行</a>
+			<ul class="week active"></ul>
+			<ul class="month"></ul>
+			<ul class="all"><li><span>0</span><a>title</a></li></ul>
+		</div>
+		<div class="title"><p class="fl l">随机推荐</p></div>
+		<div class="right_list2"><ul><!-- <li><a>title</a><p>forward</p></li> --></ul></div>
+	</div>
+</section>
+<footer>
+	<aside>
+		<div class="left">
+			<ul>
+				<li><h2>one一个</h2></li>
+				<li>关于,用户协议,联系我们,加入qq群</li>
+				<li>本站为[one一个]爱好者建设,非官方网站,内容来自[one一个]官方应用,一切内容版权属原版权所有者所有</li>
+				<li>浙ICP备15004498号-1</li>
+			</ul>
+		</div>
+		<div class="right">
+			<h1>one一个</h1>
+		</div>
+	</aside>
+</footer>
+<script type="text/javascript" src="lib/jquery.js"></script>
+<script type="text/javascript" src="js/network/interface.js"></script>
+<script type="text/javascript" src="js/network/api.js"></script>
+<script type="text/javascript" src="js/network/link.js"></script>
+<script type="text/javascript">
+// $('header').load('header.html');
+// onclick="detail('+list[i].id+','+list[i].category+')"
+$(function(){
+var api=new Api();
+var page=1;
+var count=10;
+var page_count=0;
+function show_list(page,count){
+	api.get_movie_list(page,count,function(list,total){var html='';
+		$('.list').html('');
+		$('#page_count').html('')
+		for(var i=0;i<list.length;i++){
+			html+='<li onclick="detail('+list[i].id+','+list[i].category+')"><img src="'+imagePrefix+list[i].img_url+'"><div class="main"><p>'+list[i].title+',author:/'+list[i].author_name+'</p><p class="tag">tag:/'+list[i].post_date+'</p><p>'+list[i].forward+'</p></div></li>';
+		}$('.list').append(html);
+		page_count=Math.ceil(total/count);html='';
+		for(var i=0;i<page_count;i++){
+			if(i+1===page){
+				html+='<a class="active">'+(i+1)+'</a>';
+				continue;
+			}
+			html+='<a>'+(i+1)+'</a>';
+		}$('#page_count').append(html);
+	});
+}show_list(1,10);
+$('.go a').click(function(event){
+	if(event.target.innerText==='首页'){
+		page=1;
+	}else if(event.target.innerText==='上一页'){
+		page--;page=page||1;
+	}else if(event.target.innerText==='下一页'){
+		page++;if(page>page_count){page=page_count;}
+	}else if(event.target.innerText==='尾页'){
+		page=page_count;
+	}show_list(page,count);
+});
+$('#page_count').click(function(event){
+	page=event.target.innerText;
+	show_list(page,count);
+});
+api.get_ranking(1,10,function(list){var html='';
+	for(var i in list[0]){
+		html+='<li><span>'+(+i+1)+'</span><a>'+list[0][i].title+'</a></li>';
+	}$('.week').append(html);html='';
+	for(var i in list[1]){
+		html+='<li><span>'+(+i+1)+'</span><a>'+list[1][i].title+'</a></li>';
+	}$('.month').append(html);html='';
+	for(var i in list[2]){
+		html+='<li><span>'+(+i+1)+'</span><a>'+list[2][i].title+'</a></li>';
+	}$('.all').append(html);
+	$('.right_rank>a').click(function(){
+		$(this).addClass('active').siblings('a').removeClass('active');
+		$('.right_rank ul').eq($(this).index()).addClass('active').siblings('ul').removeClass('active');
+	});
+});
+api.get_recommend(1,1,function(list){var html='';
+	html+='<img src="'+imagePrefix+list[0].img_url+'"><div><p onclick="detail('+list[0].id+','+list[0].category+')">'+list[0].title+'</p><p>'+api.arr[list[0].category]+'</p></div>';
+	$('.right_list').append(html);
+});
+api.get_recommendRandom(1,10,function(list){var html='';
+	for(var i=0;i<list.length;i++){
+		html+='<li><a>'+list[i].title+'</a><p>'+list[i].forward+'</p></li>';
+	}$('.right_list2 ul').append(html);
+});
+$('input').keypress(function(event){
+	if(event.key==='Enter'){
+		// $(this).parent('form').submit(function(event){});
+		console.log(this.value)
+	}
+});
+});
+			onkeyup=function(e){
+				if(e.keyCode==13){
+					localStorage.keyword=$('.search').children("input").val();
+					location.href="search.html";
+				}
+			}
+</script>
+</body>
+</html>

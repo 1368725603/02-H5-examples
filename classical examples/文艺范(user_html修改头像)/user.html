@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="lib/swiper/swiper.min.css">
+	<style type="text/css">
+		body {
+			background: #f0f2f5;
+		}
+
+		header {
+			color: #ccc;
+			overflow: hidden;
+			box-shadow: 0px 0px 4px #303942;
+		}
+
+		header>ul {
+			background: #4b4c4e;
+			overflow: hidden;
+		}
+
+		header>ul li {
+			float: left;
+			height: 40px;
+			line-height: 40px;
+			margin: 0px 10px;
+		}
+
+		header>ul .vip {
+			color: #daa520;
+		}
+
+		header>ul a {
+			color: #ccc;
+		}
+
+		nav {
+			overflow: hidden;
+			color: #303042;
+			background: #fff;
+		}
+
+		nav>ul {
+			height: 100px;
+			width: 1000px;
+			margin: 0px auto;
+		}
+
+		nav>ul li {
+			float: left;
+			height: 50px;
+			line-height: 50px;
+			margin: 20px 25px 20px 0px;
+		}
+
+		nav .logo {
+			width: 100px;
+		}
+
+		nav .logo img {
+			width: 100px;
+			height: 50px;
+		}
+
+		nav .city {
+			width: 100px;
+			line-height: 25px;
+		}
+
+		nav .city img {
+			width: 100px;
+			height: 25px;
+		}
+
+		nav .link {
+			width: 500px;
+		}
+
+		nav .link a {
+			display: inline-block;
+			width: 19%;
+			text-align: center;
+		}
+
+		nav .search {
+			width: 200px;
+		}
+
+		nav input {
+			width: 200px;
+			height: 30px;
+		}
+
+		section {
+			width: 1000px;
+			margin: 0px auto;
+			overflow: hidden;
+			padding: 40px 0px;
+		}
+
+		.left {
+			float: left;
+			width: 200px;
+			margin: 0px 10px;
+			height: 750px;
+			background: #fff;
+		}
+
+		.l1 {
+			height: 185px;
+			box-shadow: 0px 0px 4px #ccc;
+			text-align: center;
+			background: #f0f2f5;
+		}
+
+		.l1 img {
+			width: 114px;
+			height: 114px;
+			margin: 14px 0px;
+			border-radius: 50%;
+		}
+
+		.left li {
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			font-size: 14px;
+		}
+
+		.left li.active {
+			background-image: linear-gradient(to right, rgb(131, 227, 131), rgb(118, 204, 118));
+			color: #fff;
+		}
+
+		.right {
+			float: left;
+			width: 740px;
+			margin: 0px 10px;
+			height: 800px;
+			background: #fff;
+		}
+
+		.right li {
+			width: 740px;
+			height: 800px;
+			display: none;
+			font-size: 16px;
+		}
+
+		.right li.active {
+			display: block;
+		}
+
+		.right li .tit {
+			height: 50px;
+			border-bottom: 1px solid #dadcdd;
+			padding: 15px 25px;
+			box-sizing: border-box;
+		}
+
+		.right li .txt {
+			padding: 55px 60px;
+			box-sizing: border-box;
+		}
+
+		.right li p {
+			line-height: 40px;
+			margin-bottom: 20px;
+		}
+
+		.right li span {
+			display: inline-block;
+			width: 100px;
+		}
+
+		.right li input {
+			width: 300px;
+			height: 40px;
+			font-size: 16px;
+			padding-left: 5px;
+		}
+
+		.right .b1 {
+			background-image: linear-gradient(to right, rgb(131, 227, 131), rgb(118, 204, 118));
+			color: #fff;
+			border: none;
+			padding: 0px;
+		}
+
+		.right .b2 {
+			background: #e5e1e2;
+			color: #fff;
+			border: none;
+			padding: 0px;
+		}
+
+		.right .pic {
+			height: 100px;
+			line-height: 100px;
+			overflow: hidden;
+		}
+
+		.right .pic img {
+			border-radius: 50%;
+			width: 100px;
+			height: 100px;
+			background: #e1e0e0;
+		}
+
+		.right .pic * {
+			float: left;
+		}
+
+		footer {
+			height: 300px;
+			background: #252525;
+			color: #ccc;
+		}
+
+		footer .main {
+			width: 1000px;
+			margin: 0px auto;
+			padding-top: 50px;
+		}
+
+		footer li {
+			height: 40px
+		}
+
+		#chose_img {
+			border: none;
+			margin-top: 60px;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<ul>
+			<li>文艺范</li>
+			<li>招商加盟</li>
+			<li>iOS客户端</li>
+			<li>Android客户端</li>
+			<li>联系我们</li>
+			<li>4008-900-800</li>
+			<li class="fr"><span class="vip"><a href="user.html">VIP会员</a></span>
+				<a href="login.html" id="lg">login.html</a>|
+				<a href="register.html" id="lg2">register.html</a>
+			</li>
+		</ul>
+		<nav>
+			<ul>
+				<li class="logo"><img src="" alt="logo"></li>
+				<li class="city"><img src="" alt="logo_2"><br>
+					<a>北京[切换城市]</a>
+				</li>
+				<li class="link">
+					<a href="index.html">首页</a>
+					<a href="read.html">阅读</a>
+					<a href="music.html">音乐</a>
+					<a href="movie.html">影视</a>
+					<a>商品</a>
+				</li>
+				<li class="search">
+					<input type="search" placeholder="search">
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<ul class="left">
+			<div class="l1"><img src="images/pic/info.jpg">
+				<p>username</p>
+			</div>
+			<li class="active">个人信息</li>
+			<li>修改密码</li>
+			<li>修改头像</li>
+			<li>修改昵称</li>
+		</ul>
+		<ul class="right">
+			<li class="user_info active">
+				<div class="tit">个人信息</div>
+				<div class="txt">
+					<!-- <p><span>用户名:</span>username</p><p><span>手机号:</span>password</p><p><span>昵称:</span>nickname</p> -->
+				</div>
+			</li>
+			<li class="change_password">
+				<div class="tit">修改密码</div>
+				<div class="txt">
+					<p><span>原密码:</span><input type="text" id="rl2op" placeholder="旧密码"></p>
+					<p><span>新密码:</span><input type="text" id="rl2np" placeholder="新密码"></p>
+					<p><span>确认密码:</span><input type="text" id="rl2rnp" placeholder="确认新密码"></p>
+					<p><span></span><input type="button" value="确认修改" class="b1" id="rl21"></p>
+					<p><span></span><input type="button" value="取消" class="b2" id="rl22"></p>
+				</div>
+			</li>
+			<li class="change_picture">
+				<div class="tit">修改头像</div>
+				<div class="txt">
+					<p class="oi pic"><span>原头像:</span><img id="opic"></p>
+					<p class="ni pic"><span>新头像:</span><img id="npic"><input type="file" id="chose_img"></p>
+					<p><span></span><input type="button" value="确认修改" class="b1" id="rl31"></p>
+				</div>
+			</li>
+			<li class="change_nickname">
+				<div class="tit">修改昵称</div>
+				<div class="txt">
+					<p><span>原昵称:</span><input type="text" id="rl4on" disabled="disabled"></p>
+					<p><span>新昵称:</span><input type="text" id="rl4nn" placeholder="新昵称"></p>
+					<p><span></span><input type="button" value="确认修改" class="b1" id="rl41"></p>
+					<p><span></span><input type="button" value="取消" class="b2" id="rl42"></p>
+				</div>
+			</li>
+		</ul>
+	</section>
+	<footer>
+		<div class="main">
+			<ul>
+				<li>文艺范</li>
+				<li>关于,用户协议,联系我们</li>
+				<li>本站为文艺范官方网站</li>
+				<li>浙ICP备15004498号-1</li>
+			</ul>
+		</div>
+	</footer>
+	<script type="text/javascript" src="lib/jquery.js"></script>
+	<script type="text/javascript" src="js/network/interface.js"></script>
+	<script type="text/javascript" src="js/network/api.js"></script>
+	<script type="text/javascript" src="lib/swiper/swiper.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var api = new Api();
+
+			function load_info() {
+				api.get_user_info(localStorage.userId, function (info) {
+					localStorage.setItem("headimg", imagePrefix + info.data.image)
+					$('.l1').html('<img src="' + imagePrefix + info.data.image + '"><p>' + info.data.username + '</p>');
+					$('.user_info .txt').append('<p><span>用户名:</span>' + localStorage.username + '</p><p><span>手机号:</span>' + localStorage.phone + '</p><p><span>昵称:</span>' + localStorage.nickname + '</p>');
+					$('#ymm').html(localStorage.password);
+
+					//验证密码是否正确
+					$("#rl2op").blur(function () {
+						/*console.log($("#rl2op").val())*/
+						if ($("#rl2op").val() != localStorage.password) {
+							alert("原密码不正确,请重新输入")
+							return;
+						}
+
+					});
+					$('#opic').attr({
+						'src': localStorage.headimg
+					});
+					$('#rl4on').attr({
+						'placeholder': localStorage.nickname
+					});
+				});
+			}
+			load_info();
+			$('.left li').click(function () {
+				$(this).addClass('active').siblings('li').removeClass('active');
+				$('.right li').eq($(this).index() - 1).addClass('active').siblings('li').removeClass('active');
+			});
+			$('#rl21').click(function () {
+				if ($('#rl2np').val() != $('#rl2rnp').val()) {
+					console.log('两次密码输入不正确,请验证后重新输入');
+					alert("两次密码输入不正确,请验证后重新输入")
+					return;
+				}
+				api.change_password(localStorage.userId, $('#rl2op').val(), $('#rl2np').val(), function (info) {
+					console.log(info);
+					localStorage.password = $('#rl2np').val();
+					load_info();
+				});
+			});
+			$('#rl22').click(function () {
+				$('#rl2op').val('');
+				$('#rl2np').val('');
+				$('#rl2rnp').val('');
+			})
+			$('#rl41').click(function () {
+				api.change_nickname(localStorage.userId, $('#rl4nn').val(), function (info) {
+					if (info.code === 0) {
+						console.log('success');
+						localStorage.nickname = $('#rl4nn').val();
+						load_info();
+						alert("恭喜你昵称修改成功!!")
+					}
+				});
+			});
+			$('#rl42').click(function () {
+				$('#rl4nn').val('');
+			});
+			//修改头像
+			$("#chose_img").change(function () {
+				if (this.files.length == 0) {
+					return;
+				} else {
+					$("#npic").attr("src", window.URL.createObjectURL(this.files[0]));
+					/*console.log(window.URL.createObjectURL(this.files[0]));*/
+				}
+
+			});
+			$("#rl31").click(function () {
+				//	var f = document.getElementById('chose_img');
+				if ($("#chose_img")[0].files.length == 0) {
+					alert("ni484傻");
+					return;
+				} else {
+					var file = ($("#chose_img")[0].files)[0];
+					console.log('$("#chose_img")[0].files: ', $("#chose_img")[0].files);
+					console.log('file: ', file);
+					//console.log(window.URL.createObjectURL(file));
+					var fd = new FormData();
+					fd.append('m', 'user');
+					fd.append('a', 'changeHeadImage');
+					fd.append('userId', localStorage.userId);
+					fd.append('newHeadImage', file);
+					//C.发起POST请求
+					var url = 'http://192.168.0.3/project/artist-v2/api/index.php';
+					$.ajax({
+						type: "post",
+						url: url,
+						data: fd,
+
+						//上传文件, 上传文件不处理文件,处理变为字符串
+						processData: false,
+						contentType: false,
+						//默认异步
+						async: true,
+						success: function () {
+							load_info();
+						}
+					}).done(function (r) {
+						console.log(JSON.parse(r))
+					})
+				}
+			})
+			$('#lg').click(function () {
+				localStorage.clear();
+			});
+			$('#lg2').click(function () {
+				localStorage.clear();
+				location.href = 'login.html';
+			});
+		});
+		onkeyup = function (e) {
+			if (e.keyCode == 13) {
+				localStorage.keyword = $('.search').children("input").val();
+				location.href = "search.html";
+			}
+		}			
+	</script>
+</body>
+
+</html>

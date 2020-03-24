@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="lib1/jquery/jquery.fullPage.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<title></title>
+		<style type="text/css">
+			/*轮播图*/
+			.swiper{
+				width: 860px;
+				height: 450px;
+				overflow: hidden;
+				position: relative;
+			}
+			.swiper ul{
+				height: 450px;
+				position: absolute;
+				z-index: 1;
+				left: 0;
+				top: 0;
+			}
+			.swiper ul li,.swiper ul li img{
+				width: 860px;
+				height: 450px;
+			}
+			.swiper ul li{
+				float: left;
+			}
+			.swiper ol{
+				height: 15px;
+				width: 100%;
+				position: absolute;
+				z-index: 2;
+				bottom: 10px;
+				text-align: center;
+				line-height: 15px;
+			}
+			.swiper ol li{
+				display: inline-block;
+				margin: 0 5px;
+				width: 15px;
+				height: 15px;
+				background: #999;
+				border-radius: 50%;
+				font-size: 10px;
+				cursor: default;
+				color: whitesmoke;
+			}
+			.swiper ol li:hover{
+				background: #e4303c;
+			}
+			.swiperP1,.swiperP2{
+				width: 20px;
+				height: 450px;
+				line-height:450px ;
+				text-align: center;
+				font-size: 26px;
+				font-weight: bold;
+				padding: 5px;
+				position: absolute;
+				z-index: 2;
+				cursor: default;	
+				color: darkgray;
+			}
+			.swiperP1{
+				left: 0;
+			}
+			.swiperP2{
+				right: 0;
+			}
+			.swiperP1 span,.swiperP2 span{
+				cursor: pointer;
+			}
+			/*阅读*/
+			.read{
+				width: 860px;
+				height: 470px;
+				overflow: hidden;
+				margin-top: 50px;
+			}
+			.read_small{
+				width: 417px;
+				margin-top: 15px;
+				float: left;
+			}
+			.read_small_img{
+				width: 126px;
+				height: 90px;
+				float: left;
+				margin-right: 15px;
+			}
+			.read_small_text{
+				width:272px;
+				height:90px;
+				float: left;
+			}
+			.read_small img{
+				width: 100%;
+				height: 100%;
+			}
+			.read_small h3{
+				color: #57bae8;
+				font-size: 14px;
+			}
+			.read_small p{
+				margin-top: 5px;
+				color:#5b5b5b;
+				font-size: 12px;
+			}
+			/*东西*/
+			.goods_left{
+				margin-right: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--头部-->
+		<div class="head">
+			<div class="head_nav">
+				<ul style="float: left;">
+					<li>文艺范</li>
+					<li>招商加盟</li>
+					<li>ios客户端</li>
+					<li>Android客户端</li>
+					<li>联系我们</li>
+					<li><img src="images/tele.png"/> 4008-900-800</li>
+				</ul>
+				<ol style="float:right;">
+					<li><a href="user.html">VIP会员</a></li>
+					<li><a href="login.html">登录</a></li>
+					<li style="color:#a5a5a6;">|</li>
+					<li><a href="register.html">注册</a></li>
+				</ol>
+			</div>
+			<div class="head_list">
+				<img src="images/literature.png" class="head_list_img"/>
+				<div class="head_list_select">
+					<img src="images/font.png" alt="" /><br />
+					<b>北京</b><span>【切换城市】</span>
+				</div>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="read.html">阅读</a><img src="images/n.png" alt="" /></li>
+					<li><a href="music.html">音乐</a></li>
+					<li><a href="movie.html">影音</a></li>
+					<li><a href="goods.html">商品</a></li>
+				</ul>
+				<div  class="head_list_input">
+					<input type="text" placeholder="请输入查找的内容"/>
+					<img src="images/aliwx_search_icon.png"/>
+				</div>				
+			</div>
+		</div>
+		<!--主题-->
+		<div class="total_background">		
+		<div class="container">
+			<div class="container_left">
+				<!--轮播图-->
+				<div class="swiper">
+					<ul></ul>			
+					<ol></ol>
+					<p class="swiperP1"><span>&lt;</span></p>
+					<p class="swiperP2"><span>&gt;</span></p>
+				</div>
+				<!--阅读-->
+				<div class="read" id="read">					
+					<p style="height: 43px;">
+						<span class="read_item1">阅读</span>
+						<span class="read_item2">更多</span>
+					</p>					
+				</div>
+				<!--音乐-->
+				<div class="read" id="music">					
+					<p style="height: 43px;">
+						<span class="read_item1">音乐</span>
+						<span class="read_item2">更多</span>
+					</p>					
+				</div>
+				<!--影视-->
+				<div class="read" id="movie" style="height: 367px;"></div>
+				<!--东西-->
+				<div class="read" id="goods"></div>
+			</div>
+			<div class="container_right">
+				<!--推荐-->
+				<div class="container_right_recommend">
+					<div>
+						<p class="recommend">推荐</p>
+					</div>
+					<ul>
+						<li class="ranking_ul">周排行</li>
+						<li class="ranking_ul">月排行</li>
+						<li class="ranking_ul">总排行</li>
+					</ul>
+					<ol id="ranking_ol"></ol>
+				</div>				
+				<!--手气不错-->
+				<div class="container_right_luck">
+					<div>
+						<p class="recommend" style="width: 80px;">手气不错</p>
+					</div>
+					<ul id="container_right_luck"></ul>
+				</div>
+				<!--音乐推荐-->
+				<div class="container_right_music" id="musicRecommend"></div>
+			</div>
+			<div class="friend">
+				<p style="height: 43px;padding-bottom:10px;">
+					<span class="read_item1">友情链接</span>
+					<span class="read_item2">申请5245886#qq.com(#替换@)</span>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>					
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+				</p>
+				<p>
+					<a href="">计算器在线</a>
+					<a href="">衣故事</a>
+					<a href="">广元致德社工</a>
+					<a href="">青果</a>
+					<a href="">萧萧寒</a>
+					<a href="">洛施</a>
+					<a href="">逗比妹</a>
+					<a href="">那些癖事</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+					<a href="">轻变传奇</a>
+					<a href="">棋牌游戏</a>
+					<a href="">八色木</a>
+					<a href="">柏拉图</a>
+					<a href="">冒险岛</a>
+				</p>
+			</div>
+			<p style="clear: both;"></p>
+		</div>
+		</div>
+		<!--尾部-->
+		<div class="foot">
+			<div class="foot_container">
+				<h3>文艺范</h3>
+				<a href="">关于</a>|
+				<a href="">用户协议</a>|
+				<a href="">联系我们</a>
+				<p style="color: #666;">本站为文艺范官方网站。</p>
+				<p>浙ICP备15004498号-1</p>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="lib1/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="lib1/base64/base64.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.fullPage.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.lazyload.js"></script>
+<script type="text/javascript" src="lib1/jquery/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="js/interface.js" ></script>
+<script type="text/javascript" src="js/api.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	//首页广告接口(轮播图，阅读、音乐、视频)
+	api.adsUrl(function(e){
+		var swiper =document.getElementsByClassName("swiper")[0];
+		var ul=swiper.getElementsByTagName("ul")[0];
+		var ol=swiper.getElementsByTagName("ol")[0];
+		var swiperP1=document.getElementsByClassName("swiperP1")[0];
+		var swiperP2=document.getElementsByClassName("swiperP2")[0];
+		ul.style.width=(e.data.length+1)*860+"px";
+		//获取轮播图片	
+		for(var i=0;i<e.data.length;i++){
+			var ulLi=document.createElement("li");
+			ul.appendChild(ulLi);
+			var img=document.createElement("img");
+			ulLi.appendChild(img);
+			img.src=imagePrefix+e.data[i].img_url;
+			var olLi=document.createElement("li");
+			ol.appendChild(olLi);
+			olLi.innerText=i+1;
+			ulLi.index=i;
+			ulLi.onclick=function(){
+				if(e.data[this.index].category=='1'){
+					localStorage.readId=e.data[this.index].id;
+					location.href="readDetail.html";
+				}else if(e.data[this.index].category=='4'){
+					localStorage.musicId=e.data[this.index].id;
+					sessionStorage.id=e.data[this.index].id;
+					location.href="music_detail.html";
+				}else if(e.data[this.index].category=='5'){
+					localStorage.movieId=e.data[this.index].id;
+					sessionStorage.id=e.data[this.index].id;
+					location.href="movie_detail.html";
+				}
+			}
+		}
+		var li=document.createElement("li");
+		ul.appendChild(li);
+		var img=document.createElement("img");
+		li.appendChild(img);
+		img.src=imagePrefix+e.data[0].img_url;
+		var lis=ul.getElementsByTagName("li");
+		//设置轮播图自动播放
+		var timer1=setInterval(function(){
+			var target=860;
+			var s=ul.offsetLeft;
+			var timer=setInterval(function(){
+				ul.style.left=ul.offsetLeft-10+"px";
+				if (s-target>=ul.offsetLeft){
+					ul.style.left=s-target+"px";
+					clearInterval(timer);
+				}
+				if (ul.offsetLeft<=-(e.data.length)*860) {
+					ul.style.left=0;
+					clearInterval(timer);
+				}
+			},5);
+		},2500);
+		//设置轮播图小圆点
+		var olLis=ol.getElementsByTagName("li");
+		for (var i=0;i<olLis.length;i++){
+			olLis[i].index=i;
+			olLis[i].onclick=function(){
+				clearInterval(timer1);
+				var target=-this.index*860;
+				var step=target>=ul.offsetLeft?10:-10
+				var timer2=setInterval(function(){
+					ul.style.left=ul.offsetLeft+step+"px";
+					if(Math.abs(target-ul.offsetLeft)<=10){						
+						ul.style.left=target+"px";
+						clearInterval(timer2);
+					}					
+				},0);
+			}			
+		}
+		//轮播图左箭头
+		swiperP1.onclick=function(){
+			clearInterval(timer1);
+			var target=860;
+			var s=ul.offsetLeft;
+			var timer=setInterval(function(){
+				ul.style.left=ul.offsetLeft-10+"px";
+				if (s-target>=ul.offsetLeft){
+					ul.style.left=s-target+"px";
+					clearInterval(timer);
+				}
+				if (ul.offsetLeft<=-(e.data.length)*860) {
+					ul.style.left=0;
+					clearInterval(timer);
+				}
+			},5);
+		}
+		//轮播图右箭头
+		swiperP2.onclick=function(){
+			clearInterval(timer1);
+			var target=860;
+			var s=ul.offsetLeft;			
+			var timer=setInterval(function(){
+				ul.style.left=ul.offsetLeft+10+"px";
+				if (s+target<=ul.offsetLeft){					
+					ul.style.left=s+target+"px";
+					clearInterval(timer);
+				}
+				if (ul.offsetLeft>=0) {
+					ul.style.left=-(e.data.length)*860+"px";
+					s=-(e.data.length)*860;
+					/*往右从第一张往最后一张走时，定位和开始值都要重新赋值，并且这里不能停定时器。swiperP1和swiperP2两个只要改一个就行了。*/
+				}				
+			},5);			
+		}
+		
+	});
+	//阅读列表接口（阅读）
+	api.readListUrl(function(e){
+		var read=document.getElementById("read");
+		var readBig=document.createElement("div");
+		readBig.className="read_big";
+		read.appendChild(readBig);
+		var readBigDiv=document.createElement("div");
+		readBigDiv.style="width: 417px;height: 284px;";
+		readBig.appendChild(readBigDiv);
+		var readBigImg=document.createElement("img");
+		readBigImg.src=imagePrefix+e.data[0].img_url;
+		readBigDiv.appendChild(readBigImg);
+		var readBigH3=document.createElement("h3");
+		readBig.appendChild(readBigH3);
+		readBigH3.style="margin-top: 20px;";
+		readBigH3.innerText=e.data[0].title;
+		var readBigP1=document.createElement("p");
+		readBig.appendChild(readBigP1);
+		readBigP1.innerText='更新 '+e.data[0].post_date+'查看：'+e.data[0].like_count+"次";
+		var readBigP2=document.createElement("p");
+		readBig.appendChild(readBigP2);
+		readBigP2.innerText=e.data[0].forward;
+		for(var i=1;i<5;i++){
+			var readSmall=document.createElement("div");
+			read.appendChild(readSmall);
+			readSmall.className="read_small";
+			var readSmallImg=document.createElement("div");
+			readSmall.appendChild(readSmallImg);
+			readSmallImg.className="read_small_img";
+			var readSmallImgImg=document.createElement("img");
+			readSmallImg.appendChild(readSmallImgImg);
+			readSmallImgImg.src=imagePrefix+e.data[i].img_url;
+			var readSmallText=document.createElement("div");
+			readSmall.appendChild(readSmallText);
+			readSmallText.className="read_small_text";
+			var readSmallTextH3=document.createElement("h3");
+			readSmallText.appendChild(readSmallTextH3);
+			readSmallTextH3.innerText=e.data[i].title;
+			var readSmallTextP=document.createElement("p");
+			readSmallText.appendChild(readSmallTextP);
+			readSmallTextP.innerText=e.data[i].forward;
+		}		
+		var imgs=read.getElementsByTagName("img");
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].index=i;
+			imgs[i].onclick=function(){
+				localStorage.readId=e.data[this.index].id;
+				location.href="readDetail.html";
+			}
+		}
+	},0);	
+	//音乐列表接口（音乐）
+	api.musicListUrl(function(e){
+		var music=document.getElementById("music");
+		var readBig=document.createElement("div");
+		readBig.className="read_big";
+		music.appendChild(readBig);
+		var readBigDiv=document.createElement("div");
+		readBigDiv.style="width: 417px;height: 284px;";
+		readBig.appendChild(readBigDiv);
+		var readBigImg=document.createElement("img");
+		readBigImg.src=imagePrefix+e.data[0].img_url;
+		readBigDiv.appendChild(readBigImg);
+		var readBigH3=document.createElement("h3");
+		readBig.appendChild(readBigH3);
+		readBigH3.style="margin-top: 20px;";
+		readBigH3.innerText=e.data[0].title;
+		var readBigP1=document.createElement("p");
+		readBig.appendChild(readBigP1);
+		readBigP1.innerText='更新 '+e.data[0].post_date+'查看：'+e.data[0].like_count+"次";
+		var readBigP2=document.createElement("p");
+		readBig.appendChild(readBigP2);
+		readBigP2.innerText=e.data[0].forward;
+		for(var i=1;i<5;i++){
+			e.data[i]
+			var readSmall=document.createElement("div");
+			music.appendChild(readSmall);
+			readSmall.className="read_small";
+			var readSmallImg=document.createElement("div");
+			readSmall.appendChild(readSmallImg);
+			readSmallImg.className="read_small_img";
+			var readSmallImgImg=document.createElement("img");
+			readSmallImg.appendChild(readSmallImgImg);
+			readSmallImgImg.src=imagePrefix+e.data[i].img_url;
+			var readSmallText=document.createElement("div");
+			readSmall.appendChild(readSmallText);
+			readSmallText.className="read_small_text";
+			var readSmallTextH3=document.createElement("h3");
+			readSmallText.appendChild(readSmallTextH3);
+			readSmallTextH3.innerText=e.data[i].title;
+			var readSmallTextP=document.createElement("p");
+			readSmallText.appendChild(readSmallTextP);
+			readSmallTextP.innerText=e.data[i].forward;
+		}
+		var imgs=music.getElementsByTagName("img");
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].index=i;
+			imgs[i].onclick=function(){
+				localStorage.musicId=e.data[this.index].id;
+				sessionStorage.id=e.data[this.index].id;
+				location.href="music_detail.html";
+			}
+		}
+	},0);			
+	//影视列表接口（电影）
+	api.movieListUrl(function(e){
+		var movie=document.getElementById("movie");
+		var str='<p style="height: 43px;">';
+		str+='<span class="read_item1">电影</span>';
+		str+='<span class="read_item2">更多</span>';
+		str+='</p>';
+		for(var i=0;i<2;i++){
+			if(i==0){
+				str+='<div class="read_big">';
+			}else if(i==1){
+				str+='<div class="read_big" style="margin-right: 0;">';
+			}
+			str+='<div style="width: 417px;height: 284px;position:relative;">';
+			var src=imagePrefix+e.data[i].img_url;
+			str+='<img src='+src+'>';
+			str+='<h3 style="position:absolute;bottom:10px;left:20px;color:white;">'
+			+e.data[i].title;
+			str+='<p style="color: white;">电影</p>';
+			str+='</h3>';
+			str+='</div>';
+			str+='</div>';
+		}
+		movie.innerHTML=str;
+		var imgs=movie.getElementsByTagName("img");
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].index=i;
+			imgs[i].onclick=function(){
+				localStorage.movieId=e.data[this.index].id;
+				sessionStorage.id=e.data[this.index].id;
+				location.href="movie_detail.html";
+			}
+		}
+	},0);
+	//阅读列表接口（东西）
+	api.readListUrl(function(e){
+		var goods=document.getElementById('goods');
+		var str='<p style="height: 43px;">';
+		str+='<span class="read_item1">东西</span>';
+		str+='<span class="read_item2">更多</span>';
+		str+='</p>';
+		for(var i=0;i<8;i++){
+			if(i%2==1){
+				str+='<div class="read_small goods_left">';
+			}else{
+				str+='<div class="read_small goods_right">';
+			}
+			str+='<div class="read_small_img">';
+			var src=imagePrefix+e.data[i].img_url;
+			str+='<img src='+src+'>';
+			str+='</div>';
+			str+='<div class="read_small_text">';
+			str+='<h3>'+e.data[i].title+'</h3>';
+			str+='<p>'+e.data[i].forward+'</p>';
+			str+='</div>';
+			str+='</div>';
+		}
+		goods.innerHTML=str;
+		var imgs=goods.getElementsByTagName("img");
+		for(var i=0;i<imgs.length;i++){
+			imgs[i].index=i;
+			imgs[i].onclick=function(){
+				localStorage.readId=e.data[this.index].id;
+				location.href="readDetail.html";
+			}
+		}
+	},0);
+	var headListInput=document.getElementsByClassName("head_list_input")[0];
+	var searchImg=headListInput.getElementsByTagName("img")[0];		
+	searchImg.onclick=function(){
+		var keyword=headListInput.getElementsByTagName("input")[0];
+		localStorage.keyword=keyword.value;
+		location.href="search.html";		
+	}
+</script>		
