@@ -1,0 +1,17 @@
+<style type="text/css">
+	.read_content{
+		padding: 10px;
+	}
+	p{
+		color: gray;
+		padding: 20px 0;
+	}
+</style>
+
+<div ng-contoller="readDetail">
+	<div class="read_content">
+		<h3>{{title}}</h3>
+		<p>作者：{{author}}</p>
+		<div ng-bind-html="content"></div>
+	</div>
+</div>

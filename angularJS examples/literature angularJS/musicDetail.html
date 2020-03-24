@@ -1,0 +1,27 @@
+<style type="text/css">
+	audio{
+		width: 100%;
+	}
+	.musicInfo{
+		padding: 0 10px 10px 10px;
+	}
+	.musicInfo img{
+		width: 250px;
+		height: 250px;
+		border-radius: 50%;
+		margin: 20px 0;
+	}
+</style>
+
+<div ng-contoller="musicDetail">
+	<div class="musicInfo">
+		<audio ng-src="{{path}}" controls="controls"></audio>
+		<div style="text-align: center;">
+			<img ng-src="{{img}}"/>
+		</div>	
+		<p>{{title}}</p>
+		<p>{{author}}|{{styleTitle}}</p>
+		<h3>{{forward}}</h3>
+		<div ng-bind-html="content"></div>
+	</div>
+</div>

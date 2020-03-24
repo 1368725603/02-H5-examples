@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+	<title> Chart emulation </title>
+	<link rel="stylesheet" href="../../Treant.css">
+	<style type="text/css">
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { margin:0; padding:0; 
+		}
+		body { 
+			background: #fff; 
+		}
+
+		/* optional Container STYLES */
+		.chart { 
+			height: 159px; 
+			width: 332px; 
+			margin: 5px; 
+			margin: 5px auto;
+			border: 3px solid #DDD; 
+			border-radius: 3px; 
+		}
+		.node { 
+			color: #9CB5ED; 
+			border: 2px solid #C8C8C8; 
+			border-radius: 3px; 
+		}
+		.node p { 
+			font-size: 20px; 
+			line-height: 20px; 
+			height: 20px; 
+			font-weight: bold; 
+			padding: 3px; margin: 0; 
+		}
+	</style>
+</head>
+<body>
+	<div class="chart" id="OrganiseChart-simple"></div>
+</body>
+</html>
+<script src="../../vendor/raphael.js"></script>
+<script src="../../Treant.js"></script>
+<script>
+
+	var simple_chart_config = {
+		chart: {
+			container: "#OrganiseChart-simple"
+		},
+		
+		nodeStructure: {
+			text: { name: "Parent node" },
+			children: [
+				{
+					text: { name: "First child" }
+				},
+				{
+					text: { name: "Second child" }
+				}
+			]
+		}
+	};
+
+	var config = {
+		container: "#OrganiseChart-simple"
+	};
+
+	var parent_node = {
+		text: { name: "Parent node" }
+	};
+
+	var first_child = {
+		parent: parent_node,
+		text: { name: "First child" }
+	};
+
+	var second_child = {
+		parent: parent_node,
+		text: { name: "Second child" }
+	};
+
+	var simple_chart_config = [
+		config, parent_node,
+			first_child, second_child 
+	];
+
+	new Treant(simple_chart_config);
+</script>

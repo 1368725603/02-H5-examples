@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.cl {
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-app="myApp">
+			<div ng-controller="myController">
+				<ul>
+					<li ng-class="{'cl': i == 1}" ng-click="click(1)">香蕉</li>
+					<li ng-class="{'cl': i == 2}" ng-click="click(2)">苹果</li>
+					<li ng-class="{'cl': i == 3}" ng-click="click(3)">梨</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="angular/angular-animate.min.js"></script>
+<script type="text/javascript" src="angular/angular-route.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module("myApp", []);
+	app.run(function ($rootScope) {
+		
+	});
+	app.controller("myController", function ($scope) {
+		$scope.i = 1;
+		$scope.click = function (par) {
+			$scope.i = par;
+		};
+	});
+</script>

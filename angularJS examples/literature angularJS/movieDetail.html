@@ -1,0 +1,19 @@
+<style type="text/css">
+	video{
+		width: 100%;
+	}
+	.movieInfo img{
+		width: 100%;
+	}
+</style>
+
+<div ng-contoller="movieDetail">
+	<div class="movieInfo">
+		<video ng-src="{{path}}" controls="controls"></video>
+		<div style="text-align: center;">
+			<img ng-src="{{img}}"/>
+		</div>	
+		<p>{{title}}</p>
+		<p>{{author}}</p>
+	</div>
+</div>

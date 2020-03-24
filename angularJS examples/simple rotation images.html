@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.swiper,.swiper img{
+				width: 500px;
+				height: 250px;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-app="myApp">
+			<div ng-controller="myController">
+				<div class="swiper">
+					<img src="img/swiper1.png" alt="" ng-show="i == 0"/>
+					<img src="img/swiper2.jpg" alt="" ng-show="i == 1"/>
+					<img src="img/swiper3.jpg" alt="" ng-show="i == 2"/>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="angular/angular.min.js"></script>
+<script type="text/javascript" src="angular/angular-animate.min.js"></script>
+<script type="text/javascript" src="angular/angular-route.min.js"></script>
+<script type="text/javascript">
+	var app=angular.module("myApp", []);
+	app.run(function ($rootScope) {
+		
+	});
+	app.controller("myController", function ($scope, $interval) {
+		$scope.i = 0;
+		$interval(function () {
+			$scope.i ++;
+			if ($scope.i > 2) {
+				$scope.i = 0;
+			}
+		}, 1000);
+	});
+</script>

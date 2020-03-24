@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>    
+    <style>
+        th {
+            text-align: center;
+            border: 1px solid #ddd;
+            height: 40px;
+            background: #eff8ff;
+        }
+        
+        td {
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        tr th,
+        tr td {
+            border: 1px solid #ccc
+        }
+    </style>
+</head>
+
+<body ng-controller="test">
+    <table class="table table-bordered" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th rowspan="2" colspan="2">全国</th>
+                <th colspan="2">学校(所)</th>
+                <th colspan="2">教师(人)</th>
+                <th colspan="2">学生(人)</th>
+                <th colspan="2">家长(人)</th>
+            </tr>
+            <tr>
+                <th>数量</th>
+                <th>注册率</th>
+                <th>数量</th>
+                <th>注册率</th>
+                <th>数量</th>
+                <th>注册率</th>
+                <th>数量</th>
+                <th>注册率</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="teacher in province">
+            <tr ng-repeat="student in teacher.regcount track by $index">
+                <td ng-if="$index == 0" rowspan={{teacher.regcount.length}}> {{teacher.quyu}} </td>
+                <td ng-if="$index == 0">注册数</td>
+                <td ng-if="$index == 1">实际数</td>
+                <td ng-if="$index == 0"><span ng-bind="student.scnum"></span></td>
+                <td ng-if="$index == 1"><span ng-bind="student.screalnum"></span></td>
+                <td ng-if="$index == 0" rowspan={{teacher.regcount.length}}><span ng-bind="student.scnumreglv"></span></td>
+                <td ng-if="$index == 0"><span ng-bind="student.teanum"></span></td>
+                <td ng-if="$index == 1"><span ng-bind="student.tearealnum"></span></td>
+                <td ng-if="$index == 0" rowspan={{teacher.regcount.length}}><span ng-bind="student.tealv"></span></td>
+                <td ng-if="$index == 0"><span ng-bind="student.stunum"></span></td>
+                <td ng-if="$index == 1"><span ng-bind="student.sturealnum"></span></td>
+                <td ng-if="$index == 0" rowspan={{teacher.regcount.length}}><span ng-bind="student.stulv"></span></td>
+                <td ng-if="$index == 0"><span ng-bind="student.parnum"></span></td>
+                <td ng-if="$index == 1"><span ng-bind="student.parrealnum"></span></td>
+                <td ng-if="$index == 0" rowspan={{teacher.regcount.length}}><span ng-bind="student.parlv"></span></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script src="angular.min.js"></script>
+<script>
+    var app = angular.module("app", [])
+    app.controller("test", function ($scope, $http) {
+        $scope.province = [
+            {
+                "quyu": "黑龙江",
+                "regcount": [
+                    {
+                        "scnum": "281",
+                        "scnumreglv": "50%",
+                        "teanum": "99",
+                        "tealv": "30%",
+                        "stunum": "10000",
+                        "stulv": "59%",
+                        "parnum": "300",
+                        "parlv": "59%"
+                    },
+                    {
+                        "screalnum": "10",
+                        "scnumreglv": "50%",
+                        "tearealnum": "38",
+                        "tealv": "30%",
+                        "sturealnum": "38",
+                        "stulv": "30%",
+                        "parrealnum": "38",
+                        "parlv": "30%"
+                    },
+                ]
+            },
+            {
+                "quyu": "江西",
+                "regcount": [
+                    {
+                        "scnum": "281",
+                        "scnumreglv": "50%",
+                        "teanum": "99",
+                        "tealv": "30%",
+                        "stunum": "10000",
+                        "stulv": "59%",
+                        "parnum": "300",
+                        "parlv": "59%"
+                    },
+                    {
+                        "screalnum": "10",
+                        "scnumreglv": "50%",
+                        "tearealnum": "38",
+                        "tealv": "30%",
+                        "sturealnum": "38",
+                        "stulv": "30%",
+                        "parrealnum": "38",
+                        "parlv": "30%"
+                    },
+                ]
+            },
+            {
+                "quyu": "江南",
+                "regcount": [
+                    {
+                        "scnum": "281",
+                        "scnumreglv": "50%",
+                        "teanum": "99",
+                        "tealv": "30%",
+                        "stunum": "10000",
+                        "stulv": "59%",
+                        "parnum": "300",
+                        "parlv": "59%"
+                    },
+                    {
+                        "screalnum": "10",
+                        "scnumreglv": "50%",
+                        "tearealnum": "38",
+                        "tealv": "30%",
+                        "sturealnum": "38",
+                        "stulv": "30%",
+                        "parrealnum": "38",
+                        "parlv": "30%"
+                    },
+                ]
+            },
+        ]
+    })
+</script>
+
+</html>

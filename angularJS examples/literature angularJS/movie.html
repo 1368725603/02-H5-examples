@@ -1,0 +1,12 @@
+<div ng-contoller="movie">
+	<div class="content" ng-repeat="e in movieList">
+		<p style="text-align: center;">-阅读</p>
+		<h3>{{e.title}}</h3>
+		<p>作者：{{e.author_name}}</p>
+		<a ng-href={{'#/movieDetail/'+e.id}} ng-click="click('影视')">
+			<img ng-src="{{imagePrefix+e.img_url}}"/>
+		</a>		
+		<p>{{e.forward}}</p>
+		<p style="font-size: 12px;">更新时间：{{e.post_date}} 收藏：{{e.like_count}}</p>
+	</div>
+</div>
