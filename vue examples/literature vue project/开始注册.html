@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>Document</title>
+	<link rel="stylesheet" href="common.css"/>
+	<script type="text/javascript" src="vue/vue.js"></script>
+	<script type="text/javascript" src="vue/vue-resource.js"></script>
+	<script type="text/javascript" src="vue/vue-router.js"></script>
+	<script type="text/javascript" src="navi.js"></script>		
+	<style>
+		body,.wrap{
+			background: white;
+		}
+		.comLi2{
+			margin-top: 0;
+		}
+		input{
+			width: 100%;
+			height: 35px;
+			border-radius: 5px;
+			border:1px solid #EEEEEE;
+			color: #666;
+		}
+		a{
+			color: #666;
+			text-decoration: none;
+			margin: 0 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap"> 
+		<div id="box">
+			<naviread props0="注册账户" props1='icons/1.2.png'></naviread>
+			<div style="padding:20px;">
+				<input type="text" placeholder=" 用户：" v-model="user">
+				<input type="password" placeholder=" 密码：" v-model="pwd1">
+				<input type="password" placeholder=" 确认密码：" v-model="pwd2">
+				<input type="text" placeholder=" 手机：" v-model="phone">
+				<input type="button" value="注册" style="margin:25px 0;" v-on:click="register">
+			</div>
+			<!-- <foot props0="icons/2.1.1.png" props1="icons/2.2.1.png" props2="icons/2.3.1.png" props3="icons/2.4.1.png"></foot> -->
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="base64.js"></script>
+<script type="text/javascript">
+	var vueData={
+		user:"",
+		pwd1:"",
+		pwd2:"",
+		phone:"",
+		url:"http://localhost/project/artist-v2/api/index.php?m=user&a=register",
+		result:""
+	}
+	var vueObj=new Vue({
+		el:"#box",
+		data:vueData,
+		created:function(){
+			
+		},
+		methods:{			
+			register:function(){
+				if (this.pwd1==this.pwd2) {
+					var url1=this.url+"&username="+this.user+"&password="+this.pwd1+"&phone="+this.phone;
+					this.$http.get(url1).then(function(e){
+						this.result=JSON.parse(e.bodyText).desc;
+						alert(this.result);
+					})
+				}else{
+					alert("两次密码输入不一致！");
+				}
+			}		
+		}
+	})
+</script>

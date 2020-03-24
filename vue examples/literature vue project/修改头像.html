@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1"/>
+		<title>Document</title>
+		<link rel="stylesheet" href="common.css"/>
+		<script type="text/javascript" src="vue/vue.js"></script>
+		<script type="text/javascript" src="vue/vue-resource.js"></script>
+		<script type="text/javascript" src="vue/vue-router.js"></script>
+		<script type="text/javascript" src="navi.js"></script>
+		<style type="text/css">
+			.image{
+				width: 300px;
+				height: 300px;
+				margin: 20px auto;
+				border: 2px solid gray;
+			}
+			.image img{
+				width: 100%;
+			}
+			#box{
+				padding: 35px;
+			}
+		</style>
+	</head>
+	<body>		
+		<div id="box">			
+			<!-- 表单change事件，当表单元素内容发生改变时触发 -->
+			<input type="file" id="file" v-on:change="change"/><br />
+			<button v-on:click="upload" style="margin-top:5px;">上传头像</button>
+			<div class="image">
+				<img :src="src" alt="" />
+			</div>
+		</div>				
+	</body>
+</html>
+<script type="text/javascript">
+	var vueData = {
+		src:""
+	}
+	var app = new Vue({
+		el:"#box",
+		data:vueData,
+		methods:{
+			selectFile:function(){
+				var fileTag = document.getElementById("file");
+				//fileTag.files 获取文件上传框中上传的所有的数据，
+				if(fileTag.files.length==0){
+					//fileTag.files.length==0即没有选择上传文件
+					alert("没有选择文件");
+					return;
+				}
+				return fileTag.files[0];
+			},
+			change:function(){				
+				//URL.createObjectURL 系统自带的获取文件路径函数
+				var file=this.selectFile();
+				var fileSrc = window.URL.createObjectURL(file);
+				this.src=fileSrc;
+			},
+			upload:function(){
+				var file=this.selectFile();
+				//上传数据要依赖form表单,手动生成form
+				//FormData 系统自带的创建form表单对象的构造函数
+				var formData = new FormData();
+				//form表单对象的传参函数：formData.append("参数名","参数值")
+				formData.append("m","user");
+				formData.append("a","changeHeadImage");
+				formData.append("userId",localStorage.userId);
+				formData.append("newHeadImage",file);				
+				//使用vue发起post请求
+				var url = "http://localhost/project/artist-v2/api/index.php";
+				this.$http.post(url,formData,function(e){}).then(function(e){
+					//回调函数
+					var data = e.data;
+					alert(data.desc);
+				})
+			}
+		}
+	})
+</script>

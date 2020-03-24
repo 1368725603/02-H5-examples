@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>Document</title>
+	<link rel="stylesheet" href="common.css"/>
+	<script type="text/javascript" src="vue/vue.js"></script>
+	<script type="text/javascript" src="vue/vue-resource.js"></script>
+	<script type="text/javascript" src="vue/vue-router.js"></script>
+	<script type="text/javascript" src="navi.js"></script>		
+	<style>
+		body,.wrap{
+			background: #eee;
+		}
+		.wrap{
+			padding: 0;
+		}
+		p img{
+			width: 30%;
+			float: left;
+		}
+		p span{
+			float: left;
+			text-align: left;
+			font-size:12px;
+			width: 70%;
+			padding: 10px;
+			box-sizing: border-box;
+		}
+		.comLi2{
+			margin-top:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">		 
+		<div id="box">
+			<naviread props0="收藏列表" props1='icons/1.2.png'></naviread>
+			<ul style="padding-top:45px;">
+				<li v-for="e in list" style="padding:10px;">			
+					<p v-on:click="detail(e.id)">
+						<img v-bind:src="url+e.img_url">
+						<span>{{e.title}}<br>{{e.author_name}}</span>
+					</p>
+					<p style="clear:both;"></p>
+				</li>				
+			</ul>			
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="base64.js"></script>
+<script type="text/javascript">
+	var vueData={
+		list:[],
+		url:"http://localhost/project/artist-v2/"
+	}
+	var vueObj=new Vue({
+		el:"#box",
+		data:vueData,
+		created:function(){
+			var collectList='http://localhost/project/artist-v2/api/index.php?m=favorite&a=getFavorite&userId='+localStorage.userId+'&type=1';
+			this.$http.get(collectList).then(function(e){
+				this.list=e.body.data;
+				//console.log(e);
+			});
+		},
+		methods:{
+			detail:function(id){
+				sessionStorage.readId = id;		
+				location.href = "阅读详情.html";					
+			}
+		}
+	})
+</script>

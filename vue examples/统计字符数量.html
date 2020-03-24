@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div>
+			<textarea cols="30" rows="10" v-model="v"></textarea>
+			<div>当前字符为{{a}}个，单词为{{b}}个。</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="vue/vue.js"></script>
+<script type="text/javascript" src="vue/axios.js"></script>
+<script type="text/javascript" src="vue/vue-router.js"></script>
+<script type="text/javascript">
+	var vueData={
+		v:"",
+		a:0,
+		b:0
+	};
+	var vueObj=new Vue({
+		el:"#box",
+		data:vueData,
+		updated:function(){
+			var reg=/ /g;
+			var str=this.v.trim();
+			var str1=str.replace(reg,"");
+			var arr=str.split(" ");
+			var arr1=str1.split("");
+			this.b=arr.length;
+			this.a=arr1.length;
+		}
+	})
+</script>

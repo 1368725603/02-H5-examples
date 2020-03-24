@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="vue/vue.js"></script>
+	<script type="text/javascript" src="vue/vue-resource.js"></script>
+	<script type="text/javascript" src="vue/vue-router.js"></script>
+	<style>
+		ul,li{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			width: 900px;
+			height: 600px;
+		}
+		li img{
+			width: 900px;
+			height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li v-show="num==i" v-for="(e,i) in list">
+				<img v-bind:src="e">
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+	var vueData={
+		num:0,
+		list:["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg"],
+	};
+	var vueObj=new Vue({
+		el:"#box",
+		data:vueData,
+		created:function(){
+			//var self=this;
+			setInterval(function(){
+				vueObj.num ++;
+				if (vueObj.num >= vueObj.list.length) {
+					vueObj.num = 0;
+				}
+			}, 1000);			
+		}
+	});
+/*	//给vueObj对象添加一个f1属性，值为自执行函数。
+	vueObj.f1=(function(){
+		setInterval(function(){
+			vueObj.num++;
+			if (vueObj.num==5) {
+				vueObj.num=1;
+			}
+		},1000)				
+	})()*/
+</script>

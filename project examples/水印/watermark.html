@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style type="text/css">
+    .rootTextbg{
+        position: fixed;        
+        width: 100%;
+        height: 10vh;
+        z-index: -99;
+        color: #ccc;
+    }
+    .textbg{
+        position: absolute;        
+        width: 10%;
+        height: 100%;
+        transform: rotate(-35deg);
+        z-index: -99;
+        color: #ddd;
+    }
+    .rootTextbg0 {
+        top: 0;
+    }
+    .rootTextbg1 {
+        top: 10%;
+    }
+    .rootTextbg2 {
+        top: 20%;
+    }
+    .rootTextbg3 {
+        top: 30%;
+    }
+    .rootTextbg4 {
+        top: 40%;
+    }
+    .rootTextbg5 {
+        top: 50%;
+    }
+    .rootTextbg6 {
+        top: 60%;
+    }
+    .rootTextbg7 {
+        top: 70%;
+    }
+    .rootTextbg8 {
+        top: 80%;
+    }
+    .rootTextbg9 {
+        top: 90%;
+    }
+    .textbg0 {
+        left:2%;
+    }
+    .textbg1 {
+        left:12%;
+    }
+    .textbg2 {
+        left:22%;
+    }
+    .textbg3 {
+        left:32%;
+    }
+    .textbg4 {
+        left:42%;
+    }
+    .textbg5 {
+        left:52%;
+    }
+    .textbg6 {
+        left:62%;
+    }
+    .textbg7 {
+        left:72%;
+    }
+    .textbg8 {
+        left:82%;
+    }
+    .textbg9 {
+        left:92%;
+    }
+    </style>
+</head>
+<body>
+    <span>内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字</span>
+    <div style="opacity: 0.8;">
+        sdfjaslfj
+        <h1>里科夫的记录</h1>
+        <img src="static/1.jpg"/>
+    </div>
+    <div id="bgDiv"></div>  
+</body>
+</html>
+<script type="text/javascript">
+    var bgTag = '';
+    for(var i=0;i<10;i++){
+        bgTag += '<div class="rootTextbg rootTextbg' + i + '">';
+        for (var j = 0; j < 10; j ++) {
+            bgTag +=  '<div class="textbg textbg' + j + '">背景文字</div>';
+        }
+        bgTag += '</div>';
+    }
+    bgDiv.innerHTML = bgTag;
+</script>
