@@ -8,7 +8,7 @@
       html,
       #allmap {
         width: 100%;
-        height: 100%;
+        height: 90%;
         overflow: hidden;
         margin: 0;
         font-family: "微软雅黑";
@@ -257,7 +257,6 @@
   var isFirstLoad = false; // 是否是第一次加载，第一次加载不触发清除事件
   // 第一个数字是初始时设置的地图级别，第二个数字是初始时设置的箭头尺寸，当地图缩放时,保证箭头与线长的比例一致
   var arrowLineLengthRate = 16 / 13;
-
   makeLine([obj['point_pre'], obj['point_dest']]);
   makeLine([obj['point_pre'], obj['point_last']]);
 
@@ -272,6 +271,7 @@
     // 记录要绘制的线,lineList.length是动态的, 所以这样可以绘出多条线
     lineList[lineList.length] = polyline;
     // 记录绘制的箭头线
+    console.log('polyline: ', polyline);
     arrowLineList[arrowLineList.length] = addArrow(polyline, 13, Math.PI / 5);
     isFitstLoad = true; // 第一次加载     
   }
@@ -341,6 +341,7 @@
       // 重新绘制箭头线
       for (var i = 0; i < lineList.length; i++) {
         // 记录绘制的箭头线,第二个参数的分子为初始化的箭头大小
+        console.log('lineList[i]: ', lineList[i]);
         arrowLineList[arrowLineList.length] = addArrow(lineList[i], 13 / arrowLineLengthRate, Math.PI / 5);
       }
     }

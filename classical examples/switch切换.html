@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style type="text/css">
+	.my_switch {
+		transform: scale(0.7);
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		width: 80px;
+		margin: 0;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+	.my_switch-checkbox {
+		display: none;
+	}
+	.my_switch-label {
+		display: block;
+		overflow: hidden;
+		cursor: pointer;
+		border: 2px solid #999999;
+		border-radius: 20px;
+	}
+	.my_switch-inner {
+		display: block;
+		width: 200%;
+		margin-left: -100%;
+		transition: margin 0.3s ease-in 0s;
+	}
+	.my_switch-inner::before,
+	.my_switch-inner::after {
+		display: block;
+		float: right;
+		width: 50%;
+		height: 30px;
+		padding: 0;
+		line-height: 30px;
+		font-size: 15px;
+		color: white;
+		font-family: Trebuchet, Arial, sans-serif;
+		font-weight: bold;
+		box-sizing: border-box;
+	}
+	.my_switch-inner::after {
+		content: attr(data-on);
+		padding-left: 10px;
+		background-color: #1abb9c;
+		color: #FFFFFF;
+	}
+	.my_switch-inner::before {
+		content: attr(data-off);
+		padding-right: 10px;
+		background-color: #EEEEEE;
+		color: #999999;
+		text-align: right;
+	}
+	.my_switch-switch {
+		position: absolute;
+		display: block;
+		width: 22px;
+		height: 22px;
+		margin: 4px;
+		background: #FFFFFF;
+		top: 0;
+		bottom: 0;
+		right: 46px;
+		border: 2px solid #999999;
+		border-radius: 20px;
+		transition: all 0.3s ease-in 0s;
+	}
+	.my_switch-checkbox:checked+.my_switch-label .my_switch-inner {
+		margin-left: 0;
+	}
+	.my_switch-checkbox:checked+.my_switch-label .my_switch-switch {
+		right: 0px;
+	}
+</style>
+
+<body>
+	<div class="my_switch">
+		<input class="my_switch-checkbox" id="onoffswitch" type="checkbox">
+		<label class="my_switch-label" for="onoffswitch">
+			<span class="my_switch-inner" data-on="是" data-off="否"></span>
+			<span class="my_switch-switch"></span>
+		</label>
+	</div>
+</body>
+
+</html>
+<script type="text/javascript">
+	var onoffswitch = document.getElementById('onoffswitch');
+	onoffswitch.onclick = function () {
+		console.log('this.checked: ', this.checked);
+	}
+</script>
