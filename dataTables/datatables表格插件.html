@@ -14,6 +14,7 @@
 </head>
 
 <body>
+	<strong onclick="dealClick(json, 2);">123</strong>
 	<table id="example" style="min-width: 100%;"></table>
 </body>
 
@@ -21,6 +22,8 @@
 <script type="text/javascript" src="js/jquery1.min.js"></script>
 <script type="text/javascript" src="js/dataTables.js"></script>
 <script type="text/javascript">
+	var json = {"car_name": "\u5168\u90e8\u8c6a\u534e\u8f66", "args": "{\"test\":\"test\"}", "product_id": "9", "car_level": "1000", "env_name": "\u7ebf\u4e0a", "combo_name": "what", "combo_type": "10", "business_id": "", "env_type": "3", "interface": "test", "group_key": null, "interface_list": [{"interface": "test", "args": "{\"test\":\"test\"}"}], "didifarm_of_id": "156", "product_name": "\u8c6a\u534e\u8f66", "order_type": "{\"0\":{\"name\":\"yuyue\"}}"};
+	json = JSON.stringify(json);
 	var dataSet = [];
 	for (var i = 0; i < 50; i++) {
 		var obj = {
@@ -33,8 +36,54 @@
 		};
 		dataSet.push(obj);
 	}
+	console.log('dataSet: ', dataSet);
+	
+	var columns = [
+		{
+			title: 'Name',
+			data: 'name',
+			className: "my_class",
+			orderable: false,
+			width: 300
+		},
+		{
+			title: 'Position',
+			data: 'position',
+			width: 300
+		},
+		{
+			title: 'Office',
+			data: 'office',
+			width: 300
+		},
+		{
+			title: 'Extn',
+			data: 'sxtn',
+			width: 300,
+		},
+		{
+			title: 'Start date',
+			data: 'start',
+			width: 300,
+			render: function (data, type, row, meta) {
+				return '<a href="/guarantee/guarantee_driver_detail?dstr=' + row['position'] + '&did=' + row['sxtn'] + '">' + data + '</a>';
+			},
+		},
+		{
+			title: 'Salary',
+			data: 'salary',
+			width: 300,
+			render: function (data, type, row, meta) {
+				var rowStr = JSON.stringify(row);
+				// console.log('rowStr:', rowStr);
+				// var str = '<strong data-row=\'' + rowStr + '\' onclick="dealClick(this, ' + meta.row + ');">' + data + '</strong>';
+				var str = '<strong data-row=\'' + json + '\' onclick="dealClick(this, ' + meta.row + ');">' + data + '</strong>';
+				return str;
+			},
+		}
+	];
 
-	makeTable(dataSet);
+	makeTable($('#example'), dataSet, columns);
 
 	// 过滤表格数据
 	// searchAndDraw();
@@ -46,8 +95,8 @@
 	}
 
 	// 创建表格方法
-	function makeTable(param) {
-		var dataObj = {
+	function makeTable(dom, data, columns) {
+		window.table = dom.DataTable({
 			'searching': true, // 是否允许搜索, 默认true
 			'ordering': true, // 是否允许排序, 默认true
 			// 'order': [[0, 'asc']], // 默认排序 
@@ -71,57 +120,16 @@
 					'next': '下一页'
 				}
 			},
-			'columnDefs': [
-				{
-					'render': function (data, type, row) {
-						var str = '<strong onclick="dealClick(\'' + row['position'] + "','" + row['salary'] + '\');">' + data + '</strong>';
-						return str;
-					},
-					'targets': 2
-				},
-				{
-					'render': function (data, type, row) {
-						return '<a href="/guarantee/guarantee_driver_detail?dstr=' + row['position'] + '&did=' + row['sxtn'] + '">' + data + '</a>';
-					},
-					'targets': [0, 1, 3, 4]
-				},
-				{
-					'render': function (data, type, row) {
-						var rowStr = JSON.stringify(row);
-						// console.log('rowStr:', rowStr);
-						var str = '<strong onclick=dealClicks(\'' + rowStr + "','" + row['salary'] + '\');>' + data + '</strong>';
-						return str;
-					},
-					'targets': 5
-				},
-			],
-			data: param,
-			columns: [
-				{ title: 'Name', data: 'name', className: "my_class", 'orderable' : false, width: 300 },
-				{ title: 'Position', data: 'position', width: 300 },
-				{ title: 'Office', data: 'office', width: 300 },
-				{ title: 'Extn', data: 'sxtn', width: 300 },
-				{ title: 'Start date', data: 'start', width: 300 },
-				{ title: 'Salary', data: 'salary', width: 300 }
-			]
-		};
-		window.table = $('#example').DataTable(dataObj);
+			drawCallback: function() { // 防止表头出现错位。
+				$.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
+			},
+			columns: columns,
+			data: data,
+		});
 	};
 
-	function dealClick(position, salary) {
-		console.log('position:', position);
-		console.log('sxtn:', salary);
+	function dealClick(that, index) {
+		console.log('JSON.parse(that.dataset.row):', JSON.parse(that.dataset.row));
+		console.log('index:', index);
 	}
-
-	function dealClicks(row, salary) {
-		console.log('row:', row);
-		console.log('sxtn:', salary);
-	}
-
-	/*
-	datatable在tab切换出现表头错位，切换时加这个代码解决:
-		setTimeout(function () {
-			$.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-		}, 0);
-	*/
 </script>
